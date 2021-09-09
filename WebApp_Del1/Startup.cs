@@ -1,8 +1,6 @@
-using WebApp_Del1.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -20,7 +18,7 @@ namespace WebApp_Del1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<KundeContext>(options => options.UseSqlite("Data source = Kunde.db")); //Skal endres etterhvert.
+         //   services.AddDbContext<KundeContext>(options => options.UseSqlite("Data source = Kunde.db")); //Skal endres etterhvert.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
