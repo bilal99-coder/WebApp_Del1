@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
-namespace KundeApp2
+namespace WebApp_Del1
 {
     public class Startup
     {
