@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace billetter.Model
+namespace WebApp_Del1
 {
     public class Billett
     {

@@ -1,18 +1,20 @@
 using billetter.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
+using WebApp_Del1.Contexts;
 
 namespace WebApp_Del1.Controllers
 {
 	[Route("[Controller]/[action]")]
 	public class BillettController : ControllerBase
     {
-        private List<Lugar> lugarer;
         private Billett billett;
+
+        private readonly BillettContext _lugDb;
 
         public BillettController()
         {
-            this.lugarer = new List<Lugar>();
             Lugar lugar = new Lugar();
 
         }
@@ -22,6 +24,7 @@ namespace WebApp_Del1.Controllers
         [Route("{id}")]
         public void velgLugar(int id)
         {
+
             this.billett.lugarId = id;
 
 
@@ -29,7 +32,13 @@ namespace WebApp_Del1.Controllers
 
         public List<Lugar> hentLugarer()
         {
-            return this.lugarer;
+            return _lugDb.lugarer.ToList();
+        }
+
+        public void registrerBillett()
+        {
+            _lugDb.billetter.Add(billett);
+            _lugDb.SaveChanges();
         }
     }
 }
