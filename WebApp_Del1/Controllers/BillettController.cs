@@ -1,8 +1,4 @@
-using billetter.Model;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using WebApp_Del1.Contexts;
 
 namespace WebApp_Del1.Controllers
 {
