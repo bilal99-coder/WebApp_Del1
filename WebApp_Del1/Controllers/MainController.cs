@@ -21,12 +21,13 @@ namespace billetter.Controllers
         }
 
 
-        public void hentBillett()
+        public int hentBillett()
         {
 
             if (TempData.ContainsKey("billett"))
                 this.billett = ((Billett)JsonConvert.DeserializeObject<Billett>(TempData["billett"].ToString()));
 
+            return this.billett.lugarId;
         }
     }
 }
