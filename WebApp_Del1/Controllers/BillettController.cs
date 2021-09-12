@@ -16,6 +16,7 @@ namespace WebApp_Del1.Controllers
         public BillettController(BillettContext db)
         {
             this.billett = new Billett();
+            this.billett.billettId = 5;
             _lugDb = db;
   
 
