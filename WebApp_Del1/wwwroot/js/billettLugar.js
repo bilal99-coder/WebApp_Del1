@@ -40,4 +40,4 @@ var GUIModule = (function () {
                 " </figure >").appendTo("#lugarPlaceholder");
         }
     };
-)();
+})();
