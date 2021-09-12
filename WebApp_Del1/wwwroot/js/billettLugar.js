@@ -23,8 +23,9 @@ var CommunicationModule = (function () {
                 (error) => {
                     setTimeout(() => { CommunicationModule.hentlugarer() }, 10000);
                 });
+        }
     }
-}();
+})();
     
 
 var GUIModule = (function () {
