@@ -19,7 +19,7 @@ namespace WebApp_Del1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-             services.AddDbContext<BillettContext>(options => options.UseSqlite("Data source = Billett.db")); //Skal endres etterhvert.
+             services.AddDbContext<BillettContext>(options => options.UseSqlite("Data source =Billett.db")); //Skal endres etterhvert.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
