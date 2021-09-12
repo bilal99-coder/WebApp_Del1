@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,8 +9,13 @@ namespace WebApp_Del1
     public class Lugar
     {
 
-        public Lugar(String bildeURL, String beskrivelse)
+        [Key]
+        public int lugarId;
+
+        public Lugar(int lugarId, String bildeURL, String beskrivelse)
         {
+
+            this.lugarId = lugarId;
             this.bildeURL = bildeURL;
             this.beskrivelse = beskrivelse;
         }

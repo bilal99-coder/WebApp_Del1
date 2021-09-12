@@ -12,10 +12,11 @@ namespace WebApp_Del1.Controllers
         private Billett billett;
 
         private readonly BillettContext _lugDb;
-
-        public BillettController()
+        
+        public BillettController(BillettContext db)
         {
-            Lugar lugar = new Lugar("/te","test");
+            _lugDb = db;
+            Lugar lugar = new Lugar(1,"/te","test");
             _lugDb.lugarer.Add(lugar);
             _lugDb.SaveChanges();
 
