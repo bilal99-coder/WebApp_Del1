@@ -15,9 +15,7 @@ namespace WebApp_Del1
         public int billettId { get; set; }
 
         public double pris { get; set; }
-        public String navn { get; set; }
         public String tidspunkt { get; set; }
-        public String addresse { get; set; }
         public int type { get; set; }
 
         public virtual List<Lugar> lugarer { get; set; }
