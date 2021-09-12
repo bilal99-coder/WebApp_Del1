@@ -15,12 +15,19 @@ namespace WebApp_Del1.Controllers
         
         public BillettController(BillettContext db)
         {
+       
             _lugDb = db;
-  
+             nyBillett();
+
+
 
         }
 
-
+        public void nyBillett()
+        {
+            this.billett = new Billett();
+          
+        }
 
         [Route("{id}")]
         public void velgLugar(int id)
