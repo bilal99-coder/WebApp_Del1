@@ -32,9 +32,14 @@ namespace WebApp_Del1.Controllers
         [Route("{id}")]
         public void velgLugar(int id)
         {
-            Lugar lugar = _lugDb.lugarer.Find(id);
+            Lugar lugar = _lugDb.lugarer.Find(1);
             if(lugar != null)
-                 billett.lugarer.Add(lugar);
+            {
+                if (billett.lugarer == null)
+                    billett.lugarer = new List<Lugar>();
+                billett.lugarer.Add(lugar);
+            }
+                 
 
 
         }
