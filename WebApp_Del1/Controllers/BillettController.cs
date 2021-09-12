@@ -15,8 +15,6 @@ namespace WebApp_Del1.Controllers
         
         public BillettController(BillettContext db)
         {
-            this.billett = new Billett();
-            this.billett.billettId = 5;
             _lugDb = db;
   
 
@@ -28,7 +26,8 @@ namespace WebApp_Del1.Controllers
         public void velgLugar(int id)
         {
             Lugar lugar = _lugDb.lugarer.Find(id);
-            billett.lugarer.Add(lugar);
+            if(lugar != null)
+                 billett.lugarer.Add(lugar);
 
 
         }
@@ -38,6 +37,11 @@ namespace WebApp_Del1.Controllers
             return _lugDb.lugarer.ToList();
         }
 
+        //Funksjon for debuging
+        public List<Billett> hentBilletter()
+        {
+            return _lugDb.billetter.ToList();
+        }
         public void registrerBillett()
         {
             _lugDb.billetter.Add(billett);
