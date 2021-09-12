@@ -21,10 +21,10 @@ var CommunicationModule = (function () {
 
             hentPlugarer().then((x) => { },
                 (error) => {
-                    setTimeout(() => { CommunicationModule.hentlugarer()}, 10000);
-                }}
+                    setTimeout(() => { CommunicationModule.hentlugarer() }, 10000);
+                });
     }
-})();
+}();
     
 
 var GUIModule = (function () {
