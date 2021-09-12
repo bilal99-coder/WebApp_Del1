@@ -28,7 +28,7 @@ namespace WebApp_Del1.Controllers
         public void velgLugar(int id)
         {
 
-            this.billett.lugarId = id;
+            //this.billett. = id;
 
 
         }
