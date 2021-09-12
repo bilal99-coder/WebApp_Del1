@@ -11,7 +11,7 @@ namespace WebApp_Del1
     {
 
         [Key]
-        public int lugarId;
+        public int lugarId { get; set; }
 
 
         public String bildeURL { get; set; }

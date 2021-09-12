@@ -12,7 +12,7 @@ namespace WebApp_Del1
     {
 
         [Key]
-        public int billettId;
+        public int billettId { get; set; }
 
         public double pris { get; set; }
         public String navn { get; set; }
