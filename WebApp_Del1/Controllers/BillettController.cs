@@ -15,6 +15,7 @@ namespace WebApp_Del1.Controllers
         
         public BillettController(BillettContext db)
         {
+            this.billett = new Billett();
             _lugDb = db;
   
 
@@ -25,8 +26,8 @@ namespace WebApp_Del1.Controllers
         [Route("{id}")]
         public void velgLugar(int id)
         {
-
-            //this.billett. = id;
+            Lugar lugar = _lugDb.lugarer.Find(id);
+            billett.lugarer.Add(lugar);
 
 
         }
