@@ -14,18 +14,7 @@ namespace WebApp_Del1
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int lugarId;
 
-        public Lugar(int lugarId, String bildeURL, String beskrivelse)
-        {
 
-            this.lugarId = lugarId;
-            this.bildeURL = bildeURL;
-            this.beskrivelse = beskrivelse;
-        }
-
-        public Lugar()
-        {
-
-        }
         public String bildeURL { get; set; }
         public String beskrivelse { get; set; }
 
