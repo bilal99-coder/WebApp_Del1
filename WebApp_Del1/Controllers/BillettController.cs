@@ -16,9 +16,7 @@ namespace WebApp_Del1.Controllers
         public BillettController(BillettContext db)
         {
             _lugDb = db;
-            Lugar lugar = new Lugar(1,"/te","test");
-            _lugDb.lugarer.Add(lugar);
-            _lugDb.SaveChanges();
+
 
         }
 
