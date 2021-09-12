@@ -6,18 +6,18 @@ using WebApp_Del1.Contexts;
 
 namespace WebApp_Del1.Controllers
 {
-	[Route("[Controller]/[action]")]
-	public class BillettController : ControllerBase
+    [Route("[Controller]/[action]")]
+    public class BillettController : ControllerBase
     {
         private Billett billett;
 
         private readonly BillettContext _lugDb;
-        
+
         public BillettController(BillettContext db)
         {
-       
+
             _lugDb = db;
-             nyBillett();
+            nyBillett();
 
 
 
@@ -26,20 +26,20 @@ namespace WebApp_Del1.Controllers
         public void nyBillett()
         {
             this.billett = new Billett();
-          
+
         }
 
         [Route("{id}")]
         public void velgLugar(int id)
         {
             Lugar lugar = _lugDb.lugarer.Find(id);
-            if(lugar != null)
+            if (lugar != null)
             {
-                if (billett.lugarer == null)
-                    billett.lugarer = new List<Lugar>();
+                billett.lugarer = new List<Lugar>();
                 billett.lugarer.Add(lugar);
+
             }
-                 
+
 
 
         }
