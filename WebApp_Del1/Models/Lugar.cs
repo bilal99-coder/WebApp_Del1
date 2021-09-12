@@ -22,6 +22,10 @@ namespace WebApp_Del1
             this.beskrivelse = beskrivelse;
         }
 
+        public Lugar()
+        {
+
+        }
         public String bildeURL { get; set; }
         public String beskrivelse { get; set; }
 

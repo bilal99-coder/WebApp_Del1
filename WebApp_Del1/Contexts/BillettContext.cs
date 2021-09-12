@@ -19,7 +19,7 @@ namespace WebApp_Del1.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-          //  optionsBuilder.UseLazyLoadingProxies();
+            optionsBuilder.UseLazyLoadingProxies();
         }
     }
 }
