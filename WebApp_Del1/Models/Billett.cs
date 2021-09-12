@@ -24,10 +24,6 @@ namespace WebApp_Del1
         public virtual List<Lugar> lugarer { get; set; }
         public virtual List<Person> personer { get; set; }
 
-        public Billett()
-        {
-
-        }
 
     }
 }

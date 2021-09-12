@@ -19,10 +19,7 @@ namespace WebApp_Del1
         public String etternavn { get; set; }
 
 
-        public Person()
-        {
 
-        }
 
     }
 }
