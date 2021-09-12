@@ -1,4 +1,8 @@
+
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+using WebApp_Del1.Contexts;
 
 namespace WebApp_Del1.Controllers
 {
@@ -8,10 +12,13 @@ namespace WebApp_Del1.Controllers
         private Billett billett;
 
         private readonly BillettContext _lugDb;
-
-        public BillettController()
+        
+        public BillettController(BillettContext db)
         {
-            Lugar lugar = new Lugar();
+            _lugDb = db;
+            Lugar lugar = new Lugar(1,"/te","test");
+            _lugDb.lugarer.Add(lugar);
+            _lugDb.SaveChanges();
 
         }
 
@@ -20,6 +27,7 @@ namespace WebApp_Del1.Controllers
         [Route("{id}")]
         public void velgLugar(int id)
         {
+
             this.billett.lugarId = id;
 
 
