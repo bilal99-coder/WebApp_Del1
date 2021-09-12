@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace WebApp_Del1
     {
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int billettId;
 
         public double pris { get; set; }
@@ -19,8 +21,8 @@ namespace WebApp_Del1
         public String addresse { get; set; }
         public int type { get; set; }
 
-        public virtual List<Lugar> Lugar { get; set; }
-        public virtual List<Person> Person { get; set; }
+        public virtual List<Lugar> lugarer { get; set; }
+        public virtual List<Person> personer { get; set; }
 
         public Billett()
         {
