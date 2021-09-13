@@ -11,6 +11,8 @@ namespace WebApp_Del1.Controllers
     {
 
         private Billett billett;
+        private List<Person> personer;
+        private List<Lugar> lugarer;
 
 
         private readonly BillettContext _lugDb;
@@ -28,6 +30,8 @@ namespace WebApp_Del1.Controllers
         public void nyBillett()
         {
             this.billett = new Billett();
+            this.personer = new List<Person>();
+            this.lugarer = new List<Lugar>();
 
         }
 
