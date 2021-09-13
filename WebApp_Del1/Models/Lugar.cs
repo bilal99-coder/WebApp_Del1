@@ -18,7 +18,7 @@ namespace WebApp_Del1
         public String beskrivelse { get; set; }
         public int billettId { get; set; }
 
-        public virtual List<Billett> billetter { get; set; }
+        public virtual List<Billett> billett { get; set; }
 
         //public virtual ICollection<Billett> billetter { get; set; }
  

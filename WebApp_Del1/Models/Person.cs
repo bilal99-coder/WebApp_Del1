@@ -20,7 +20,7 @@ namespace WebApp_Del1
         public int billettId{ get; set; }
 
         public String addresse { get; set; }
-        public virtual List<Billett> billetter { get; set; }
+        public virtual List<Billett> billett { get; set; }
 
 
     }

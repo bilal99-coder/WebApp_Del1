@@ -10,8 +10,14 @@ namespace WebApp_Del1
 {
     public class Billett
     {
-  
+        public Billett()
+        {
+           // this.personer = new HashSet<Person>();
+           // this.lugarer = new HashSet<Lugar>();
+        }
+
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int billettId { get; set; }
 
         public double pris { get; set; }
@@ -19,5 +25,7 @@ namespace WebApp_Del1
         public int type { get; set; }
 
 
+        public virtual Person person { get; set; }
+        public virtual Lugar lugar { get; set; }
     }
 }

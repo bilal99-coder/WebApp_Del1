@@ -13,7 +13,7 @@ namespace WebApp_Del1.Controllers
         //Ulike brukere delere ikke statiske variabler i kontrollere.
         private static Billett billett = new Billett();
         private static Person person = new Person();
-        private static Lugar lugar;
+        private static Lugar lugar = new Lugar();
 
 
         private readonly BillettContext _lugDb;
@@ -79,7 +79,9 @@ namespace WebApp_Del1.Controllers
         }
         public void registrerBillett()
         {
-            person.personId = billett.billettId;
+           person.billettId = billett.billettId;
+            lugar.billettId = billett.billettId;
+
             _lugDb.personer.Add(person);
 
             _lugDb.billetter.Add(billett);
