@@ -49,6 +49,21 @@ namespace WebApp_Del1.Controllers
 
         }
 
+
+        [Route("{id}")]
+        public void fjernLugar(int id)
+        {
+            Lugar lugar = _lugDb.lugarer.Find(id);
+            if (lugar != null)
+            {
+                this.lugarer.Remove(lugar);
+
+            }
+
+
+
+        }
+
         public List<Lugar> hentLugarer()
         {
             return _lugDb.lugarer.ToList();
