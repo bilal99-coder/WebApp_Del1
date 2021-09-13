@@ -18,9 +18,8 @@ namespace WebApp_Del1
         public String tidspunkt { get; set; }
         public int type { get; set; }
 
-        public virtual ICollection<BillettLugar> billettLugar { get; set; }
-        public virtual ICollection<BillettPerson> billettPerson { get; set; }
-
+        public virtual ICollection<Lugar> lugarer { get; set; }
+        public virtual ICollection<Lugar> personer { get; set; }
 
     }
 }

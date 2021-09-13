@@ -1,5 +1,6 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using WebApp_Del1.Contexts;
@@ -10,12 +11,13 @@ namespace WebApp_Del1.Controllers
     public class BillettController : ControllerBase
     {
         private Billett billett;
+        private ModelBuilder modelBuilder;
 
         private readonly BillettContext _lugDb;
 
         public BillettController(BillettContext db)
         {
-
+            modelBuilder = new ModelBuilder();
             _lugDb = db;
             nyBillett();
 
@@ -35,8 +37,7 @@ namespace WebApp_Del1.Controllers
             Lugar lugar = _lugDb.lugarer.Find(id);
             if (lugar != null)
             {
-                billett.lugarer = new List<Lugar>();
-                billett.lugarer.Add(lugar);
+             
 
             }
 
