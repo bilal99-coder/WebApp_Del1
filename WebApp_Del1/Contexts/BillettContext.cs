@@ -13,7 +13,7 @@ namespace WebApp_Del1.Contexts
         {
             Database.EnsureCreated();
         }
-
+        //
         public DbSet<Lugar> lugarer { get; set; }
         public DbSet<Billett> billetter { get; set; }
 
