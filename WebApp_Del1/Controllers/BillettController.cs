@@ -41,17 +41,16 @@ namespace WebApp_Del1.Controllers
         public void velgLugar(int id)
         {
             Lugar lugar = _lugDb.lugarer.Find(id);
-            if (lugar != null)
-            {
+            
                 BillettLugar billettLugar = new BillettLugar();
-                billettLugar.billettId    = this.billett.billettId;
+                billettLugar.billettId = this.billett.billettId;
                 billettLugar.lugar = lugar;
                 billettLugar.lugarId = lugar.lugarId;
                 lugarer.Add(billettLugar);
 
-            }
 
 
+            
 
         }
 
@@ -68,7 +67,9 @@ namespace WebApp_Del1.Controllers
         public void registrerBillett()
         {
             _lugDb.billetter.Add(billett);
+
             lugarer.ForEach((x) => _lugDb.billettlugar.Add(x));
+
             personer.ForEach((x) => _lugDb.billettperson.Add(x));
           
             _lugDb.SaveChanges();
