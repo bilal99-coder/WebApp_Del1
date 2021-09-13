@@ -21,7 +21,7 @@ namespace WebApp_Del1.Controllers
         {
  
             _lugDb = db;
-            //nyBillett();
+            nyBillett();
 
 
 
