@@ -35,8 +35,7 @@ namespace WebApp_Del1.Controllers
             Lugar lugar = _lugDb.lugarer.Find(id);
             if (lugar != null)
             {
-                billett.lugarer = new List<Lugar>();
-                billett.lugarer.Add(lugar);
+            
 
             }
 

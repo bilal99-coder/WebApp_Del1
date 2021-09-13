@@ -15,7 +15,7 @@ namespace WebApp_Del1.Contexts
         }
 
         public DbSet<Lugar> lugarer { get; set; }
-        public DbSet<Billett> billetter {get; set;}
+        public DbSet<Billett> billetter { get; set; }
 
         public DbSet<Person> personer { get; set; }
         public DbSet<BillettLugar> billettLugar { get; set; }
@@ -26,4 +26,5 @@ namespace WebApp_Del1.Contexts
             optionsBuilder.UseLazyLoadingProxies();
         }
     }
+
 }
