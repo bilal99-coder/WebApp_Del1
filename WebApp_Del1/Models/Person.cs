@@ -10,7 +10,11 @@ namespace WebApp_Del1
 {
     public class Person
     {
+        public Person()
+        {
+            //this.billetter = new HashSet<Billett>();
 
+        }
         [Key]
         public int personId { get; set; }
 
@@ -19,6 +23,6 @@ namespace WebApp_Del1
 
         public String addresse { get; set; }
         public virtual List<BillettPerson> billett { get; set; }
-
+       // public virtual ICollection<Billett> billetter { get; set; }
     }
 }

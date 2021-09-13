@@ -9,14 +9,9 @@ namespace WebApp_Del1.Controllers
     [Route("[Controller]/[action]")]
     public class BillettController : ControllerBase
     {
-        //Personer plasseres ikke inn her
-        private Billett billett;
-        
-        //lugarer plasseres inn her
-        private List<BillettLugar> lugarer;
 
-        //personer plasseres inn her
-        private List<BillettPerson> personer;
+        private Billett billett;
+
 
         private readonly BillettContext _lugDb;
 
@@ -33,8 +28,7 @@ namespace WebApp_Del1.Controllers
         public void nyBillett()
         {
             this.billett = new Billett();
-            this.lugarer = new List<BillettLugar>();
-            this.personer = new List<BillettPerson>();
+
         }
 
         [Route("{id}")]
@@ -43,13 +37,8 @@ namespace WebApp_Del1.Controllers
             Lugar lugar = _lugDb.lugarer.Find(id);
             if (lugar != null)
             {
-                BillettLugar billettLugar = new BillettLugar();
-                billettLugar.billettId    = this.billett.billettId;
-                billettLugar.billett = this.billett;
-                billettLugar.lugar = lugar;
-                billettLugar.lugarId = lugar.lugarId;
-                lugarer.Add(billettLugar);
 
+            
             }
 
 
@@ -70,12 +59,7 @@ namespace WebApp_Del1.Controllers
         {
 
             _lugDb.billetter.Add(billett);
-            _lugDb.SaveChanges();
-
-            lugarer.ForEach((x) => _lugDb.billettLugar.Add(x));
-
-            personer.ForEach((x) => _lugDb.billettPerson.Add(x));
-        
+   
             _lugDb.SaveChanges();
         }
     }
