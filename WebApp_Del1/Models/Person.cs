@@ -18,7 +18,7 @@ namespace WebApp_Del1
         public String etternavn { get; set; }
 
         public String addresse { get; set; }
-        public virtual List<BillettPerson> billettPerson { get; set; }
+        public virtual List<BillettPerson> billett { get; set; }
 
     }
 }
