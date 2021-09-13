@@ -21,7 +21,7 @@ namespace WebApp_Del1.Controllers
         {
  
             _lugDb = db;
-            nyBillett();
+            //nyBillett();
 
 
 
@@ -64,6 +64,8 @@ namespace WebApp_Del1.Controllers
 
         }
 
+
+
         public List<Lugar> hentLugarer()
         {
             return _lugDb.lugarer.ToList();
@@ -76,9 +78,11 @@ namespace WebApp_Del1.Controllers
         }
         public void registrerBillett()
         {
+            this.billett.billettPerson = new List<BillettPerson>();
+            this.billett.billettLugar = new List<BillettLugar>();
 
             _lugDb.billetter.Add(billett);
-
+            _lugDb.SaveChanges();
             personer.ForEach((x) =>
             {
                 BillettPerson billettPerson = new BillettPerson();
@@ -88,10 +92,10 @@ namespace WebApp_Del1.Controllers
 
                 billettPerson.personId = x.personId;
                 billettPerson.person    = x;
-
+                billett.billettPerson.Add(billettPerson);
                 _lugDb.billettPerson.Add(billettPerson);
-                
-               
+                _lugDb.SaveChanges();
+
             });
 
 
@@ -104,9 +108,10 @@ namespace WebApp_Del1.Controllers
 
                 billettLugar.lugarId = x.lugarId;
                 billettLugar.lugar = x;
+                billett.billettLugar.Add(billettLugar);
 
                 _lugDb.billettLugar.Add(billettLugar);
-
+                _lugDb.SaveChanges();
 
             });
 
