@@ -16,6 +16,7 @@ namespace WebApp_Del1
 
         public String bildeURL { get; set; }
         public String beskrivelse { get; set; }
+        public virtual List<Billett> billetter { get; set; }
 
         // public bool harWc { get; set; }
         // public String wciIconURL { get; set; }
