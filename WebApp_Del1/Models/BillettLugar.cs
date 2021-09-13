@@ -8,17 +8,14 @@ using System.Threading.Tasks;
 
 namespace WebApp_Del1
 {
-    public class Person
+    public class BillettLugar
     {
 
-        [Key]
+        [Key, Column(Order = 0)]
         public int personId { get; set; }
 
-        public String fornavn { get; set; }
-        public String etternavn { get; set; }
-
-        public String addresse { get; set; }
-        public virtual ICollection<BillettPerson> billettPerson { get; set; }
+        [Key, Column(Order = 1)]
+        public int lugarId { get; set; }
 
     }
 }
