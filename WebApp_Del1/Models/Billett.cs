@@ -26,7 +26,7 @@ namespace WebApp_Del1
         public virtual List<BillettPerson> billettPerson { get; set; }
         public virtual List<BillettLugar> billettLugar { get; set; }
 
-        public virtual ICollection<Person> personer { get; set; }
-        public virtual ICollection<Lugar> lugarer { get; set; }
+        //public virtual ICollection<Person> personer { get; set; }
+       // public virtual ICollection<Lugar> lugarer { get; set; }
     }
 }
