@@ -16,9 +16,9 @@ namespace WebApp_Del1
 
         [Key, Column(Order = 1)]
         public int lugarId { get; set; }
-        [System.Text.Json.Serialization.JsonIgnore]
+  
         public virtual Billett billett { get; set; }
-        [System.Text.Json.Serialization.JsonIgnore]
+
         public virtual Lugar lugar { get; set; }
 
     }
