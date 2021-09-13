@@ -14,11 +14,11 @@ namespace WebApp_Del1
         [Key]
         public int personId { get; set; }
 
-        public String fornavn { get; set; }
+        public String fornavn { get; set; }//
         public String etternavn { get; set; }
 
         public String addresse { get; set; }
-        public virtual ICollection<Person> personer { get; set; }
+        public virtual List<BillettPerson> billettPerson { get; set; }
 
     }
 }
