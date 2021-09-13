@@ -17,10 +17,8 @@ namespace WebApp_Del1
 
         public String fornavn { get; set; }//
         public String etternavn { get; set; }
-        public int billettId{ get; set; }
 
         public String addresse { get; set; }
-        public virtual List<Billett> billett { get; set; }
 
 
     }
