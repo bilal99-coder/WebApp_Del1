@@ -12,11 +12,14 @@ namespace WebApp_Del1
     {
 
         [Key, Column(Order = 0)]
-        public int personId { get; set; }
-
-        [Key, Column(Order = 1)]
         public int billettId { get; set; }
 
+        [Key, Column(Order = 1)]
+        public int personId { get; set; }
 
+        [System.Text.Json.Serialization.JsonIgnore]
+        public virtual Billett billett { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
+        public virtual Person person { get; set; }
     }
 }
