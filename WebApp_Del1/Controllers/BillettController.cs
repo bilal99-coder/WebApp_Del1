@@ -35,7 +35,7 @@ namespace WebApp_Del1.Controllers
             Lugar lugar = _lugDb.lugarer.Find(id);
             if (lugar != null)
             {
-            
+                lugar.billett = this.billett;
 
             }
 
