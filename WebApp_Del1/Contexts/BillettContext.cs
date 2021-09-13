@@ -27,8 +27,15 @@ namespace WebApp_Del1.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<BillettLugar>().HasKey(table => new {
+                table.billettId,
+                table.lugarId
+            });
 
-
+            modelBuilder.Entity<BillettPerson>().HasKey(table => new {
+                table.billettId,
+                table.personId
+            });
         }
     }
 

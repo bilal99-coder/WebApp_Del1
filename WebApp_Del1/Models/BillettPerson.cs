@@ -12,10 +12,10 @@ namespace WebApp_Del1
     {
 
         [Key, Column(Order = 0)]
-        public int personId { get; set; }
+        public int billettId { get; set; }
 
         [Key, Column(Order = 1)]
-        public int billettId { get; set; }
+        public int personId { get; set; }
 
 
     }
