@@ -36,7 +36,8 @@ namespace WebApp_Del1.Contexts
                 table.billettId,
                 table.personId
             });
-        }
-    }
 
+
+    }
+}
 }

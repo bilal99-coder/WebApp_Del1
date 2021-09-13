@@ -17,6 +17,11 @@ namespace WebApp_Del1
         [Key, Column(Order = 1)]
         public int personId { get; set; }
 
+        [ForeignKey("billetId")]
+        public virtual Billett billett { get; set; }
+
+        [ForeignKey("personId")]
+        public virtual Person person { get; set; }
 
     }
 }
