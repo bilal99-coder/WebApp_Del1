@@ -18,9 +18,8 @@ namespace WebApp_Del1
         public String tidspunkt { get; set; }
         public int type { get; set; }
 
-        public virtual List<Lugar> lugarer { get; set; }
-        public virtual List<Person> personer { get; set; }
-
-
+        public virtual List<BillettPerson> billettPerson { get; set; }
+        public virtual List<BillettLugar> billettLugar { get; set; }
+        
     }
 }

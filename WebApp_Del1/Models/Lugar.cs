@@ -13,9 +13,11 @@ namespace WebApp_Del1
         [Key]
         public int lugarId { get; set; }
 
-        public virtual Billett billett {get; set; }
+
         public String bildeURL { get; set; }
         public String beskrivelse { get; set; }
+  
+        public virtual List<BillettLugar> billettLugar { get; set; }
 
         // public bool harWc { get; set; }
         // public String wciIconURL { get; set; }
