@@ -19,7 +19,8 @@ namespace WebApp_Del1
         public int type { get; set; }
 
         public virtual ICollection<Lugar> lugarer { get; set; }
-        public virtual ICollection<Lugar> personer { get; set; }
+        public virtual ICollection<Person> personer { get; set; }
+
 
     }
 }
