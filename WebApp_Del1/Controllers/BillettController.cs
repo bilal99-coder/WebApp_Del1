@@ -57,7 +57,7 @@ namespace WebApp_Del1.Controllers
             Lugar lugaren = _lugDb.lugarer.Find(id);
             if (lugar != null)
             {
-                lugar = null;
+                billett.lugar = lugar;
 
             }
 
@@ -79,8 +79,8 @@ namespace WebApp_Del1.Controllers
         }
         public void registrerBillett()
         {
-           person.billettId = billett.billettId;
-            lugar.billettId = billett.billettId;
+            billett.person = person;
+            billett.lugar = lugar;
 
             _lugDb.personer.Add(person);
 
