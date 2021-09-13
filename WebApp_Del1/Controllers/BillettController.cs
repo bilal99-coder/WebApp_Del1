@@ -9,7 +9,8 @@ namespace WebApp_Del1.Controllers
     [Route("[Controller]/[action]")]
     public class BillettController : ControllerBase
     {
-
+        //Vil ikke bli problemer med flere brukere - sjekket.
+        //Ulike brukere delere ikke statiske variabler i kontrollere.
         private static Billett billett;
         private static List<Person> personer;
         private static List<Lugar> lugarer;
