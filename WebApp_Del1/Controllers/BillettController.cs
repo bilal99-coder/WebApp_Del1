@@ -11,9 +11,9 @@ namespace WebApp_Del1.Controllers
     {
         //Vil ikke bli problemer med flere brukere - sjekket.
         //Ulike brukere delere ikke statiske variabler i kontrollere.
-        private static Billett billett;
-        private static List<Person> personer;
-        private static List<Lugar> lugarer;
+        private static Billett billett = new Billett();
+        private static List<Person> personer = new List<Person>();
+        private static List<Lugar> lugarer = new List<Lugar>();
 
 
         private readonly BillettContext _lugDb;
