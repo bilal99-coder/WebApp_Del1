@@ -10,19 +10,18 @@ namespace WebApp_Del1
 {
     public class Person
     {
-        public Person()
-        {
-            //this.billetter = new HashSet<Billett>();
+     
 
-        }
         [Key]
         public int personId { get; set; }
 
         public String fornavn { get; set; }//
         public String etternavn { get; set; }
+        public int billettId{ get; set; }
 
         public String addresse { get; set; }
-        public virtual List<BillettPerson> billett { get; set; }
-       // public virtual ICollection<Billett> billetter { get; set; }
+        public virtual List<Billett> billetter { get; set; }
+
+
     }
 }

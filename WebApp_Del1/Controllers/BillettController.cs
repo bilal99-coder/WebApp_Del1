@@ -12,8 +12,8 @@ namespace WebApp_Del1.Controllers
         //Vil ikke bli problemer med flere brukere - sjekket.
         //Ulike brukere delere ikke statiske variabler i kontrollere.
         private static Billett billett = new Billett();
-        private static List<Person> personer = new List<Person>();
-        private static List<Lugar> lugarer = new List<Lugar>();
+        private static Person person = new Person();
+        private static Lugar lugar;
 
 
         private readonly BillettContext _lugDb;
@@ -31,18 +31,18 @@ namespace WebApp_Del1.Controllers
         public void nyBillett()
         {
             billett = new Billett();
-            personer = new List<Person>();
-            lugarer = new List<Lugar>();
+            person = new Person();
+            lugar = new Lugar();
 
         }
 
         [Route("{id}")]
         public void velgLugar(int id)
         {
-            Lugar lugar = _lugDb.lugarer.Find(id);
+            Lugar lugaren = _lugDb.lugarer.Find(id);
             if (lugar != null)
             {
-                lugarer.Add(lugar);
+                lugar = lugaren;
             
             }
 
@@ -54,10 +54,10 @@ namespace WebApp_Del1.Controllers
         [Route("{id}")]
         public void fjernLugar(int id)
         {
-            Lugar lugar = _lugDb.lugarer.Find(id);
+            Lugar lugaren = _lugDb.lugarer.Find(id);
             if (lugar != null)
             {
-                lugarer.Remove(lugar);
+                lugar = null;
 
             }
 
@@ -79,11 +79,14 @@ namespace WebApp_Del1.Controllers
         }
         public void registrerBillett()
         {
-            BillettLugar billettPerson = new BillettLugar();
-           billett.billettLugar = new List<BillettLugar>();
-            
-   
+            person.personId = billett.billettId;
+            _lugDb.personer.Add(person);
+
+            _lugDb.billetter.Add(billett);
+  
             _lugDb.SaveChanges();
+   
+           
         }
     }
 }

@@ -13,15 +13,12 @@ namespace WebApp_Del1
         [Key]
         public int lugarId { get; set; }
 
-        public Lugar()
-        {
-          //  this.billetter = new HashSet<Billett>();
-
-        }
+       
         public String bildeURL { get; set; }
         public String beskrivelse { get; set; }
-  
-        public virtual List<BillettLugar> billettLugar { get; set; }
+        public int billettId { get; set; }
+
+        public virtual List<Billett> billetter { get; set; }
 
         //public virtual ICollection<Billett> billetter { get; set; }
  
