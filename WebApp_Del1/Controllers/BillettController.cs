@@ -64,6 +64,16 @@ namespace WebApp_Del1.Controllers
 
         }
 
+        [HttpPost]
+        public void lagrePerson(Person person)
+        {
+            if (person != null)
+            {
+                personer.Add(person);
+
+            }
+
+        }
 
         [Route("{id}")]
         public void fjernPerson(int id)
