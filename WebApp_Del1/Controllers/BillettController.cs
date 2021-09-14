@@ -102,8 +102,7 @@ namespace WebApp_Del1.Controllers
         }
         public void registrerBillett()
         {
-           billett.billettPerson = new List<BillettPerson>();
-           billett.billettLugar = new List<BillettLugar>();
+
 
             _lugDb.billetter.Add(billett);
 
@@ -121,7 +120,6 @@ namespace WebApp_Del1.Controllers
 
                 billettPerson.personId = x.personId;
   
-                billett.billettPerson.Add(billettPerson);
                 _lugDb.billettPerson.Add(billettPerson);
      
 
@@ -137,7 +135,7 @@ namespace WebApp_Del1.Controllers
 
                 billettLugar.lugarId = x.lugarId;
          
-                billett.billettLugar.Add(billettLugar);
+ 
 
                 _lugDb.billettLugar.Add(billettLugar);
    
