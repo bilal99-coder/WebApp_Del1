@@ -21,6 +21,6 @@ namespace WebApp_Del1
 
         public String addresse { get; set; }
 
-
+        public virtual List<BillettPerson> billett { get; set; }
     }
 }

@@ -19,8 +19,8 @@ namespace WebApp_Del1.Contexts
 
         public DbSet<Person> personer { get; set; }
 
-        public DbSet<BillettLugar> personer { get; set; }
-        public DbSet<Person> personer { get; set; }
+        public DbSet<BillettLugar> billettlugar { get; set; }
+        public DbSet<BillettPerson> billettPerson { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
