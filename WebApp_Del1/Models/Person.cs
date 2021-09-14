@@ -13,6 +13,7 @@ namespace WebApp_Del1
      
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int personId { get; set; }
 
         public String fornavn { get; set; }//

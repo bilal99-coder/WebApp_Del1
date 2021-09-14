@@ -11,6 +11,7 @@ namespace WebApp_Del1
     {
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int lugarId { get; set; }
 
        

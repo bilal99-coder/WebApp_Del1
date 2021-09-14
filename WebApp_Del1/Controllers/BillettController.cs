@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +11,8 @@ namespace WebApp_Del1.Controllers
         //Vil ikke bli problemer med flere brukere - sjekket.
         //Ulike brukere delere ikke statiske variabler i kontrollere.
         private static Billett billett = new Billett();
-        private static Person person = new Person();
-        private static Lugar lugar;
+        private static List<Person> personer = new List<Person>();
+        private static List<Lugar> lugarer = new List<Lugar>();
 
 
         private readonly BillettContext _lugDb;
@@ -22,8 +21,6 @@ namespace WebApp_Del1.Controllers
         {
  
             _lugDb = db;
-           //debug
-
           //  nyBillett();
 
 
@@ -33,19 +30,18 @@ namespace WebApp_Del1.Controllers
         public void nyBillett()
         {
             billett = new Billett();
-            person = new Person();
-            
-            lugar = new Lugar();
+            personer = new List<Person>();
+            lugarer = new List<Lugar>();
 
         }
 
         [Route("{id}")]
         public void velgLugar(int id)
         {
-            Lugar lugaren = _lugDb.lugarer.Find(id);
+            Lugar lugar = _lugDb.lugarer.Find(id);
             if (lugar != null)
             {
-                lugar = lugaren;
+                lugarer.Add(lugar);
             
             }
 
@@ -57,10 +53,10 @@ namespace WebApp_Del1.Controllers
         [Route("{id}")]
         public void fjernLugar(int id)
         {
-            Lugar lugaren = _lugDb.lugarer.Find(id);
+            Lugar lugar = _lugDb.lugarer.Find(id);
             if (lugar != null)
             {
-                billett.lugar = lugar;
+                lugarer.Remove(lugar);
 
             }
 
@@ -82,17 +78,51 @@ namespace WebApp_Del1.Controllers
         }
         public void registrerBillett()
         {
-         
-            billett.person = person;
-            billett.lugar = lugar;
-
-            _lugDb.personer.Add(person);
+           billett.billettPerson = new List<BillettPerson>();
+           billett.billettLugar = new List<BillettLugar>();
 
             _lugDb.billetter.Add(billett);
-  
+
             _lugDb.SaveChanges();
+
+            personer.ForEach((x) =>
+            {
+                _lugDb.Add(x);
+                BillettPerson billettPerson = new BillettPerson();
+
+                billettPerson.billettId = billett.billettId;
+                billettPerson.billett   = billett;
+
+                billettPerson.personId = x.personId;
+                billettPerson.person    = x;
+                billett.billettPerson.Add(billettPerson);
+                _lugDb.billettPerson.Add(billettPerson);
+     
+
+            });
+
+
+            lugarer.ForEach((x) =>
+            {
+                BillettLugar billettLugar = new BillettLugar();
+
+                billettLugar.billettId = billett.billettId;
+       
+
+                billettLugar.lugarId = x.lugarId;
+         
+                billett.billettLugar.Add(billettLugar);
+
+                _lugDb.billettLugar.Add(billettLugar);
    
-           
+
+            });
+
+          
+   
+   
+            _lugDb.SaveChanges();
+            nyBillett(); 
         }
     }
 }
