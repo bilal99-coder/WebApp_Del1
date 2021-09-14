@@ -112,6 +112,8 @@ namespace WebApp_Del1.Controllers
             personer.ForEach((x) =>
             {
                 _lugDb.Add(x);
+
+                _lugDb.SaveChanges();
                 BillettPerson billettPerson = new BillettPerson();
 
                 billettPerson.billettId = billett.billettId;
