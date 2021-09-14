@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -79,9 +78,48 @@ namespace WebApp_Del1.Controllers
         }
         public void registrerBillett()
         {
-            BillettLugar billettPerson = new BillettLugar();
+           billett.billettPerson = new List<BillettPerson>();
            billett.billettLugar = new List<BillettLugar>();
-            
+
+            _lugDb.billetter.Add(billett);
+
+            _lugDb.SaveChanges();
+
+            personer.ForEach((x) =>
+            {
+                _lugDb.Add(x);
+                BillettPerson billettPerson = new BillettPerson();
+
+                billettPerson.billettId = billett.billettId;
+                billettPerson.billett   = billett;
+
+                billettPerson.personId = x.personId;
+                billettPerson.person    = x;
+                billett.billettPerson.Add(billettPerson);
+                _lugDb.billettPerson.Add(billettPerson);
+     
+
+            });
+
+
+            lugarer.ForEach((x) =>
+            {
+                BillettLugar billettLugar = new BillettLugar();
+
+                billettLugar.billettId = billett.billettId;
+       
+
+                billettLugar.lugarId = x.lugarId;
+         
+                billett.billettLugar.Add(billettLugar);
+
+                _lugDb.billettLugar.Add(billettLugar);
+   
+
+            });
+
+          
+   
    
             _lugDb.SaveChanges();
         }
