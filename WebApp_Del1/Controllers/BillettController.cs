@@ -117,10 +117,10 @@ namespace WebApp_Del1.Controllers
                 BillettPerson billettPerson = new BillettPerson();
 
                 billettPerson.billettId = billett.billettId;
-                billettPerson.billett   = billett;
+
 
                 billettPerson.personId = x.personId;
-                billettPerson.person    = x;
+  
                 billett.billettPerson.Add(billettPerson);
                 _lugDb.billettPerson.Add(billettPerson);
      
