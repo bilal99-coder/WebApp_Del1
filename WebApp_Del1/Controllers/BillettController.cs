@@ -122,6 +122,7 @@ namespace WebApp_Del1.Controllers
    
    
             _lugDb.SaveChanges();
+            nyBillett(); 
         }
     }
 }

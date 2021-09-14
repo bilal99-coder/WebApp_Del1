@@ -17,6 +17,7 @@ namespace WebApp_Del1
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int billettId { get; set; }
 
         public double pris { get; set; }
