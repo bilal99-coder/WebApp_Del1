@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Untitled Document</title>
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-outline">
+            <form class="form-horizontal" role="form">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h2>Lugarer</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pris" class="col-sm-3 control-label">
+                        <i class="fa fa-money" aria-hidden="true"> Pris</i>
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="number"
+                               id="pris"
+                               placeholder="0"
+                               class="form-control"
+                               autofocus="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="antall" class="col-sm-3 control-label">
+                        <i class="fas fa-sort-amount-up"> Antall</i>
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="number"
+                               id="antall"
+                               placeholder="0"
+                               class="form-control"
+                               autofocus="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Fasiliteter </label>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="wc" value="Male" />
+                                    <i class="fas fa-toilet"> Wc</i>
+                                </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="dysj" value="Male" />
+                                    <i class="fa fa-shower" aria-hidden="true"> Dysj</i>
+                                </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="wifi" value="Male" />
+                                    <i class="fa fa-wifi" aria-hidden="true"> Wifi </i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary">Søk</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
