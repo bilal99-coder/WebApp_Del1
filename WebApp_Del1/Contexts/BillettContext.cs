@@ -1,11 +1,91 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebApp_Del1.Contexts
 {
+   // public class Lugar
+   public class Lugarer
+    {
+        [Key]
+        public int LId { get; set;}
+        public string navn { get; set;}
+        public string beskrivelse { get; set;}
+        public virtual List<BillettLugar> billetLugar {get; set; }
+        public bool harWc { get; set; }
+        public String wciIconURL { get; set; }
+        public bool harDysj { get; set; }
+        public String dysjIconURL { get; set; }
+        public bool harWifi { get; set; }
+        public String wifiIconURL { get; set; }
+        public int antPlasser { get; set; }
+        public String plassIconURL { get; set; }
+        public String pris { get; set; }
+        public String prisIconURL { get; set; }
+    }
+
+   //public class Billett
+   public class Billett
+    {
+        [Key]
+        [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int billettId { get; set; }
+        public string fra { get; set; }
+        public string til { get; set; }
+        public int antallBarn { get; set; }
+        public int antallVoksne { get; set; }
+        public int antallReisende { get; set; }
+        public double pris { get; set; }
+        public string  tidspunkt { get; set; }
+        public string type { get; set; } 
+        public virtual List<Personer> billettPersoner { get; set; }
+        public virtual List<Lugarer> billettLugarer { get; set; }
+    }
+    
+    
+    public class Personer
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int personId { get; set; }
+
+        public String fornavn { get; set; }//
+        public String etternavn { get; set; }
+
+        public String addresse { get; set; }
+        
+
+        public virtual List<Billett> personerBilletter { get; set; }
+       
+    }
+
+    public class Betaler  : Personer
+    {
+        public string kortholdersNavn { get; set; }
+
+        public string kortNummer { get; set; }
+
+        public int cvc { get; set; }
+
+    }
+
+
+    public class PostSteder
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string Postnr { get; set; }
+        public string Poststed { get; set; }
+   }
+
+
+
+
+
     public class BillettContext : DbContext
     {
 
@@ -14,13 +94,11 @@ namespace WebApp_Del1.Contexts
             Database.EnsureCreated();
         }
 
-        public DbSet<Lugar> lugarer { get; set; }
-        public DbSet<Billett> billetter {get; set;}
-
-        public DbSet<Person> personer { get; set; }
-
-        public DbSet<BillettLugar> billettLugar { get; set; }
-        public DbSet<BillettPerson> billettPerson { get; set; }
+        public DbSet<Lugarer> lugarer { get; set; }
+        public DbSet<Billett> billetter { get; set; }
+        public DbSet<Personer> personer { get; set; }
+        public DbSet<Betaler> Betalere { get; set; }
+    
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
