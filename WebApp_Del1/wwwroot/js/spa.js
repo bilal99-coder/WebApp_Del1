@@ -15,7 +15,7 @@
 
     $("#nav1").click((e) => {
         e.preventDefault();
-        GUIModule.changeSchemaState(1, state.warning);
+        GUIModule.changeSchemaState(1, state.success);
     });
 
     $("#nav2").click((e) => {
@@ -61,11 +61,13 @@ var GUIModule = (function () {
         //goto new state
         if (myState == state.warning) {
             warningClasses.forEach((x) => { $("#nav" + id).addClass(x) });
+            document.getElementById("warning" + id).style.visibility = "visible";
 
         }
 
         else if (myState == state.success) {
             successClasses.forEach((x) => { $("#nav" + id).addClass(x) });
+            document.getElementById("success" + id).style.visibility = "visible";
   
         }
         else if (myState == state.notFinished) {
@@ -81,10 +83,12 @@ var GUIModule = (function () {
         preSchemaState[id] = myState;
         if (myState == state.warning) {
             warningClasses.forEach((x) => { $("#nav" + id).removeClass(x) });
+            document.getElementById("warning" + id).style.visibility = "hidden";
 
         }
         else if (myState == state.success) {
             successClasses.forEach((x) => { $("#nav" + id).removeClass(x) });
+            document.getElementById("success" + id).style.visibility = "hidden";
 
         }
         else if (myState == state.notFinished) {
