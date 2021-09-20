@@ -20,12 +20,12 @@
 
     $("#nav2").click((e) => {
         e.preventDefault();
-        GUIModule.changeSchemaState(2, state.warning);
+        GUIModule.changeSchemaState(2, state.active);
     });
 
     $("#nav3").click((e) => {
         e.preventDefault();
-        GUIModule.changeSchemaState(3, state.success);
+        GUIModule.changeSchemaState(3, state.active);
     });
 
 
@@ -76,6 +76,10 @@ var GUIModule = (function () {
         else if (myState == state.lockedClasses) {
             lockedClasses.forEach((x) => { $("#nav" + id).addClass(x) });
         }
+
+        else if (myState == state.activeClasses) {
+            activeClasses.forEach((x) => { $("#nav" + id).addClass(x) });
+        }
         
         
     }
@@ -97,6 +101,11 @@ var GUIModule = (function () {
         else if (myState == state.lockedClasses) {
             successClasses.forEach((x) => { $("#nav" + id).removeClass(x) });
         }
+
+        else if (myState == state.activeClasses) {
+            activeClasses.forEach((x) => { $("#nav" + id).removeClass(x) });
+        }
+
 
     }
   
