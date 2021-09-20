@@ -27,6 +27,8 @@ namespace WebApp_Del1.Controllers
 
         }
 
+        
+
         public void nyBillett()
         {
             billett = new Billett();
@@ -72,7 +74,6 @@ namespace WebApp_Del1.Controllers
                 personer.Add(person);
 
             }
-
         }
 
         [Route("{id}")]
@@ -84,9 +85,6 @@ namespace WebApp_Del1.Controllers
                 personer.Remove(person);
 
             }
-
-
-
         }
 
 
