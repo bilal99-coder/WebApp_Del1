@@ -5,12 +5,17 @@
         warning: 0,
         success: 1,
         notFinished: 2,
-        locked: 3
+        locked: 3,
+        active: 4
     }
+    GUIModule.changeSchemaState(0, state.notFinished);
+    GUIModule.changeSchemaState(1, state.notFinished);
+    GUIModule.changeSchemaState(2, state.notFinished);
+    GUIModule.changeSchemaState(3, state.notFinished);
 
     $("#nav0").click((e) => {
         e.preventDefault();
-        GUIModule.changeSchemaState(0, state.warning);
+        GUIModule.changeSchemaState(0, state.locked);
     });
 
     $("#nav1").click((e) => {
@@ -20,7 +25,7 @@
 
     $("#nav2").click((e) => {
         e.preventDefault();
-        GUIModule.changeSchemaState(2, state.active);
+        GUIModule.changeSchemaState(2, state.warning);
     });
 
     $("#nav3").click((e) => {
@@ -46,12 +51,12 @@ var GUIModule = (function () {
 
     let warningClasses = ["bg-warning", "text-black-50"];
     let successClasses     = ["bg-success", "text-white"];
-    let notFinishedClasses = ["bg-success", "text-white"];
-    let lockedClasses      = ["bg-success", "text-white"];
-    let activeClasses      = ["active"];
+    let notFinishedClasses = ["text-black-50"];
+    let lockedClasses = ["text-black-50"];
+    let activeClasses = ["active", "text-white"];
 
     let preSchemaState = [state.notFinished, state.notFinished, state.notFinished, state.locked];
-    let schemaState = [state.success, state.warning, state.notFinished, state.locked];
+    let schemaState = [state.success, state.warning, state.active, state.locked];
 
     function changePschemaState(id, myState) {
 
@@ -73,11 +78,12 @@ var GUIModule = (function () {
         else if (myState == state.notFinished) {
             notFinishedClasses.forEach((x) => { $("#nav" + id).addClass(x) });
         }
-        else if (myState == state.lockedClasses) {
+        else if (myState == state.locked) {
             lockedClasses.forEach((x) => { $("#nav" + id).addClass(x) });
+            document.getElementById("locked" + id).style.visibility = "visible";
         }
 
-        else if (myState == state.activeClasses) {
+        else if (myState == state.active        ) {
             activeClasses.forEach((x) => { $("#nav" + id).addClass(x) });
         }
         
@@ -98,11 +104,12 @@ var GUIModule = (function () {
         else if (myState == state.notFinished) {
             successClasses.forEach((x) => { $("#nav" + id).removeClass(x) });
         }
-        else if (myState == state.lockedClasses) {
-            successClasses.forEach((x) => { $("#nav" + id).removeClass(x) });
+        else if (myState == state.locked) {
+            lockedClasses.forEach((x) => { $("#nav" + id).removeClass(x) });
+            document.getElementById("locked" + id).style.visibility = "hidden";
         }
 
-        else if (myState == state.activeClasses) {
+        else if (myState == state.active) {
             activeClasses.forEach((x) => { $("#nav" + id).removeClass(x) });
         }
 
