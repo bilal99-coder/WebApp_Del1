@@ -8,7 +8,7 @@
         locked: 3,
         active: 4
     }
-    GUIModule.changeSchemaState(0, state.notFinished);
+    GUIModule.changeSchemaState(0, state.active);
     GUIModule.changeSchemaState(1, state.notFinished);
     GUIModule.changeSchemaState(2, state.notFinished);
     GUIModule.changeSchemaState(3, state.notFinished);
@@ -16,21 +16,38 @@
     $("#nav0").click((e) => {
         e.preventDefault();
         GUIModule.changeSchemaState(0, state.locked);
+        document.getElementById("skjema0").style.visibility = "visible";
+        document.getElementById("skjema1").style.visibility = "hidden";
+        document.getElementById("skjema2").style.visibility = "hidden";
+        document.getElementById("skjema3").style.visibility = "hidden";
+
     });
 
     $("#nav1").click((e) => {
         e.preventDefault();
         GUIModule.changeSchemaState(1, state.success);
+        document.getElementById("skjema0").style.visibility = "hidden";
+        document.getElementById("skjema1").style.visibility = "visible";
+        document.getElementById("skjema2").style.visibility = "hidden";
+        document.getElementById("skjema3").style.visibility = "hidden";
     });
 
     $("#nav2").click((e) => {
         e.preventDefault();
         GUIModule.changeSchemaState(2, state.warning);
+        document.getElementById("skjema0").style.visibility = "hidden";
+        document.getElementById("skjema1").style.visibility = "hidden";
+        document.getElementById("skjema2").style.visibility = "visible";
+        document.getElementById("skjema3").style.visibility = "hidden";
     });
 
     $("#nav3").click((e) => {
         e.preventDefault();
         GUIModule.changeSchemaState(3, state.active);
+        document.getElementById("skjema0").style.visibility = "hidden";
+        document.getElementById("skjema1").style.visibility = "hidden";
+        document.getElementById("skjema2").style.visibility = "hidden";
+        document.getElementById("skjema3").style.visibility = "visible";
     });
 
 
