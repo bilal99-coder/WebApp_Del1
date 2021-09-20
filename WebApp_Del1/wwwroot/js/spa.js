@@ -56,7 +56,7 @@ var GUIModule = (function () {
     function changePschemaState(id, myState) {
 
         removeAndRemClasses(id, schemaState[id]);
-        schemaState[id] = state;
+        schemaState[id] = myState;
 
         //goto new state
         if (myState == state.warning) {
