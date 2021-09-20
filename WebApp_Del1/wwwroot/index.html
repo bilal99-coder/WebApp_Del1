@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <title>Forside</title>
-    <script src="js/index.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <script src="./js/index.js"></script>
+
 </head>
 <body>
     <h1 class="overskrift">Reiseinformasjon</h1>
@@ -26,6 +26,7 @@
                     <option>Oslo</option>
                     <option>Kristiansand</option>
                 </select>
+                <div id="fraFeil"></div>
             </div>
             <div class="form-group">
                 <label>Til</label>
@@ -37,15 +38,14 @@
             </div>
             <div class="form-group">
                 <label>Utreise</label>
-                <input class="datepicker" data-date-format="mm/dd/yyyy">
+                <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utreise">
             </div>
             <div class="form-group">
                 <label>Antall Reisende</label>
-                <input type="number" class="form-control" />
+                <input type="number" class="form-control" id="antall" />
             </div>
             <div class="form-group">
-
-                <input type="button" class="btn btn-primary" value="Søk og Bestill" onclick="sokOgBestill" />
+                <input type="button" value="Søk og Bestill" id="reg" class="btn btn-primary"/>
             </div>
         </form>
     </div>
