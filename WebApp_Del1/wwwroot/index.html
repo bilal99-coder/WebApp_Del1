@@ -4,14 +4,14 @@
     <meta charset="utf-8" />
     <title>Forside</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-    <script src="js/index.js"></script>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!--<script src="js/index.js"></script>-->
+    <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
-    <h1 class="overskrift">Reiseinformasjon</h1>
     <div class="container">
-        <form class="form">
+        <form class="form" id="regform" action="">
+            <h1 class="overskrift">Reiseinformasjon</h1>
             <div class="form-group">
                 <label>Reisetype</label>
                 <select class="form-control" id="reisetype">
@@ -41,13 +41,87 @@
                 <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utreise">
             </div>
             <div class="form-group">
-                <label>Antall Reisende</label>
+                <label>Antall Voksne</label>
                 <input type="number" class="form-control" id="antall" />
             </div>
             <div class="form-group">
-                <input type="button" value="Søk og Bestill" id="reg" class="btn btn-primary"/>
+                <label>Antall Barn</label>
+                <input type="number" class="form-control" id="antall" />
+            </div>
+            <div class="btn-box">
+                <button type="button" id="btnNeste">Neste</button>
+            </div>
+        </form>
+
+        <form class="form" id="regform2" action="">
+            <h1 class="overskrift">Lugar</h1>
+            <div class="form-group">
+                <label>Lugar 1</label>
+                <input type="checkbox" />
+            </div>
+            <div class="form-group">
+                <label>Lugar 2</label>
+                <input type="checkbox" />
+            </div>
+            <div class="form-group">
+                <label>Lugar 3</label>
+                <input type="checkbox" />
+            </div>
+            <div class="form-group">
+                <label>Lugar 4</label>
+                <input type="checkbox" />
+            </div>
+            <div class="form-group">
+                <label>Lugar 5</label>
+                <input type="checkbox" />
+            </div>
+            <div class="btn-box" id="btnBox">
+                <button type="button" id="btnTilbake1">Tilbake</button>
+                <button type="button" id="btnNeste2">Neste</button>
+            </div>
+        </form>
+
+        <form class="form" id="regform3" action="">
+            <h1 class="overskrift">Personinfo</h1>
+            <div class="form-group">
+                <label>Person 1</label>
+                <input type="text" />
+            </div>
+            <div class="form-group">
+                <label>Person 2</label>
+                <input type="text" />
+            </div>
+            <div class="form-group">
+                <label>Person 3</label>
+                <input type="text" />
+            </div>
+            <div class="btn-box" id="btnBox">
+                <button type="button" id="btnTilbake2">Tilbake</button>
+                <button type="button" id="btnFerdig">Ferdig</button>
             </div>
         </form>
     </div>
+
+    <script>
+        $('#regform2').hide();
+        $("#regform3").hide();
+
+        $("#btnNeste").click(function () {
+            $("#regform").hide();
+            $("#regform2").show();
+        });
+        $("#btnTilbake1").click(function () {
+            $("#regform2").hide();
+            $("#regform").show();
+        });
+        $("#btnTilbake2").click(function () {
+            $("#regform3").hide();
+            $("#regform2").show();
+        });
+        $("#btnNeste2").click(function () {
+            $("#regform2").hide();
+            $("#regform3").show();
+        });
+    </script>
 </body>
 </html>

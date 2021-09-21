@@ -1,2 +1,68 @@
-﻿body {
+﻿* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body{
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url("2316648.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+form h1{
+    text-align: center;
+}
+
+.container {
+    margin: 8% auto;
+    width: 580px;
+    align-items: center;
+}
+
+form{
+    position: center;
+    align-content: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+form input {
+        width: 100%;
+        padding: 2px 5px;
+        margin: 5px 0;
+
+
+        
+    }
+
+    form select {
+        width: 100%;
+        padding: 2px 5px;
+        margin: 5px 0;
+
+    }
+
+    form label {
+        width: 100%;
+        padding: 2px 5px;
+    }
+
+.btn-box{
+    width: 100%;
+    margin: 30px auto;
+    text-align: center;
+}
+
+form button {
+    width: 110px;
+    height: 35px;
+    margin: 0 10px;
+    background: linear-gradient(to right, #00008B, #1E90FF);
+    border-radius: 10px;
+    border: 0;
+    outline: none;
+    color: white;
+    cursor: pointer;
 }
