@@ -15,26 +15,54 @@
 
     $("#nav0").click((e) => {
         e.preventDefault();
-        GUIModule.changeSchemaState(0, state.locked);
-        document.getElementById("skjema0").style.display = "block";
-        document.getElementById("skjema1").style.display = "none";
-        document.getElementById("skjema2").style.display = "none";
-        document.getElementById("skjema3").style.display = "none";
+        GUIModule.changeSchemaState(0, state.active);
+        document.getElementById("regform").style.display = "block";
+        document.getElementById("regform1").style.display = "none";
+        document.getElementById("regform2").style.display = "none";
+        document.getElementById("regform3").style.display = "none";
+
+    });
+
+    $("#suksess1").click((e) => {
+        e.preventDefault();
+        GUIModule.changeSchemaState(1, state.success);
+
+
+    });
+
+    $("#war1").click((e) => {
+
+        GUIModule.changeSchemaState(1, state.warning);
+
+
+    });
+
+    $("#suksess3").click((e) => {
+        e.preventDefault();
+        GUIModule.changeSchemaState(3, state.success);
+
+
+    });
+
+    $("#war3").click((e) => {
+
+        GUIModule.changeSchemaState(3, state.warning);
+
 
     });
 
     $("#nav1").click((e) => {
         e.preventDefault();
-        GUIModule.changeSchemaState(1, state.success);
-        document.getElementById("skjema0").style.display = "none";
-        document.getElementById("skjema1").style.display = "block";
-        document.getElementById("skjema2").style.display = "none";
-        document.getElementById("skjema3").style.display = "none";
+        GUIModule.changeSchemaState(1, state.active);
+        document.getElementById("regform").style.display = "none";
+        document.getElementById("regform1").style.display = "block";
+        document.getElementById("regform2").style.display = "none";
+        document.getElementById("regform3").style.display = "none";
     });
 
     $("#nav2").click((e) => {
         e.preventDefault();
-        GUIModule.changeSchemaState(2, state.warning);
+        GUIModule.changeSchemaState(2, state.active);
         document.getElementById("skjema0").style.display = "none";
         document.getElementById("skjema1").style.display = "none";
         document.getElementById("skjema2").style.display = "block";
@@ -68,15 +96,16 @@ var GUIModule = (function () {
 
     let warningClasses = ["bg-warning", "text-black-50"];
     let successClasses     = ["bg-success", "text-white"];
-    let notFinishedClasses = ["text-black-50"];
+    let notFinishedClasses = [""];
     let lockedClasses = ["text-black-50"];
     let activeClasses = ["active", "text-white"];
 
     let preSchemaState = [state.notFinished, state.notFinished, state.notFinished, state.locked];
     let schemaState = [state.success, state.warning, state.active, state.locked];
+    let currentActive = 0;
 
     function changePschemaState(id, myState) {
-
+        if (schemaState[id] == state.active && myState == state.active) return;
         removeAndRemClasses(id, schemaState[id]);
         schemaState[id] = myState;
 
@@ -102,6 +131,8 @@ var GUIModule = (function () {
 
         else if (myState == state.active        ) {
             activeClasses.forEach((x) => { $("#nav" + id).addClass(x) });
+            changePschemaState(currentActive, preSchemaState[currentActive]);
+            currentActive = id;
         }
         
         
