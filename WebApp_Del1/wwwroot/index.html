@@ -97,34 +97,109 @@
             </form>
 
             <form class="form" id="regform2" action="">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h2>Lugarer</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="prisMin" class="col-sm-3 control-label">
+                        <i class="fa fa-money" aria-hidden="true"> Min pris</i>
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="number"
+                               id="prisMin"
+                               placeholder="0"
+                               class="form-control"
+                               autofocus="" />
+                    </div>
+                </div>
 
-                <h1 class="overskrift">Lugar</h1>
                 <div class="form-group">
-                    <label>Lugar 1</label>
-                    <input type="checkbox" />
-                </div>
-                <div class="form-group">
-                    <label>Lugar 2</label>
-                    <input type="checkbox" />
-                </div>
-                <div class="form-group">
-                    <label>Lugar 3</label>
-                    <input type="checkbox" />
-                </div>
-                <div class="form-group">
-                    <label>Lugar 4</label>
-                    <input type="checkbox" />
+                    <label for="prisMaks" class="col-sm-3 control-label">
+                        <i class="fa fa-money" aria-hidden="true"> Maks pris</i>
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="number"
+                               id="prisMaks"
+                               placeholder="0"
+                               class="form-control"
+                               autofocus="" />
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label>Lugar 5</label>
-                    <input type="checkbox" />
+                    <label for="antall" class="col-sm-3 control-label">
+                        <i class="fas fa-sort-amount-up"> Antall personer </i>
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="number"
+                               id="antall"
+                               placeholder="0"
+                               class="form-control"
+                               autofocus="" />
+                    </div>
                 </div>
-                <button type="button" class="btn btn-primary" id="suksess1"> Suksess </button>
-                <button type="button" class="btn btn-primary" id="war1">Warning </button>
-                <div class="btn-box" id="btnBox">
-                    <button type="button" id="btnTilbake1">Tilbake</button>
-                    <button type="button" id="btnNeste2">Neste</button>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Fasiliteter </label>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="wc" value="wc" />
+                                    <i class="fas fa-toilet"> Wc</i>
+                                </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="dysj" value="dysj" />
+                                    <i class="fa fa-shower" aria-hidden="true"> Dysj</i>
+                                </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="wifi" value="wifi" />
+                                    <i class="fa fa-wifi" aria-hidden="true"> Wifi </i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary" id="sok">Søk</button>
+                        </div>
+                    </div>
+                    <h1 class="overskrift">Lugar</h1>
+                    <div class="form-group">
+                        <label>Lugar 1</label>
+                        <input type="checkbox" />
+                    </div>
+                    <div class="form-group">
+                        <label>Lugar 2</label>
+                        <input type="checkbox" />
+                    </div>
+                    <div class="form-group">
+                        <label>Lugar 3</label>
+                        <input type="checkbox" />
+                    </div>
+                    <div class="form-group">
+                        <label>Lugar 4</label>
+                        <input type="checkbox" />
+                    </div>
+                    <div class="form-group">
+                        <label>Lugar 5</label>
+                        <input type="checkbox" />
+                    </div>
+                    <button type="button" class="btn btn-primary" id="suksess1"> Suksess </button>
+                    <button type="button" class="btn btn-primary" id="war1">Warning </button>
+                    <div class="btn-box" id="btnBox">
+                        <button type="button" id="btnTilbake1">Tilbake</button>
+                        <button type="button" id="btnNeste2">Neste</button>
+                    </div>
             </form>
 
             <form class="form" id="regform3" action="">
