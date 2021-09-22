@@ -101,13 +101,13 @@ var GUIModuleSPA = (function () {
     }
 
     let warningClasses = ["bg-warning", "text-black-50"];
-    let successClasses     = ["bg-success", "text-white"];
-    let notFinishedClasses = [""];
+    let successClasses = ["bg-success", "text-white"];
+    let notFinishedClasses = ["text-white"];
     let lockedClasses = ["text-black-50"];
-    let activeClasses = ["active", "text-white"];
+    let activeClasses = ["text-white","bg-primary"];
 
     let preSchemaState = [state.notFinished, state.notFinished, state.notFinished];
-    let schemaState = [state.active, state.warning, state.notFinished];
+    let schemaState = [state.active, state.notFinished, state.notFinished];
     let currentActive = 0;
 
     function changePschemaState(id, myState) {
@@ -125,7 +125,7 @@ var GUIModuleSPA = (function () {
         else if (myState == state.success) {
             successClasses.forEach((x) => { $("#nav" + id).addClass(x) });
             document.getElementById("success" + id).style.visibility = "visible";
-  
+
         }
         else if (myState == state.notFinished) {
             notFinishedClasses.forEach((x) => { $("#nav" + id).addClass(x) });
@@ -135,13 +135,13 @@ var GUIModuleSPA = (function () {
             document.getElementById("locked" + id).style.visibility = "visible";
         }
 
-        else if (myState == state.active        ) {
+        else if (myState == state.active) {
             activeClasses.forEach((x) => { $("#nav" + id).addClass(x) });
             changePschemaState(currentActive, preSchemaState[currentActive]);
             currentActive = id;
         }
-        
-        
+
+
     }
     function removeAndRemClasses(id, myState) {
         preSchemaState[id] = myState;
@@ -169,11 +169,11 @@ var GUIModuleSPA = (function () {
 
 
     }
-  
-    return {
-       changeSchemaState : function (id,state) {
 
-            changePschemaState(id,state);
+    return {
+        changeSchemaState: function (id, state) {
+
+            changePschemaState(id, state);
 
         }
     };

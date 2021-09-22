@@ -10,6 +10,9 @@ body{
     background-size: cover;
 }
 
+a {
+    color: inherit !important;
+}
 form h1{
     text-align: center;
 }
