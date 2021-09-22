@@ -8,24 +8,30 @@ using System.Threading.Tasks;
 
 namespace WebApp_Del1.Contexts
 {
-   // public class Lugar
-   public class Lugarer
+    // public class Lugar
+    public class Lugarer
     {
         [Key]
-        public int LId { get; set;}
-        public string navn { get; set;}
-        public string beskrivelse { get; set;}
-        public virtual List<BillettLugar> billetLugar {get; set; }
-        public bool harWc { get; set; }
+        public int LId { get; set; }
+        public string navn { get; set; }
+        public int romNummer { get; set; }
+        public string beskrivelse { get; set; }
+        public int antallSoverom { get; set; }
+        public int antallSenger {get;set;}
+        public string harWc { get; set; }
         public String wciIconURL { get; set; }
-        public bool harDysj { get; set; }
-        public String dysjIconURL { get; set; }
-        public bool harWifi { get; set; }
-        public String wifiIconURL { get; set; }
+        public string harDysj { get; set; }
+        //rom senger 
+        public string harWifi { get; set; }
+        public String wifiIconURL { get; set;}
         public int antPlasser { get; set; }
-        public String plassIconURL { get; set; }
+        public String plassIconURL { get; set;}
         public String pris { get; set; }
         public String prisIconURL { get; set; }
+       /*
+        
+        
+        */
     }
 
    //public class Billett
@@ -34,6 +40,9 @@ namespace WebApp_Del1.Contexts
         [Key]
         [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int billettId { get; set; }
+        //************Ny felt***************
+        public Betalere betaleren { get;set;}
+        //************Ny felt***************
         public string fra { get; set; }
         public string til { get; set; }
         public int antallBarn { get; set; }
@@ -41,7 +50,8 @@ namespace WebApp_Del1.Contexts
         public int antallReisende { get; set; }
         public double pris { get; set; }
         public string  tidspunkt { get; set; }
-        public string type { get; set; } 
+        public string type { get; set; }  
+        //Flere personer kan dele samme billetten, så en billett kan ha flere personer i seg. denne Listen har en oppgave å lagre alle personer som er med i billetten 
         public virtual List<Personer> billettPersoner { get; set; }
         public virtual List<Lugarer> billettLugarer { get; set; }
     }
@@ -58,12 +68,12 @@ namespace WebApp_Del1.Contexts
 
         public String addresse { get; set; }
         
-
+        //Hver person kan ha flere billetter så hver person skal ha en liste av billetter som attributt
         public virtual List<Billett> personerBilletter { get; set; }
        
     }
 
-    public class Betaler  : Personer
+    public class Betalere  : Personer
     {
         public string kortholdersNavn { get; set; }
 
@@ -97,7 +107,7 @@ namespace WebApp_Del1.Contexts
         public DbSet<Lugarer> lugarer { get; set; }
         public DbSet<Billett> billetter { get; set; }
         public DbSet<Personer> personer { get; set; }
-        public DbSet<Betaler> Betalere { get; set; }
+        public DbSet<Betalere> Betalere { get; set; }
     
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
