@@ -11,7 +11,15 @@ $(() => {
     }
 
 
-
+    $("#btnFerdig").click((e) => {
+        if (GUIModuleSPA.erFerdig()) {
+            alert("Du fikk kjøpt en billett");
+        }
+        else {
+            alert("Du har ikke gitt tilstrekkelig riktig informasjon, for å kunne kjøpe en billett")
+        }
+    }
+    )
     $("#nav0").click((e) => {
         e.preventDefault();
         GUIModuleSPA.changeSchemaState(0, state.active);
@@ -170,11 +178,18 @@ var GUIModuleSPA = (function () {
 
     }
 
+    function erPFerdig() {
+        return schemaState.every((x, id) => { return (x == state.success || (id == currentActive && preSchemaState[currentActive] == state.success)) });
+    }
+
     return {
         changeSchemaState: function (id, state) {
 
             changePschemaState(id, state);
 
+        },
+        erFerdig: function () {
+            return erPFerdig();
         }
     };
 })();
