@@ -23,8 +23,10 @@ $(() => {
     $("#nav0").click((e) => {
         e.preventDefault();
         GUIModuleSPA.changeSchemaState(0, state.active);
-        $("#regform2").hide();
+
         $("#regform").show();
+        $("#regform2").hide();
+        $("#regform3").hide();
 
 
     });
@@ -79,12 +81,14 @@ $(() => {
         GUIModuleSPA.changeSchemaState(1, state.active);
         $("#regform").hide();
         $("#regform2").show();
+        $("#regform3").hide();
 
     });
 
     $("#nav2").click((e) => {
         e.preventDefault();
         GUIModuleSPA.changeSchemaState(2, state.active);
+        $("#regform").hide();
         $("#regform2").hide();
         $("#regform3").show();
 
