@@ -1,7 +1,7 @@
 ﻿$(() => {
     $("#sok").click((e) => {
         e.preventDefault();
-        let filterData = GUIModule.extractFiltrering();
+        let filterData = GUIModuleFilter.extractFiltrering();
         CommunicationModule.sendFilterData(filterData);
     });
 
@@ -35,7 +35,7 @@ var CommunicationModule = (function () {
 })();
     
 
-var GUIModule = (function () {
+var GUIModuleFilter = (function () {
 
     return {
         extractFiltrering: function () {

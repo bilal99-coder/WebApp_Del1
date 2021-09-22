@@ -1,4 +1,5 @@
-﻿$(() => {
+﻿
+$(() => {
 
 
     let state = {
@@ -8,75 +9,80 @@
         locked: 3,
         active: 4
     }
-    GUIModule.changeSchemaState(0, state.active);
-    GUIModule.changeSchemaState(1, state.notFinished);
-    GUIModule.changeSchemaState(2, state.notFinished);
-    GUIModule.changeSchemaState(3, state.notFinished);
+
+
 
     $("#nav0").click((e) => {
         e.preventDefault();
-        GUIModule.changeSchemaState(0, state.active);
-        document.getElementById("regform").style.display = "block";
-        document.getElementById("regform1").style.display = "none";
-        document.getElementById("regform2").style.display = "none";
-        document.getElementById("regform3").style.display = "none";
+        GUIModuleSPA.changeSchemaState(0, state.active);
+        $("#regform2").hide();
+        $("#regform").show();
+
+
+    });
+
+    $("#suksess0").click((e) => {
+        e.preventDefault();
+        GUIModuleSPA.changeSchemaState(0, state.success);
+
+
+    });
+
+    $("#war0").click((e) => {
+
+        GUIModuleSPA.changeSchemaState(0, state.warning);
+
 
     });
 
     $("#suksess1").click((e) => {
         e.preventDefault();
-        GUIModule.changeSchemaState(1, state.success);
+        GUIModuleSPA.changeSchemaState(1, state.success);
 
 
     });
 
     $("#war1").click((e) => {
 
-        GUIModule.changeSchemaState(1, state.warning);
+        GUIModuleSPA.changeSchemaState(1, state.warning);
 
 
     });
 
-    $("#suksess3").click((e) => {
+
+    $("#suksess2").click((e) => {
         e.preventDefault();
-        GUIModule.changeSchemaState(3, state.success);
+        GUIModuleSPA.changeSchemaState(2, state.success);
 
 
     });
 
-    $("#war3").click((e) => {
+    $("#war2").click((e) => {
 
-        GUIModule.changeSchemaState(3, state.warning);
+        GUIModuleSPA.changeSchemaState(2, state.warning);
 
 
     });
+
+
 
     $("#nav1").click((e) => {
         e.preventDefault();
-        GUIModule.changeSchemaState(1, state.active);
-        document.getElementById("regform").style.display = "none";
-        document.getElementById("regform1").style.display = "block";
-        document.getElementById("regform2").style.display = "none";
-        document.getElementById("regform3").style.display = "none";
+        GUIModuleSPA.changeSchemaState(1, state.active);
+        $("#regform").hide();
+        $("#regform2").show();
+
     });
 
     $("#nav2").click((e) => {
         e.preventDefault();
-        GUIModule.changeSchemaState(2, state.active);
-        document.getElementById("skjema0").style.display = "none";
-        document.getElementById("skjema1").style.display = "none";
-        document.getElementById("skjema2").style.display = "block";
-        document.getElementById("skjema3").style.display = "none";
+        GUIModuleSPA.changeSchemaState(2, state.active);
+        $("#regform2").hide();
+        $("#regform3").show();
+
     });
 
-    $("#nav3").click((e) => {
-        e.preventDefault();
-        GUIModule.changeSchemaState(3, state.active);
-        document.getElementById("skjema0").style.display = "none";
-        document.getElementById("skjema1").style.display = "none";
-        document.getElementById("skjema2").style.display = "none";
-        document.getElementById("skjema3").style.display = "block";
-    });
+
 
 
 });
@@ -84,7 +90,7 @@
 
 
 
-var GUIModule = (function () {
+var GUIModuleSPA = (function () {
 
     let state = {
         warning: 0,
@@ -100,8 +106,8 @@ var GUIModule = (function () {
     let lockedClasses = ["text-black-50"];
     let activeClasses = ["active", "text-white"];
 
-    let preSchemaState = [state.notFinished, state.notFinished, state.notFinished, state.locked];
-    let schemaState = [state.success, state.warning, state.active, state.locked];
+    let preSchemaState = [state.notFinished, state.notFinished, state.notFinished];
+    let schemaState = [state.active, state.warning, state.notFinished];
     let currentActive = 0;
 
     function changePschemaState(id, myState) {

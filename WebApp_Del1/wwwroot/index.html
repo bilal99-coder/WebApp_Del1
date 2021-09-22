@@ -4,124 +4,158 @@
     <meta charset="utf-8" />
     <title>Forside</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous" />
     <!--<script src="js/index.js"></script>-->
+    <script defer src="./js/spa.js"></script>
     <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
     <div class="container">
-        <form class="form" id="regform" action="">
-            <h1 class="overskrift">Reiseinformasjon</h1>
-            <div class="form-group">
-                <label>Reisetype</label>
-                <select class="form-control" id="reisetype">
-                    <option>En vei</option>
-                    <option>Tur/Retur</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Fra</label>
-                <select class="form-control" id="fra">
-                    <option>Bergen</option>
-                    <option>Oslo</option>
-                    <option>Kristiansand</option>
-                </select>
-                <div id="fraFeil"></div>
-            </div>
-            <div class="form-group">
-                <label>Til</label>
-                <select class="form-control" id="til">
-                    <option>Bergen</option>
-                    <option>Oslo</option>
-                    <option>Kristiansand</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Utreise</label>
-                <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utreise">
-            </div>
-            <div class="form-group">
-                <label>Antall Voksne</label>
-                <input type="number" class="form-control" id="antall" />
-            </div>
-            <div class="form-group">
-                <label>Antall Barn</label>
-                <input type="number" class="form-control" id="antall" />
-            </div>
-            <div class="btn-box">
-                <button type="button" id="btnNeste">Neste</button>
-            </div>
-        </form>
+        <ul class="nav nav-pills ">
 
-        <form class="form" id="regform2" action="">
-            <h1 class="overskrift">Lugar</h1>
-            <div class="form-group">
-                <label>Lugar 1</label>
-                <input type="checkbox" />
-            </div>
-            <div class="form-group">
-                <label>Lugar 2</label>
-                <input type="checkbox" />
-            </div>
-            <div class="form-group">
-                <label>Lugar 3</label>
-                <input type="checkbox" />
-            </div>
-            <div class="form-group">
-                <label>Lugar 4</label>
-                <input type="checkbox" />
-            </div>
-            <div class="form-group">
-                <label>Lugar 5</label>
-                <input type="checkbox" />
-            </div>
-            <div class="btn-box" id="btnBox">
-                <button type="button" id="btnTilbake1">Tilbake</button>
-                <button type="button" id="btnNeste2">Neste</button>
-            </div>
-        </form>
+            <li> <a class="nav-link active text-white" href="#" id="nav0" style="border-radius: 300px; margin-left: 1em; ">Reise info <i class="fa fa-lock" aria-hidden="true" id="locked0" style="visibility: hidden"></i><i id="success0" class="fa fa-check" aria-hidden="true" style="visibility: hidden"></i><i id="warning0" class="fa fa-warning " style="visibility: hidden"></i></a> </li>
 
-        <form class="form" id="regform3" action="">
-            <h1 class="overskrift">Personinfo</h1>
-            <div class="form-group">
-                <label>Person 1</label>
-                <input type="text" />
-            </div>
-            <div class="form-group">
-                <label>Person 2</label>
-                <input type="text" />
-            </div>
-            <div class="form-group">
-                <label>Person 3</label>
-                <input type="text" />
-            </div>
-            <div class="btn-box" id="btnBox">
-                <button type="button" id="btnTilbake2">Tilbake</button>
-                <button type="button" id="btnFerdig">Ferdig</button>
-            </div>
-        </form>
-    </div>
+            <li> <a class="nav-link bg-warning text-black-50  " href="#" id="nav1" style="border-radius: 300px; margin-left: 1em; ">Personer <i class="fa fa-lock" aria-hidden="true" id="locked1" style="visibility: hidden"></i><i id="success1" class="fa fa-check" aria-hidden="true" style="visibility: hidden"></i><i id="warning1" class="fa fa-warning "></i></a>  </li>
 
-    <script>
-        $('#regform2').hide();
-        $("#regform3").hide();
+            <li> <a class="nav-link " href="#" id="nav2" style="border-radius: 300px; margin-left: 1em; ">Lugar <i class="fa fa-lock" aria-hidden="true" id="locked2" style="visibility: hidden"></i><i id="success2" class="fa fa-check" aria-hidden="true" style="visibility: hidden"></i><i id="warning2" class="fa fa-warning " style="visibility: hidden"></i></a> </li>
 
-        $("#btnNeste").click(function () {
-            $("#regform").hide();
-            $("#regform2").show();
-        });
-        $("#btnTilbake1").click(function () {
-            $("#regform2").hide();
-            $("#regform").show();
-        });
-        $("#btnTilbake2").click(function () {
+        </ul>
+
+        <div class="container">
+
+            <form class="form" id="regform" action="">
+                <h1 class="overskrift">Reiseinformasjon</h1>
+                <div class="form-group">
+                    <label>Reisetype</label>
+                    <select class="form-control" id="reisetype">
+                        <option>En vei</option>
+                        <option>Tur/Retur</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Fra</label>
+                    <select class="form-control" id="fra">
+                        <option>Bergen</option>
+                        <option>Oslo</option>
+                        <option>Kristiansand</option>
+                    </select>
+                    <div id="fraFeil"></div>
+                </div>
+                <div class="form-group">
+                    <label>Til</label>
+                    <select class="form-control" id="til">
+                        <option>Bergen</option>
+                        <option>Oslo</option>
+                        <option>Kristiansand</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Utreise</label>
+                    <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utreise">
+                </div>
+                <div class="form-group">
+                    <label>Antall Voksne</label>
+                    <input type="number" class="form-control" id="antall" />
+                </div>
+                <div class="form-group">
+                    <label>Antall Barn</label>
+                    <input type="number" class="form-control" id="antall" />
+                </div>
+                <button type="button" class="btn btn-primary" id="suksess0"> Suksess </button>
+                <button type="button" class="btn btn-primary" id="war0">Warning </button>
+                <div class="btn-box">
+                    <button type="button" id="btnNeste">Neste</button>
+                </div>
+            </form>
+
+            <form class="form" id="regform2" action="">
+
+                <h1 class="overskrift">Lugar</h1>
+                <div class="form-group">
+                    <label>Lugar 1</label>
+                    <input type="checkbox" />
+                </div>
+                <div class="form-group">
+                    <label>Lugar 2</label>
+                    <input type="checkbox" />
+                </div>
+                <div class="form-group">
+                    <label>Lugar 3</label>
+                    <input type="checkbox" />
+                </div>
+                <div class="form-group">
+                    <label>Lugar 4</label>
+                    <input type="checkbox" />
+                </div>
+                <div class="form-group">
+                    <label>Lugar 5</label>
+                    <input type="checkbox" />
+                </div>
+                <button type="button" class="btn btn-primary" id="suksess1"> Suksess </button>
+                <button type="button" class="btn btn-primary" id="war1">Warning </button>
+                <div class="btn-box" id="btnBox">
+                    <button type="button" id="btnTilbake1">Tilbake</button>
+                    <button type="button" id="btnNeste2">Neste</button>
+                </div>
+            </form>
+
+            <form class="form" id="regform3" action="">
+                <h1 class="overskrift">Personinfo</h1>
+                <div class="form-group">
+                    <label>Person 1</label>
+                    <input type="text" />
+                </div>
+                <div class="form-group">
+                    <label>Person 2</label>
+                    <input type="text" />
+                </div>
+                <div class="form-group">
+                    <label>Person 3</label>
+                    <input type="text" />
+                </div>
+                <button type="button" class="btn btn-primary" id="suksess2"> Suksess </button>
+                <button type="button" class="btn btn-primary" id="war2">Warning </button>
+                <div class="btn-box" id="btnBox">
+                    <button type="button" id="btnTilbake2">Tilbake</button>
+                    <button type="button" id="btnFerdig">Ferdig</button>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            $('#regform2').hide();
             $("#regform3").hide();
-            $("#regform2").show();
-        });
-        $("#btnNeste2").click(function () {
-            $("#regform2").hide();
-            $("#regform3").show();
-        });
-    </script>
+
+            $("#btnNeste").click(function () {
+                $("#regform").hide();
+                $("#regform2").show();
+                GUIModuleSPA.changeSchemaState(1, 4);
+            });
+            $("#btnTilbake1").click(function () {
+                $("#regform2").hide();
+                $("#regform").show();
+                GUIModuleSPA.changeSchemaState(0, 4);
+            });
+            $("#btnTilbake2").click(function () {
+                $("#regform3").hide();
+                $("#regform2").show();
+                GUIModuleSPA.changeSchemaState(1, 4);
+            });
+            $("#btnNeste2").click(function () {
+                $("#regform2").hide();
+                $("#regform3").show();
+                GUIModuleSPA.changeSchemaState(2    , 4);
+            });
+
+
+        </script>
 </body>
 </html>
