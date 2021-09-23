@@ -1,5 +1,4 @@
-﻿
-$(() => {
+﻿$(() => {
     $("#reg0").click((e) => {
         let info = hentReiseInfo();
         let erGyldig = validerReise(info);
@@ -8,10 +7,7 @@ $(() => {
            sendReiseInformasjon(info);
             alert("ta");
         }
-    });
 
-    
-});
 
 function sendReiseInformasjon(info) {
     // ajax kall til server

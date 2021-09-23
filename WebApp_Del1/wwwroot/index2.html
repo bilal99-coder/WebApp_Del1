@@ -4,9 +4,7 @@
     <meta charset="utf-8" />
     <title>Forside</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet"
@@ -39,18 +37,20 @@
             <div class="form-group">
                 <label>Fra</label>
                 <select class="form-control" id="fra">
-                    <option>Bergen</option>
-                    <option>Oslo</option>
-                    <option>Kristiansand</option>
+                    <option "" disabled="true" selected="true"></option>
+                    <option value="Bergen">Bergen</option>
+                    <option value="Oslo">Oslo</option>
+                    <option value="Kristiansand">Kristiansand</option>
                 </select>
                 <div id="fraFeil"></div>
             </div>
             <div class="form-group">
                 <label>Til</label>
                 <select class="form-control" id="til">
-                    <option>Bergen</option>
-                    <option>Oslo</option>
-                    <option>Kristiansand</option>
+                    <option "" disabled="true" selected="true"></option>
+                    <option value="Bergen">Bergen</option>
+                    <option value="Oslo">Oslo</option>
+                    <option value="Kristiansand">Kristiansand</option>
                 </select>
             </div>
             <div class="form-group">
@@ -122,6 +122,22 @@
     </div>
 
     <script>
+        /*Gjør slik at man ikke kan velge samme by på fra og til feltene*/
+        $("#fra").change(function () {
+            $("#til").find("option").each(function () {
+                $(this).removeAttr("disabled");
+            });
+            $("#til [value=" + $(this).val() + "]").attr("disabled", "disabled");
+        })
+
+        $("#til").change(function () {
+            $("#fra").find("option").each(function () {
+                $(this).removeAttr("disabled");
+            });
+            $("#fra [value=" + $(this).val() + "]").attr("disabled", "disabled");
+        })
+        /*Gjør at bare et skjema viser om gangen. Dersom man trykker neste eller tilbake så endrer man skjema*/
+
         $('#regform2').hide();
         $("#regform3").hide();
 
