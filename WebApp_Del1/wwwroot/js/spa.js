@@ -1,4 +1,40 @@
-﻿
+﻿/*Gjør slik at man ikke kan velge samme by på fra og til feltene*/
+$("#fra").change(function () {
+    $("#til").find("option").each(function () {
+        $(this).removeAttr("disabled");
+    });
+    $("#til [value=" + $(this).val() + "]").attr("disabled", "disabled");
+})
+
+$("#til").change(function () {
+    $("#fra").find("option").each(function () {
+        $(this).removeAttr("disabled");
+    });
+    $("#fra [value=" + $(this).val() + "]").attr("disabled", "disabled");
+})
+/*Gjør at bare et skjema viser om gangen. Dersom man trykker neste eller tilbake så endrer man skjema*/
+
+$('#regform2').hide();
+$("#regform3").hide();
+
+$("#btnNeste").click(function () {
+    $("#regform").hide();
+    $("#regform2").show();
+});
+$("#btnTilbake1").click(function () {
+    $("#regform2").hide();
+    $("#regform").show();
+});
+$("#btnTilbake2").click(function () {
+    $("#regform3").hide();
+    $("#regform2").show();
+});
+$("#btnNeste2").click(function () {
+    $("#regform2").hide();
+    $("#regform3").show();
+});
+
+
 $(() => {
     $("#reg0").click((e) => {
 

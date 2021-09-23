@@ -227,32 +227,5 @@
             </form>
         </div>
         </div>
-        <script>
-            $('#regform2').hide();
-            $("#regform3").hide();
-
-            $("#btnNeste").click(function () {
-                $("#regform").hide();
-                $("#regform2").show();
-                GUIModuleSPA.changeSchemaState(1, 4);
-            });
-            $("#btnTilbake1").click(function () {
-                $("#regform2").hide();
-                $("#regform").show();
-                GUIModuleSPA.changeSchemaState(0, 4);
-            });
-            $("#btnTilbake2").click(function () {
-                $("#regform3").hide();
-                $("#regform2").show();
-                GUIModuleSPA.changeSchemaState(1, 4);
-            });
-            $("#btnNeste2").click(function () {
-                $("#regform2").hide();
-                $("#regform3").show();
-                GUIModuleSPA.changeSchemaState(2, 4);
-            });
-
-
-        </script>
 </body>
 </html>
