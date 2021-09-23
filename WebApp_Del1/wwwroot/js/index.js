@@ -34,8 +34,8 @@ function sendReiseInformasjon(info) {
              '       placeholder="0"'+
              '       class="form-control"'+
             '       autofocus="" />' +
-            ' <button type="button" class="btn btn-primary" id="regPerson"' + i + ' > Legg til </button> ' +
-            ' <button type="button" class="btn btn-primary" id="regPerson"' + i + ' > Endre </button> ' +
+            ' <button type="button" class="btn btn-primary" id="leggTilPerson"' + i + ' > Legg til </button> ' +
+            ' <button type="button" class="btn btn-primary" id="endrePerson"' + i + ' > Endre </button> ' +
            ' </div>'+
         '</div>').appendTo("#personer");
 
