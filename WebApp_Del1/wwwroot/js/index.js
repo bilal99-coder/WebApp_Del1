@@ -33,7 +33,8 @@ function sendReiseInformasjon(info) {
               '      id="person' + i +
              '       placeholder="0"'+
              '       class="form-control"'+
-             '       autofocus="" />'+
+            '       autofocus="" />' +
+           ' <button type="button" class="btn btn-primary" id="regPerson"' + i + ' > Registrer </button> ' +
            ' </div>'+
         '</div>').appendTo("#personer");
 
