@@ -39,6 +39,26 @@ function sendReiseInformasjon(info) {
 
       
     }
+    let antLugarer= parseInt(info.antallLugarer, 10);
+
+    $("#lugarer").html("");
+    for (i = 1; i <= antLugarer; i++) {
+
+        $('<div class="form-group">' +
+            '<label for="lugar ' + i + ' class="col-sm-3 control-label"> ' +
+            ' Lugar ' + i + ' </i> ' +
+            '</label>' +
+            '<div class="col-sm-9">' +
+            '   <input type="text" ' +
+            '      id="lugar' + i +
+            '       placeholder="0"' +
+            '       class="form-control"' +
+            '       autofocus="" />' +
+            ' </div>' +
+            '</div>').appendTo("#lugarer");
+
+
+    }
     
 
 
@@ -70,7 +90,8 @@ function hentReiseInfo() {
         til: $('#til').val(),
         utreise: $("#utreise").val(),
         antallBarn: $("#antallBarn").val(),
-        antallVoksen: $("#antallVoksen").val()
+        antallVoksen: $("#antallVoksen").val(),
+        antallLugarer: $("#antallLugarer").val()
     };
     return reiseInfo;
   
