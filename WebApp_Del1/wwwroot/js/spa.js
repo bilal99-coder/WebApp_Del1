@@ -1,6 +1,10 @@
 ﻿
 $(() => {
+    $("#reg0").click((e) => {
 
+        alert("ok");
+
+    });
 
     let state = {
         warning: 0,
@@ -98,8 +102,6 @@ $(() => {
 
 
 });
-
-
 
 
 var GUIModuleSPA = (function () {

@@ -14,7 +14,7 @@
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
           crossorigin="anonymous" />
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
-    <!--<script src="js/index.js"></script>-->
+    <script defer src="/js/index.js"></script>
     <script defer src="./js/spa.js"></script>
     <link rel="stylesheet" href="css/index.css" />
 </head>
@@ -84,12 +84,14 @@
                 </div>
                 <div class="form-group">
                     <label>Antall Voksne</label>
-                    <input type="number" class="form-control" id="antall" />
+                    <input type="number" class="form-control" id="antallVoksen" />
                 </div>
                 <div class="form-group">
                     <label>Antall Barn</label>
-                    <input type="number" class="form-control" id="antall" />
+                    <input type="number" class="form-control" id="antallBarn" />
                 </div>
+                <button type="button" class="btn btn-primary" id="reg0" onclick="hen"> Registrer </button>
+
                 <button type="button" class="btn btn-primary" id="suksess0"> Suksess </button>
                 <button type="button" class="btn btn-primary" id="war0">Warning </button>
                 <div class="btn-box">
@@ -175,54 +177,50 @@
                         </div>
                     </div>
                     <h1 class="overskrift">Lugar</h1>
-                    <div class="form-group">
-                        <label>Lugar 1</label>
-                        <input type="checkbox" />
+                    <div id="lugarer">
+                        <div class="form-group">
+                            <label>Lugar 1</label>
+                            <input type="checkbox" />
+                        </div>
+                        <div class="form-group">
+                            <label>Lugar 2</label>
+                            <input type="checkbox" />
+                        </div>
+                        <div class="form-group">
+                            <label>Lugar 3</label>
+                            <input type="checkbox" />
+                        </div>
+                        <div class="form-group">
+                            <label>Lugar 4</label>
+                            <input type="checkbox" />
+                        </div>
+                        <div class="form-group">
+                            <label>Lugar 5</label>
+                            <input type="checkbox" />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Lugar 2</label>
-                        <input type="checkbox" />
-                    </div>
-                    <div class="form-group">
-                        <label>Lugar 3</label>
-                        <input type="checkbox" />
-                    </div>
-                    <div class="form-group">
-                        <label>Lugar 4</label>
-                        <input type="checkbox" />
-                    </div>
-                    <div class="form-group">
-                        <label>Lugar 5</label>
-                        <input type="checkbox" />
-                    </div>
+                    <button type="button" class="btn btn-primary" id="reg1"> Registrer </button>
+
                     <button type="button" class="btn btn-primary" id="suksess1"> Suksess </button>
                     <button type="button" class="btn btn-primary" id="war1">Warning </button>
                     <div class="btn-box" id="btnBox">
                         <button type="button" id="btnTilbake1">Tilbake</button>
                         <button type="button" id="btnNeste2">Neste</button>
                     </div>
-                    </div>
+                </div>
             </form>
 
             <form class="form" id="regform3" action="">
                 <h1 class="overskrift">Personinfo</h1>
-                <div class="form-group">
-                    <label>Person 1</label>
-                    <input type="text" />
+                <div id="personer">
+                    
                 </div>
-                <div class="form-group">
-                    <label>Person 2</label>
-                    <input type="text" />
-                </div>
-                <div class="form-group">
-                    <label>Person 3</label>
-                    <input type="text" />
-                </div>
+                <button type="button" class="btn btn-primary" id="reg2"> Registrer </button>
                 <button type="button" class="btn btn-primary" id="suksess2"> Suksess </button>
                 <button type="button" class="btn btn-primary" id="war2">Warning </button>
                 <div class="btn-box" id="btnBox">
                     <button type="button" id="btnTilbake2">Tilbake</button>
-                    <button type="button" id="btnFerdig" >Ferdig</button>
+                    <button type="button" id="btnFerdig">Ferdig</button>
                 </div>
             </form>
         </div>
