@@ -64,7 +64,7 @@ form button {
     width: 110px;
     height: 35px;
     margin: 0 10px;
-    background: linear-gradient(to right, #00008B, #1E90FF);
+    background: blue;
     border-radius: 10px;
     border: 0;
     outline: none;
