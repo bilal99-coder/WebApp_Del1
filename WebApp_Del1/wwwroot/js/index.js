@@ -45,12 +45,7 @@ function sendReiseInformasjon(info) {
 
 }
 
-function setAntallLugarer(lugarer) {
 
-    storeModuleSPA.setAntallLugarer(lugarer);
-
-
-}
 
 function validerReise(info) {
     const fra = info.fra;
