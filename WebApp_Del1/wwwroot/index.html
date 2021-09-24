@@ -14,7 +14,7 @@
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
           crossorigin="anonymous" />
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
-    <script defer src="/js/index.js"></script>
+    <script defer src="./js/index.js"></script>
     <script defer src="./js/spa.js"></script>
     <link rel="stylesheet" href="css/index.css" />
 </head>
@@ -55,42 +55,52 @@
             <form class="form" id="regform" action="">
                 <h1 class="overskrift">Reiseinformasjon</h1>
                 <div class="form-group">
-                    <label>Reisetype</label>
+                    <label>Reisetype:</label>
                     <select class="form-control" id="reisetype">
-                        <option>En vei</option>
-                        <option>Tur/Retur</option>
+                        <option "" disabled="true" selected="true"></option>
+                        <option value="enVei">En vei</option>
+                        <option value="turRetur">Tur/Retur</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label>Fra</label>
-                    <select class="form-control" id="fra">
-                        <option>Bergen</option>
-                        <option>Oslo</option>
-                        <option>Kristiansand</option>
-                    </select>
-                    <div id="fraFeil"></div>
+                <div class="row">
+                    <div class="col">
+                        <label for="fra">Fra:</label>
+                        <select class="form-control" id="fra">
+                            <option "" disabled="true" selected="true"></option>
+                            <option value="bergen">Bergen</option>
+                            <option value="oslo">Oslo</option>
+                            <option value="kristiansand">Kristiansand</option>
+                        </select>
+                        <div id="fraFeil"></div>
+                    </div>
+                    <div class="col">
+                        <label for="til">Til:</label>
+                        <select class="form-control" id="til">
+                            <option "" disabled="true" selected="true"></option>
+                            <option value="bergen">Bergen</option>
+                            <option value="oslo">Oslo</option>
+                            <option value="kristiansand">Kristiansand</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label>Til</label>
-                    <select class="form-control" id="til">
-                        <option>Bergen</option>
-                        <option>Oslo</option>
-                        <option>Kristiansand</option>
-                    </select>
+                    <label>Utreise:</label>
+                    <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utreise"/>
                 </div>
-                <div class="form-group">
-                    <label>Utreise</label>
-                    <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utreise">
+                <div class="form-group" id="hjemreise">
+                    <label for="hjemreiseDate">Hjemreise:</label>
+                    <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="hjemreiseDate"/>
                 </div>
-                <div class="form-group">
-                    <label>Antall Voksne</label>
-                    <input type="number" class="form-control" id="antallVoksen" />
+                <div class="row">
+                    <div class="col">
+                        <label>Antall Voksne:</label>
+                        <input type="number" class="form-control" id="antallVoksen" />
+                    </div>
+                    <div class="col">
+                        <label>Antall Barn:</label>
+                        <input type="number" class="form-control" id="antallBarn" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Antall Barn</label>
-                    <input type="number" class="form-control" id="antallBarn" />
-                </div>
-
 
                 <button type="button" class="btn btn-primary" id="reg0" onclick="hen"> Registrer </button>
 

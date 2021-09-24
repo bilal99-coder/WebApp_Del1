@@ -17,6 +17,8 @@ $("#til").change(function () {
 $('#regform2').hide();
 $("#regform3").hide();
 
+$("#hjemreise").hide();
+
 $("#btnNeste").click(function () {
     $("#regform").hide();
     $("#regform2").show();
@@ -33,6 +35,19 @@ $("#btnNeste2").click(function () {
     $("#regform2").hide();
     $("#regform3").show();
 });
+
+/*Dersom det endres til "tur/retur vil det synliggjøres et nyttfelt for hjemreise" - dette fynker ikke enda*/
+
+
+$("#reisetype").change(function () {
+    const reisetype = $("#reisetype").val();
+    if (reisetype == "turRetur") {
+        $('#hjemreise').show();
+    } 
+})
+
+
+
 
 
 $(() => {
