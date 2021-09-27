@@ -1,6 +1,10 @@
 ﻿$(() => {
     //TODO
 
+    let reiseInfo = '' // = await hentReiseInfo();
+    let infoPersoner = ''; //= await hentPersoner()
+    let infoLugarer = ''; // = await hentLugarer;
+    //   !-- initInfo(reiseInfo,infoPersoner,InfoLugarer)
     
     $("#reg0").click((e) => {
         let info = hentReiseInfo();
