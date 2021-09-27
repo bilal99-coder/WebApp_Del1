@@ -11,8 +11,17 @@
 });
 
 
+async function slettBillett(successFunc) {
+    $.post("/billett/slettBillett",).done((res) => {
+        successFunc.bind(this)();
+    }).promise();
+}
 
-
+async function registrerBillett(successFunc) {
+    $.post("/billett/registrerBillett",).done((res) => {
+        successFunc.bind(this)();
+    }).promise();
+}
     // Kommunikasjons funksjoner----------------
 
 async function sendTilServerReiseInformasjon(info, successFunc) {
@@ -51,12 +60,40 @@ async function endreServerLugar(id, lugar, successFunc) {
         }).promise();
 }
 
+async function slettServerPerson(id, person, successFunc) {
+        $.post("/billett/endrePerson/id", person).done((res) => {
+            successFunc.bind(this)(id, person);
+        }).promise();
+ }
 
+async function slettServerLugar(id, successFunc) {
+        $.post("/billett/slettLugar/id").done((res) => {
+            successFunc.bind(this)(id);
+        }).promise();
+}
 
-    async function sendTilServerLugarer(lugarer,successFunc) {
+async function slettServerPersoner( successFunc) {
+    $.post("/billett/slettPerson").done((res) => {
+        successFunc.bind(this)();
+    }).promise();
+}
+
+async function slettServerLugarer(successFunc) {
+    $.post("/billett/slettLugarer").done((res) => {
+        successFunc.bind(this)();
+    }).promise();
+}
+
+async function slettServerReiseInfo( successFunc) {
+    $.post("/billett/slettReiseInfo").done((res) => {
+        successFunc.bind(this)();
+    }).promise();
+}
+
+async function sendTilServerLugarer(lugarer,successFunc) {
     await $.post({
         url: '/addLugaer',
-        data: bestillingsListe,
+        data: lugarer,
         contentType: 'application/json; charset=utf-8'
     }).done((res) => {
         successFunc.bind(this)(info);
@@ -66,7 +103,7 @@ async function endreServerLugar(id, lugar, successFunc) {
     async function sendTilServerPersoner(personer, successFunc) {
         await $.post({
             url: '/addPersoner',
-            data: bestillingsListe,
+            data: personer,
             contentType: 'application/json; charset=utf-8'
         }).done((res) => {
             successFunc.bind(this)(info);
