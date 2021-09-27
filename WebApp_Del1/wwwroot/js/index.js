@@ -8,8 +8,61 @@
 
         }
     });
+
+    //Kun en simulering, og skal fjernes når en kan^^
+    $("#oversiktSimulator").click((e) => {
+        let html = ' < div class= "card text-center col-md-4" >' +
+            '    <div class="card-header"> Bilde her </div>' +
+            '     <div class="card-body">' +
+            '         <h5 class="card-title">Tittel </h5>' +
+            '         <p class="card-text"> Beskrivelse.</p>' +
+            '          <a href="#" class="btn btn-primary">Velg</a>' +
+            '       </div>' +
+            '        <div class="card-footer text-muted">' +
+
+            '           <label class="control-label col-sm-8 align-content-center">Fasiliteter </label>' +
+            '          <div class="col-sm-6">' +
+            '              <div class="row">' +
+            '                 <div class="col-sm-4 align-content-center">' +
+
+            '                     <i class="fas fa-toilet"> Wc</i>' +
+
+            '             </div>' +
+            '              <div class="col-sm-4">' +
+
+
+            '                 <i class="fa fa-shower" aria-hidden="true"> Dysj</i>' +
+
+            '             </div>' +
+            '            <div class="col-sm-4">' +
+
+            ' < i class= "fa fa-wifi" aria - hidden="true" > Wifi </i > ' +
+
+            '         </div> ' +
+            '       </div>' +
+            '     </div>' +
+            '   </div>' +
+            '     </div >' +
+            '  </div >'
+        leggTilLugarOversikt(html);
+    });
+
+    $("#slettLugarer").click((e) => {
+        resetLugarOversikt();
+    });
+
+
 });
 
+//---------GUI
+function leggTilLugarOversikt(html) {
+    $(html).appendTo("#lugarOversikt");
+}
+
+function resetLugarOversikt() {
+    $("#lugarOversikt").html("");
+}
+    // Kommunikasjons funksjoner----------------
 
 async function slettBillett(successFunc) {
     $.post("/billett/slettBillett",).done((res) => {
@@ -22,7 +75,7 @@ async function registrerBillett(successFunc) {
         successFunc.bind(this)();
     }).promise();
 }
-    // Kommunikasjons funksjoner----------------
+
 
 async function sendTilServerReiseInformasjon(info, successFunc) {
     $.post("/billett/addReiseInfo", info).done((res) => {
