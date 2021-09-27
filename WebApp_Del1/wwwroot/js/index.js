@@ -12,12 +12,14 @@
 
 
 function sendReiseInformasjon(info) {
-    // ajax kall til server
+
     let antBarn = parseInt(info.antallBarn, 10);
     let antVoksen = parseInt(info.antallVoksen, 10);
 
     let antPersoner = antBarn + antVoksen;
 
+    $("#personer").html("");
+    //Legger til et nytt person registerings skjema i element med id personer
     for ( i = 1; i <= antPersoner; i++) {
 
         $('<div class="form-group">' +
