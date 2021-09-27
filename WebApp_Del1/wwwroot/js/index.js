@@ -140,7 +140,7 @@ function sendReiseInformasjon(info) {
             '</label>' +
 
             '<label for="fornavn ' + i + ' class="col-sm-3 control-label"> ' +
-            '<b>Fornavn ' + i + ' </b> ' +
+            '<b>  Fornavn ' + ' </b> ' +
             '</label>' +
             '<div class="col-sm-9">' +
             '   <input type="text" ' +
@@ -150,7 +150,7 @@ function sendReiseInformasjon(info) {
             '       autofocus="" />' +
             ' </div>' +
             '<label for="etternavn ' + i + ' class="col-sm-3 control-label"> ' +
-            '<b>Etternavn ' + i + ' </b> ' +
+            '<b>  Etternavn '  + ' </b> ' +
             '</label>' +
             '<div class="col-sm-9">' +
             '   <input type="text" ' +
@@ -159,7 +159,7 @@ function sendReiseInformasjon(info) {
             '       class="form-control"' +
             '       autofocus="" />' +
             '<label for="telefon ' + i + ' class="col-sm-3 control-label"> ' +
-            '<b>Telefon ' + i + ' </b> ' +
+            '<b>Telefon '  + ' </b> ' +
             ' </div>' +
             '</label>' +
             '<div class="col-sm-9">' +
