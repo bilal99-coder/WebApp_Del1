@@ -175,6 +175,7 @@ function sendReiseInformasjon(info) {
             '</div>').appendTo("#personer");
 
 
+    }
 }
 
 
