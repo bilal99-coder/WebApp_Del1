@@ -295,7 +295,7 @@ function setReiseInfo(reiseInfo) {
     $('#antallBarn').val(reiseInfo.antallBarn);
     $('#antallVoksen').val(reiseInfo.antallVoksen);
 
-    genererPersonInfoSkjema(info);
+    genererPersonInfoSkjema(reisInfo);
 
 }
 
