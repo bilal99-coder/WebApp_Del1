@@ -1,4 +1,7 @@
 ﻿$(() => {
+    //TODO
+
+
     $("#reg0").click((e) => {
         let info = hentReiseInfo();
         let erGyldig = validerReise(info);
@@ -191,9 +194,7 @@ async function endreServerPerson() {
 
 ///----------------------------------
 
-function sendReiseInformasjon(info) {
-
-
+function genererPersonInfoSkjema(info) {
 
     let antBarn = parseInt(info.antallBarn, 10);
     let antVoksen = parseInt(info.antallVoksen, 10);
@@ -220,7 +221,7 @@ function sendReiseInformasjon(info) {
             '       autofocus="" />' +
             ' </div>' +
             '<label for="etternavn ' + i + ' class="col-sm-3 control-label"> ' +
-            '<b>  Etternavn '  + ' </b> ' +
+            '<b>  Etternavn ' + ' </b> ' +
             '</label>' +
             '<div class="col-sm-9">' +
             '   <input type="text" ' +
@@ -229,7 +230,7 @@ function sendReiseInformasjon(info) {
             '       class="form-control"' +
             '       autofocus="" />' +
             '<label for="telefon ' + i + ' class="col-sm-3 control-label"> ' +
-            '<b>Telefon '  + ' </b> ' +
+            '<b>Telefon ' + ' </b> ' +
             ' </div>' +
             '</label>' +
             '<div class="col-sm-9">' +
@@ -246,6 +247,11 @@ function sendReiseInformasjon(info) {
 
 
     }
+}
+function sendReiseInformasjon(info) {
+
+    genererPersonInfoSkjema(info);
+
 }
 
 
@@ -275,6 +281,12 @@ function hentReiseInfo() {
   
 }
 
+function initInfo(reiseInfo, infoPersoner) {
+    setReiseInfo(reiseInfo);
+    for ((personInfo, idx) in infoPersoner) {
+        setPersonInfo(idx + 1, personInfo);
+    }
+}
 function setReiseInfo(reiseInfo) {
     $('#reisetype').val(reiseInfo.reisetype);
     $('#fra').val(reiseInfo.fra);
@@ -282,6 +294,8 @@ function setReiseInfo(reiseInfo) {
     $('#utreise').val(reiseInfo.reisetype);
     $('#antallBarn').val(reiseInfo.antallBarn);
     $('#antallVoksen').val(reiseInfo.antallVoksen);
+
+    genererPersonInfoSkjema(info);
 
 }
 
