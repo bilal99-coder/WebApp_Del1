@@ -22,7 +22,11 @@ function sendReiseInformasjon(info) {
 
         $('<div class="form-group">' +
             '<label for="person ' + i + ' class="col-sm-3 control-label"> ' +
-            ' Person ' + i + ' </i> ' +
+            ' <h1>Person ' + i + ' </h1> ' +
+            '</label>' +
+
+            '<label for="fornavn ' + i + ' class="col-sm-3 control-label"> ' +
+            '<b>Fornavn ' + i + ' </b> ' +
             '</label>' +
             '<div class="col-sm-9">' +
             '   <input type="text" ' +
@@ -30,19 +34,27 @@ function sendReiseInformasjon(info) {
             '       placeholder="0"' +
             '       class="form-control"' +
             '       autofocus="" />' +
+            ' </div>' +
+            '<label for="etternavn ' + i + ' class="col-sm-3 control-label"> ' +
+            '<b>Etternavn ' + i + ' </b> ' +
+            '</label>' +
             '<div class="col-sm-9">' +
             '   <input type="text" ' +
-            '      id="etternavn' + i +
+            '      id="adresse' + i +
             '       placeholder="0"' +
             '       class="form-control"' +
             '       autofocus="" />' +
+            '<label for="telefon ' + i + ' class="col-sm-3 control-label"> ' +
+            '<b>Telefon ' + i + ' </b> ' +
+            ' </div>' +
+            '</label>' +
             '<div class="col-sm-9">' +
-            '   <input type="text" ' +
+            '   <input type="tlf" ' +
             '      id="telefon' + i +
             '       placeholder="0"' +
             '       class="form-control"' +
             '       autofocus="" />' +
-
+            ' </div>' +
             ' <button type="button" class="btn btn-primary" id="leggTilPerson"' + i + ' > Legg til </button> ' +
             ' <button type="button" class="btn btn-primary" id="endrePerson"' + i + ' > Endre </button> ' +
             ' </div>' +
