@@ -115,7 +115,11 @@ async function sendTilServerLugarer(lugarer,successFunc) {
 
 
 //------------------------------------
+//Trenger en callback funksjon til hver av ajax funksjonene
 
+
+
+///----------------------------------
 
 function sendReiseInformasjon(info) {
 
