@@ -1,11 +1,7 @@
 ﻿$(() => {
     //TODO
 
-    let reiseInfo = '' // = await hentReiseInfo();
-    let infoPersoner = ''; //= await hentPersoner()
-    let infoLugarer = ''; // = await hentLugarer;
-    //   !-- initInfo(reiseInfo,infoPersoner,InfoLugarer)
-    
+
     $("#reg0").click((e) => {
         let info = hentReiseInfo();
         let erGyldig = validerReise(info);
@@ -285,6 +281,8 @@ function hentReiseInfo() {
   
 }
 
+/**
+
 function initInfo(reiseInfo, infoPersoner, infoLugarer) {
     setReiseInfo(reiseInfo);
     for ((personInfo, idx) in infoPersoner) {
@@ -314,3 +312,4 @@ function setPersonInfo(nummerPerson, personInfo) {
 
 
 }
+*/
