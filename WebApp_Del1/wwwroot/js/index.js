@@ -1,7 +1,7 @@
 ﻿$(() => {
     //TODO
 
-
+    
     $("#reg0").click((e) => {
         let info = hentReiseInfo();
         let erGyldig = validerReise(info);
@@ -281,10 +281,14 @@ function hentReiseInfo() {
   
 }
 
-function initInfo(reiseInfo, infoPersoner) {
+function initInfo(reiseInfo, infoPersoner, infoLugarer) {
     setReiseInfo(reiseInfo);
     for ((personInfo, idx) in infoPersoner) {
         setPersonInfo(idx + 1, personInfo);
+    }
+    for (lugar in infoLugarer) {
+        let html = ' ';
+        leggTilLugarOversikt(html);
     }
 }
 function setReiseInfo(reiseInfo) {
