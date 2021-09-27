@@ -10,7 +10,7 @@
     });
 });
 
-function sendReiseInformasjon(info) {
+
 
 
     // Kommunikasjons funksjoner----------------
