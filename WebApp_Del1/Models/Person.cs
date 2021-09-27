@@ -1,26 +1,22 @@
-﻿using System;
-
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace WebApp_Del1
+namespace WebApp_Del1.Models
 {
     public class Person
     {
-     
+        public int  personId { get;set;}
+        public string fornavn { get; set; }//
+        public string etternavn { get; set; }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int personId { get; set; }
+        public string addresse { get; set; }
+        
+    }
 
-        public String fornavn { get; set; }//
-        public String etternavn { get; set; }
 
-        public String addresse { get; set; }
+    public class Betaler: Person
+    { 
+        public string kortholdersNavn { get; set; }
 
-        public virtual List<BillettPerson> billett { get; set; }
+        public string kortNummer { get; set; }
+
+        public int cvc { get; set; }
     }
 }
