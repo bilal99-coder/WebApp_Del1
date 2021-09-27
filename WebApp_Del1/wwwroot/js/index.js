@@ -164,6 +164,23 @@ async function sendTilServerLugarer(lugarer,successFunc) {
 }
 
 
+async function hentServerPersoner() {
+    $.post("/billett/hentPersoner").done((res) => {
+        successFunc.bind(this)(res);
+    }).promise();
+}
+
+async function hentServerLugarer() {
+    $.post("/billett/hentLugarer").done((res) => {
+        successFunc.bind(this)(res);
+    }).promise();
+}
+
+async function endreServerPerson() {
+    $.post("/billett/hentReiseInformasjon").done((res) => {
+        successFunc.bind(this)(res);
+    }).promise();
+}
 
 
 
@@ -256,4 +273,22 @@ function hentReiseInfo() {
     };
     return reiseInfo;
   
+}
+
+function setReiseInfo(reiseInfo) {
+    $('#reisetype').val(reiseInfo.reisetype);
+    $('#fra').val(reiseInfo.fra);
+    $('#til').val(reiseInfo.til);
+    $('#utreise').val(reiseInfo.reisetype);
+    $('#antallBarn').val(reiseInfo.antallBarn);
+    $('#antallVoksen').val(reiseInfo.antallVoksen);
+
+}
+
+function setPersonInfo(nummerPerson, personInfo) {
+    $('#fornavn' + nummerPerson).val(personInfo.fornavn);
+    $('#etternavn' + nummerPerson).val(personInfo.etternavn);
+    $('#telefon' + nummerPerson).val(personInfo.telefon);
+
+
 }
