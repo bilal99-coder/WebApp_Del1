@@ -52,7 +52,8 @@ $("#reisetype").change(function () {
 //Etter dokumentet er lastet inn
 $(() => {
 
- 
+
+
 
     let state = {
         warning: 0,
@@ -154,6 +155,7 @@ $(() => {
 
 
 });
+
 
 
 var GUIModuleSPA = (function () {

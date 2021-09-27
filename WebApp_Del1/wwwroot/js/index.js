@@ -10,8 +10,79 @@
     });
 });
 
+function sendReiseInformasjon(info) {
+
+
+    // Kommunikasjons funksjoner----------------
+
+async function sendTilServerReiseInformasjon(info, successFunc) {
+    $.post("/billett/addReiseInfo", info).done((res) => {
+        successFunc.bind(this)(info);
+    }).promise();
+}
+
+async function sendTilServerPerson(person, successFunc) {
+    $.post("/billett/addPerson", person).done((res) => {
+        successFunc.bind(this)(info);
+    }).promise();
+    }
+
+async function sendTilServerLugar(lugar, successFunc) {
+        $.post("/billett/addLugar", lugar).done((res) => {
+            successFunc.bind(this)(info);
+        }).promise();
+}
+
+async function endreServerReiseInformasjon(id,info, successFunc) {
+        $.post("/billett/endreReiseInfo/id", info).done((res) => {
+            successFunc.bind(this)(id,info);
+        }).promise();
+    }
+
+async function endreServerPerson(id, person, successFunc) {
+        $.post("/billett/endrePerson/id", person).done((res) => {
+            successFunc.bind(this)(id, person);
+        }).promise();
+ }
+
+async function endreServerLugar(id, lugar, successFunc) {
+        $.post("/billett/endreLugar/id", lugar).done((res) => {
+            successFunc.bind(this)(id, lugar);
+        }).promise();
+}
+
+
+
+    async function sendTilServerLugarer(lugarer,successFunc) {
+    await $.post({
+        url: '/addLugaer',
+        data: bestillingsListe,
+        contentType: 'application/json; charset=utf-8'
+    }).done((res) => {
+        successFunc.bind(this)(info);
+    }).promise();
+}
+
+    async function sendTilServerPersoner(personer, successFunc) {
+        await $.post({
+            url: '/addPersoner',
+            data: bestillingsListe,
+            contentType: 'application/json; charset=utf-8'
+        }).done((res) => {
+            successFunc.bind(this)(info);
+        }).promise();
+}
+
+
+
+
+
+//------------------------------------
+
 
 function sendReiseInformasjon(info) {
+
+
 
     let antBarn = parseInt(info.antallBarn, 10);
     let antVoksen = parseInt(info.antallVoksen, 10);
@@ -20,7 +91,7 @@ function sendReiseInformasjon(info) {
 
     $("#personer").html("");
     //Legger til et nytt person registerings skjema i element med id personer
-    for ( i = 1; i <= antPersoner; i++) {
+    for (i = 1; i <= antPersoner; i++) {
 
         $('<div class="form-group">' +
             '<label for="person ' + i + ' class="col-sm-3 control-label"> ' +
@@ -61,7 +132,6 @@ function sendReiseInformasjon(info) {
             ' <button type="button" class="btn btn-primary" id="endrePerson"' + i + ' > Endre </button> ' +
             ' </div>' +
             '</div>').appendTo("#personer");
-    }
 
 
 }
