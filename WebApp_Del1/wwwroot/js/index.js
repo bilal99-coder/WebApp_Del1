@@ -4,9 +4,11 @@
         let erGyldig = validerReise(info);
 
         if (erGyldig) {
-           sendReiseInformasjon(info);
-            alert("ta");
+            sendReiseInformasjon(info);
+
         }
+    });
+});
 
 
 function sendReiseInformasjon(info) {
@@ -15,27 +17,36 @@ function sendReiseInformasjon(info) {
     let antVoksen = parseInt(info.antallVoksen, 10);
 
     let antPersoner = antBarn + antVoksen;
-    
 
-    $("#personer").html("");
     for ( i = 1; i <= antPersoner; i++) {
 
         $('<div class="form-group">' +
             '<label for="person ' + i + ' class="col-sm-3 control-label"> ' +
-               ' Person ' + i + ' </i> ' +
+            ' Person ' + i + ' </i> ' +
             '</label>' +
             '<div class="col-sm-9">' +
-             '   <input type="text" ' +
-              '      id="person' + i +
-             '       placeholder="0"'+
-             '       class="form-control"'+
+            '   <input type="text" ' +
+            '      id="fornavn' + i +
+            '       placeholder="0"' +
+            '       class="form-control"' +
             '       autofocus="" />' +
+            '<div class="col-sm-9">' +
+            '   <input type="text" ' +
+            '      id="etternavn' + i +
+            '       placeholder="0"' +
+            '       class="form-control"' +
+            '       autofocus="" />' +
+            '<div class="col-sm-9">' +
+            '   <input type="text" ' +
+            '      id="telefon' + i +
+            '       placeholder="0"' +
+            '       class="form-control"' +
+            '       autofocus="" />' +
+
             ' <button type="button" class="btn btn-primary" id="leggTilPerson"' + i + ' > Legg til </button> ' +
             ' <button type="button" class="btn btn-primary" id="endrePerson"' + i + ' > Endre </button> ' +
-           ' </div>'+
-        '</div>').appendTo("#personer");
-
-      
+            ' </div>' +
+            '</div>').appendTo("#personer");
     }
 
 

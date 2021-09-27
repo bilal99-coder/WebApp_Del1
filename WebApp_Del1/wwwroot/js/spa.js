@@ -49,13 +49,10 @@ $("#reisetype").change(function () {
 
 
 
-
+//Etter dokumentet er lastet inn
 $(() => {
-    $("#reg0").click((e) => {
 
-        alert("ok");
-
-    });
+ 
 
     let state = {
         warning: 0,
@@ -65,7 +62,7 @@ $(() => {
         active: 4
     }
 
-
+    //Kjøp av billett
     $("#btnFerdig").click((e) => {
         if (GUIModuleSPA.erFerdig()) {
             alert("Du fikk kjøpt en billett");
@@ -75,6 +72,8 @@ $(() => {
         }
     }
     )
+
+    //Første knapp i navigasjon
     $("#nav0").click((e) => {
         e.preventDefault();
         GUIModuleSPA.changeSchemaState(0, state.active);
@@ -85,28 +84,28 @@ $(() => {
 
 
     });
-
+    //Tilhører første knapp i navigasjon
     $("#suksess0").click((e) => {
         e.preventDefault();
         GUIModuleSPA.changeSchemaState(0, state.success);
 
 
     });
-
+        //Tilhører første knapp i navigasjon
     $("#war0").click((e) => {
 
         GUIModuleSPA.changeSchemaState(0, state.warning);
 
 
     });
-
+        //Tilhører andre knapp i navigasjon
     $("#suksess1").click((e) => {
         e.preventDefault();
         GUIModuleSPA.changeSchemaState(1, state.success);
 
 
     });
-
+    //Tilhører andre knapp i navigasjon
     $("#war1").click((e) => {
 
         GUIModuleSPA.changeSchemaState(1, state.warning);
@@ -114,7 +113,7 @@ $(() => {
 
     });
 
-
+    //Tilhører tredje knapp i navigasjon
     $("#suksess2").click((e) => {
         e.preventDefault();
         GUIModuleSPA.changeSchemaState(2, state.success);
@@ -122,6 +121,7 @@ $(() => {
 
     });
 
+    //Tilhører tredje knapp i navigasjon
     $("#war2").click((e) => {
 
         GUIModuleSPA.changeSchemaState(2, state.warning);
@@ -130,7 +130,7 @@ $(() => {
     });
 
 
-
+    //Tilhører andre knapp i navigasjon
     $("#nav1").click((e) => {
         e.preventDefault();
         GUIModuleSPA.changeSchemaState(1, state.active);
@@ -140,6 +140,7 @@ $(() => {
 
     });
 
+    //Tilhører tredje knapp i navigasjon
     $("#nav2").click((e) => {
         e.preventDefault();
         GUIModuleSPA.changeSchemaState(2, state.active);
@@ -165,22 +166,34 @@ var GUIModuleSPA = (function () {
         active: 4
     }
 
+    //CSS klasser assosiert med ulike states
     let warningClasses = ["bg-warning", "text-black-50"];
     let successClasses = ["bg-success", "text-white"];
     let notFinishedClasses = ["text-white"];
     let lockedClasses = ["text-black-50"];
     let activeClasses = ["text-white","bg-primary"];
 
+    //Tilstanden skjemaet hadde før
     let preSchemaState = [state.notFinished, state.notFinished, state.notFinished];
+
+    //Tilstanden skjemaet har nå
     let schemaState = [state.active, state.notFinished, state.notFinished];
     let currentActive = 0;
 
+
+    //Endrer tilstand til skjema gitt id, til tilstand myState
     function changePschemaState(id, myState) {
+        //For å unngå at en går til active 2 ganger, ettersom en da ikke vil
+        //kunne gå tilbake til orginal tilstand når en gjør en annen knapp active.
         if (schemaState[id] == state.active && myState == state.active) return;
+
+        //Fjern CSS Klasser assosiert med staten en har nå,fra skjema med følgende id
         removeAndRemClasses(id, schemaState[id]);
+        //Tilstanden en har nå, er ønsket tilstand
         schemaState[id] = myState;
 
-        //goto new state
+        //Velger ny tilstand basert på ønske.
+
         if (myState == state.warning) {
             warningClasses.forEach((x) => { $("#nav" + id).addClass(x) });
             document.getElementById("warning" + id).style.visibility = "visible";
@@ -208,6 +221,8 @@ var GUIModuleSPA = (function () {
 
 
     }
+
+    //Fjerner CSS klasser assoisert med klassen myState, med følgende id.
     function removeAndRemClasses(id, myState) {
         preSchemaState[id] = myState;
         if (myState == state.warning) {
@@ -234,7 +249,8 @@ var GUIModuleSPA = (function () {
 
 
     }
-
+    //Sjekker om alle skjemaene har status state.success. 
+    //Er ok at et skjema er active, så lenge forrige tilstand var state.success.
     function erPFerdig() {
         return schemaState.every((x, id) => { return (x == state.success || (id == currentActive && preSchemaState[currentActive] == state.success)) });
     }
