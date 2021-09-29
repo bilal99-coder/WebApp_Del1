@@ -7,6 +7,6 @@ namespace WebApp_Del1.DAL
 {
     public interface IBillettRepository
     {
-        Task<List<string>> HentAlleStasjonerFra();
+        Task<List<Havn>> HentAlleStasjonerFra();
     }
 }
