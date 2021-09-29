@@ -99,12 +99,14 @@ namespace WebApp_Del1.DAL
         [Key]
         public int RuteId { get; set; }
         //fra er avgang sted 
-        public string fra { get; set; }
+        public Havn avgangHavn { get; set; }
         //til er distinasjon
-        public string til { get; set; }
+        public List<Havn> ankomstHavner { get; set; }
         public int pris { get; set; }
 
     }
+
+    
 
 
 
