@@ -98,20 +98,13 @@ namespace WebApp_Del1.DAL
     {
         [Key]
         public int RuteId { get; set; }
-        public Havn avgangHavnen { get; set; }
-        public virtual List<Havn> ankomstHavner { get; set; }
+        //fra er avgang sted 
+        public string fra { get; set; }
+        //til er distinasjon
+        public string til { get; set; }
         public int pris { get; set; }
 
     }
-
-
-    public class Havn
-    {
-        public int HavnId { get; set; }
-        public string HavnNavn { get; set; }
-
-    }
-    
 
 
 
@@ -128,7 +121,6 @@ namespace WebApp_Del1.DAL
         public DbSet<Personer> personer { get; set; }
         public DbSet<Betalere> Betalere { get; set; }
         public DbSet<Ruter> Ruter { get; set; }
-        public DbSet<Havn> AlleHavner { get; set; }
     
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

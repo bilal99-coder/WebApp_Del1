@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Forside</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous" />
+    <!--<script src="js/index.js"></script>-->
+    <script defer src="./js/spa.js"></script>
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+    <ul class="nav nav-pills ">
+        <li> <a class="nav-link bg-success text-white  " style="border-radius: 300px; margin-left: 1em; " href="#" id="nav0">Reise info <i class="fa fa-lock" aria-hidden="true" id="locked0" style="visibility: hidden"></i><i id="success0" class="fa fa-check" aria-hidden="true"></i><i id="warning0" class="fa fa-warning  " style="visibility: hidden"></i> </a></li>
+        <li> <a class="nav-link bg-warning text-black-50  " href="#" id="nav1" style="border-radius: 300px; margin-left: 1em; ">Personer <i class="fa fa-lock" aria-hidden="true" id="locked1" style="visibility: hidden"></i><i id="success1" class="fa fa-check" aria-hidden="true" style="visibility: hidden"></i><i id="warning1" class="fa fa-warning "></i></a>  </li>
+
+        <li> <a class="nav-link " href="#" id="nav2" style="border-radius: 300px; margin-left: 1em; ">Lugar <i class="fa fa-lock" aria-hidden="true" id="locked2" style="visibility: hidden"></i><i id="success2" class="fa fa-check" aria-hidden="true" style="visibility: hidden"></i><i id="warning2" class="fa fa-warning " style="visibility: hidden"></i></a> </li>
+        <li> <a class="nav-link  text-black-50  text-sm-center  " href="#" id="nav3" style="border-radius: 300px; margin-left:1em; ">Registrer billett<i class="fa fa-lock" aria-hidden="true" id="locked3"></i><i id="success3" class="fa fa-check" aria-hidden="true" style="visibility: hidden"></i><i id="warning3" class="fa fa-warning " style="visibility: hidden"></i></a> </li>
+    </ul>
+    <div class="container">
+
+        <form class="form" id="regform" action="">
+            <h1 class="overskrift">Reiseinformasjon</h1>
+            <div class="form-group">
+                <label>Reisetype</label>
+                <select class="form-control" id="reisetype">
+                    <option>En vei</option>
+                    <option>Tur/Retur</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Fra</label>
+                <select class="form-control" id="fra">
+                    <option "" disabled="true" selected="true"></option>
+                    <option value="Bergen">Bergen</option>
+                    <option value="Oslo">Oslo</option>
+                    <option value="Kristiansand">Kristiansand</option>
+                </select>
+                <div id="fraFeil"></div>
+            </div>
+            <div class="form-group">
+                <label>Til</label>
+                <select class="form-control" id="til">
+                    <option "" disabled="true" selected="true"></option>
+                    <option value="Bergen">Bergen</option>
+                    <option value="Oslo">Oslo</option>
+                    <option value="Kristiansand">Kristiansand</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Utreise</label>
+                <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utreise">
+            </div>
+            <div class="form-group">
+                <label>Antall Voksne</label>
+                <input type="number" class="form-control" id="antall" />
+            </div>
+            <div class="form-group">
+                <label>Antall Barn</label>
+                <input type="number" class="form-control" id="antall" />
+            </div>
+            <div class="btn-box">
+                <button type="button" id="btnNeste">Neste</button>
+            </div>
+        </form>
+</body>
+</html>
