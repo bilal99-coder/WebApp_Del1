@@ -21,10 +21,10 @@ namespace WebApp_Del1.Models
         public int betalerId { get; set; }
 
         public String betalerFornavn { get; set; }//
-        public String betlaerEtternavn { get; set; }
+        public String betalerEtternavn { get; set; }
 
-        public String betlaerAddresse { get; set; }
-        public string betaeler_kortholdersNavn { get; set; }
+        public String betalerAdresse { get; set; }
+        public string betaler_kortholdersNavn { get; set; }
 
         public string betaler_kortNummer { get; set; }
 

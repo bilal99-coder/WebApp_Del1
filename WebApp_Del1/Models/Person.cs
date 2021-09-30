@@ -1,5 +1,5 @@
 namespace WebApp_Del1.Models
-{
+{ /* 
     public class Person
     {
         public int  personId { get;set;}
@@ -18,5 +18,5 @@ namespace WebApp_Del1.Models
         public string kortNummer { get; set; }
 
         public int cvc { get; set; }
-    }
+    }*/
 }

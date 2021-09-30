@@ -77,17 +77,17 @@ namespace WebApp_Del1.DAL
                 //Lager nå en ny Betalere Objekt 
                 Betalere enNyBetaler = new Betalere();
                 //Før å fylle attributter til betaleren, skjekker vi foorst om betaleren finnes fra foor i databasen til personer 
-                Betalere funnetBetaler = await _db.Betalere.FirstOrDefaultAsync(k => k.personId == innReiseinformasjon.personId);
+                Betalere funnetBetaler = await _db.Betalere.FirstOrDefaultAsync(k => k.personId == innReiseinformasjon.betalerId);
                 //Hvis personen ikke finnes fra foor i databasen saa lager vi en ny person "enNyBetaler"
                 if (funnetBetaler == null)
                 {
-                    enNyBetaler.kortholdersNavn = innReiseinformasjon.kortholdersNavn;
-                    enNyBetaler.cvc = innReiseinformasjon.cvc;
-                    enNyBetaler.kortNummer = innReiseinformasjon.kortNummer;
-                    enNyBetaler.fornavn = innReiseinformasjon.fornavn;
-                    enNyBetaler.etternavn = innReiseinformasjon.etternavn;
-                    enNyBetaler.addresse = innReiseinformasjon.addresse;
-                    enNyBetaler.personId = innReiseinformasjon.personId;
+                    enNyBetaler.kortholdersNavn = innReiseinformasjon.betaler_kortholdersNavn;
+                    enNyBetaler.cvc = innReiseinformasjon.betaler_cvc;
+                    enNyBetaler.kortNummer = innReiseinformasjon.betaler_kortNummer;
+                    enNyBetaler.fornavn = innReiseinformasjon.betalerFornavn;
+                    enNyBetaler.etternavn = innReiseinformasjon.betalerEtternavn;
+                    enNyBetaler.addresse = innReiseinformasjon.betalerAdresse;
+                    enNyBetaler.personId = innReiseinformasjon.betalerId;
                     nyBillett.betaleren = enNyBetaler;
                     //Adde personen som betalte til listen av personer i billetten 
                     //vi trenger ikke å lage betaleren på listen av personer i billetten siden betaleren blir lagret som et eget attributt i billetten 
@@ -96,21 +96,17 @@ namespace WebApp_Del1.DAL
                     _db.Betalere.Add(enNyBetaler);
                     await _db.SaveChangesAsync();
                 }
-
-
-
                 //Hvis personen finnes fra foor i databasen saa henter vi henne, og adder henne til listen av personer i billetten 
 
                 else
                 {
                     nyBillett.betaleren = funnetBetaler;
                 }
-
                 //Nå etter at jeg hentet data om selve reisen og data om betaleren, nå vil jeg å hente data om andre passasjerer 
 
-                foreach (Person enPerson in personerIBiletteten)
+                foreach (Person enPerson in innReiseinformasjon.personer)
                 {
-                    //skjekker først om vi har kunden(Person =? enPerson) på databasen fra før
+                    //skjekker først om vi har kunden(enPerson) på databasen fra før
                     Personer funnetKunde = await _db.personer.FirstOrDefaultAsync(hverPerson => hverPerson.personId == enPerson.personId);
                     //Instansierer enNyPerson objekt som vi skal bruke om vi ikke har den passasjereren i databasen 
                     Personer enNyPerson = new Personer();
@@ -119,7 +115,7 @@ namespace WebApp_Del1.DAL
                         enNyPerson.personId = enPerson.personId;
                         enNyPerson.fornavn = enPerson.fornavn;
                         enNyPerson.etternavn = enPerson.etternavn;
-                        enNyPerson.addresse = enPerson.addresse;
+                        enNyPerson.addresse = enPerson.adresse;
                         //Må nå adde en enNyPerson til Listen: billettPersoner
                         nyBillett.billettPersoner.Add(enNyPerson);
                         _db.personer.Add(enNyPerson);
@@ -141,7 +137,7 @@ namespace WebApp_Del1.DAL
                 //Starter med å lage en ny lugar objekt 
 
                 Lugarer enNyLugar = new Lugarer();
-                //Henter oonsket lugar fra databasen av alle lugarer 
+                //Henter oonsket lugar fra databasen av alle lugarer  basert på hva kunden ønkser 
                 Lugarer funnetLugar = await _db.lugarer.FirstOrDefaultAsync(k => k.LId == innReiseinformasjon.LugarId);
 
 
@@ -240,12 +236,12 @@ namespace WebApp_Del1.DAL
             }
         }
 
-        public static double beregnLugarerPris()
+        public double beregnLugarerPris()
         {
             return -1;
         }
 
-        public static double beregntjenesterPris()
+        public double beregntjenesterPris()
         {
             return -2;
         }

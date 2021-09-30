@@ -67,7 +67,7 @@ namespace WebApp_Del1.DAL
         public String addresse { get; set; }
         
         //Hver person kan ha flere billetter så hver person skal ha en liste av billetter som attributt
-        public virtual List<Billett> personerBilletter { get; set; }
+        public virtual List<Billett> personSinBilletter { get; set; }
        
     }
 
