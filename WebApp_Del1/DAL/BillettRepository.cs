@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using System.Threading.Tasks;
 using WebApp_Del1.Controllers;
 using WebApp_Del1.Models;
@@ -22,29 +20,27 @@ namespace WebApp_Del1.DAL
         }
 
         //Henter ut alle Havner inn i første select (Reise fra)
-        public async Task<List<Havn>> HentAlleStasjonerFra()
+        public  List<Havner> HentAlleHavner_Fra()
         {
-            try
-            {
-                List<Havn> alleHavner = await _db.AlleHavner.ToListAsync();
-                return alleHavner;
 
-            }
-            catch
-            {
-                return null;
-            }
+            // List<Havner> alleHavner = await _db.AlleHavner.ToListAsync();
+            // return alleHavner;
+            List<Havner> lister = new List<Havner>();
+            lister.Add(new Havner {HavnNavn =  "Oslo"} ) ;
+            return lister; ;
+
+
         }
 
 
-        public async Task<List<Havn>> HentAlleStasjonerTil(int id)
+        public async Task<List<Havner>> HentAlleStasjonerTil(int id)
         {
             try
             {
                 //Henter Havnen som kunden ønsket fra databasen 
-                Havn ønksetHavn = await _db.AlleHavner.FirstOrDefaultAsync(havn => havn.HavnId == id);
+                Havner ønksetHavn = await _db.AlleHavner.FirstOrDefaultAsync(havn => havn.HavnId == id);
                 Ruter rute = await _db.Ruter.FirstOrDefaultAsync(rute => rute.avgangHavnen == ønksetHavn);
-                List<Havn> alleMulige_AnkomstHavner = rute.ankomstHavner;
+                List<Havner> alleMulige_AnkomstHavner = rute.ankomstHavner;
                 return alleMulige_AnkomstHavner;
             }
             catch
@@ -53,8 +49,8 @@ namespace WebApp_Del1.DAL
             }
         }
 
-
-
+        /*
+        
         //Alle disse parameterene  får vi fra Javascript  Klienten 
         public async Task<bool> Bestill(Reiseinformasjon innReiseinformasjon, int[] lugar_Id, Person[] personerIBiletteten)
         {  //Jeg regner med at jeg får et array at av person objekter fra javascript
@@ -155,7 +151,7 @@ namespace WebApp_Del1.DAL
 
 
                  */
-
+        /*
                 foreach (int id in lugar_Id)
                 {
                     if (id == 1)
@@ -194,7 +190,7 @@ namespace WebApp_Del1.DAL
                         fyyle idLugar med de id-ene.
                         Sende dem til meg 
 
-                 */
+                 
 
                 //Adder Lugaren til listen av lugarer i billetten 
                 if (funnetLugar != null)
@@ -218,7 +214,7 @@ namespace WebApp_Del1.DAL
                 return false;
             }
         }
-
+        */
         public double beregnPris(Reiseinformasjon info, Lugarer thisLugar)
         { // Barn betaler ikke kun voksne 
             try
@@ -270,11 +266,11 @@ namespace WebApp_Del1.DAL
                     _db.lugarer.Remove(lugar);
                     await _db.SaveChangesAsync();
                 }
-                return true; 
-            } 
+                return true;
+            }
             catch
             {
-                return false; 
+                return false;
             }
         }
     }

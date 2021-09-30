@@ -17,7 +17,20 @@ namespace WebApp_Del1.DAL
 
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
+                
+                var nyHavn1 = new Havner { HavnNavn = "Bergen" };
+                var nyHavn2 = new Havner { HavnNavn = "Oslo" };
 
+                /* var havnListe = new List<Havner>
+                 {
+                     new Havner {HavnNavn = "Bergen"},
+                     new Havner { HavnNavn = "Oslo" }
+                 }; 
+                 context.AlleHavner.Add(havnListe);*/
+
+                //context.AlleHavner.Add(nyHavn1);
+               // context.AlleHavner.Add(nyHavn2);
+                //context.SaveChanges(); 
             }
         }
     }

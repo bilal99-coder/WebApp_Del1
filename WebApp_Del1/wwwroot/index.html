@@ -1,68 +1,236 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Forside</title>
-    <script src="js/index.js"></script>
-    <script defer src="./js/billettLugar.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
-    <h1 class="overskrift">Reiseinformasjon</h1>
-    <div class="container">
-        <form class="form">
-            <div class="form-group">
-                <label>Reisetype</label>
-                <select class="form-control" id="reisetype">
-                    <option>En vei</option>
-                    <option>Tur/Retur</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Fra</label>
-                <select class="form-control" id="fra">
-                    <option>Bergen</option>
-                    <option>Oslo</option>
-                    <option>Kristiansand</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Til</label>
-                <select class="form-control" id="til">
-                    <option>Bergen</option>
-                    <option>Oslo</option>
-                    <option>Kristiansand</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Utreise</label>
-                <input type ="date"class="datepicker" data-date-format="mm/dd/yyyy">
-            </div>
-            <div class="form-group">
-                <label>Antall Reisende</label>
-                <input type="number" class="form-control" />
-            </div>
-            <div class="form-group">
+﻿ <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Forside</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-                <input type="button" class="btn btn-primary" value="Søk og Bestill" onclick="sokOgBestill" />
-            </div>
-        </form>
-    </div>
-    <section class="Lugarer">
-        <h2>Lugarer  Til Kaddar</h2>
-        <div class="row">
-            <div class="col-md-12">
-
-                <div id="mdb-lightbox-ui"></div>
-
-                <div class="mdb-lightbox" id="lugarPlaceholder">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet"
+              href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+              integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+              crossorigin="anonymous" />
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+        <script defer src="./js/index.js"></script>
+        <link rel="stylesheet" href="./css/index.css" />
+    </head>
+    <body>
+        <div class="container">
+            <form class="form" id="regform" action="">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item active">
+                        <div class="step-counter">1</div>
+                        <div class="step-name">First</div>
+                    </div>
+                    <div class="stepper-item">
+                        <div class="step-counter">2</div>
+                        <div class="step-name">Second</div>
+                    </div>
+                    <div class="stepper-item">
+                        <div class="step-counter">3</div>
+                        <div class="step-name">Third</div>
+                    </div>
+                </div>
+                <h1 class="overskrift">Hvor skal du?</h1>
+                <div class="form-group">
+                    <label>Reisetype:</label>
+                    <select class="form-control" id="reisetype">
+                        <option "" disabled="true" selected="true"></option>
+                        <option value="enVei">En vei</option>
+                        <option value="turRetur">Tur/Retur</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="fra">Fra:</label>
+                        <select class="form-control" id="fra"></select>
+                     
+                        <div id="fraFeil"></div>
+                    </div>
+                    <div class="col">
+                        <label for="til">Til:</label>
+                        <select class="form-control" id="til">
+                            <option "" disabled="true" selected="true"></option>
+                            <option value="bergen">Bergen</option>
+                            <option value="oslo">Oslo</option>
+                            <option value="kristiansand">Kristiansand</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Utreise:</label>
+                    <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utreise" />
+                </div>
+                <div class="form-group" id="hjemreise">
+                    <label for="hjemreiseDate">Hjemreise:</label>
+                    <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="hjemreiseDate" />
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label>Antall Voksne:</label>
+                        <input type="number" class="form-control" id="antallVoksen" />
+                    </div>
+                    <div class="col">
+                        <label>Antall Barn:</label>
+                        <input type="number" class="form-control" id="antallBarn" />
+                    </div>
                 </div>
 
-            </div>
-        </div>
-    </section>
+                <div class="btn-box">
+                    <button type="button" id="btnNeste">Neste</button>
+                </div>
+            </form>
 
-  </body>
+            <form class="form" id="regform2" action="">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item completed">
+                        <div class="step-counter">1</div>
+                        <div class="step-name">First</div>
+                    </div>
+                    <div class="stepper-item active">
+                        <div class="step-counter">2</div>
+                        <div class="step-name">Second</div>
+                    </div>
+                    <div class="stepper-item">
+                        <div class="step-counter">3</div>
+                        <div class="step-name">Third</div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h2>Lugarer</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="prisMin" class="col-sm-3 control-label">
+                        <i class="fa fa-money" aria-hidden="true"> Min pris</i>
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="number"
+                               id="prisMin"
+                               placeholder="0"
+                               class="form-control"
+                               autofocus="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="prisMaks" class="col-sm-3 control-label">
+                        <i class="fa fa-money" aria-hidden="true"> Maks pris</i>
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="number"
+                               id="prisMaks"
+                               placeholder="0"
+                               class="form-control"
+                               autofocus="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="antall" class="col-sm-3 control-label">
+                        <i class="fas fa-sort-amount-up"> Antall personer </i>
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="number"
+                               id="antall"
+                               placeholder="0"
+                               class="form-control"
+                               autofocus="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Fasiliteter </label>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="wc" value="wc" />
+                                    <i class="fas fa-toilet"> Wc</i>
+                                </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="dysj" value="dysj" />
+                                    <i class="fa fa-shower" aria-hidden="true"> Dysj</i>
+                                </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="wifi" value="wifi" />
+                                    <i class="fa fa-wifi" aria-hidden="true"> Wifi </i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary" id="sok">SÃ¸k</button>
+                        </div>
+                    </div>
+                    <h1 class="overskrift">Lugar</h1>
+                    <div id="lugarer">
+                        <button type="button" class="btn btn-primary"> Velg lugar </button>
+
+                    </div>
+
+
+
+                    <button type="button" class="btn btn-primary" id="suksess1"> Suksess </button>
+                    <button type="button" class="btn btn-primary" id="war1">Warning </button>
+                    <div id="lugarOversikt">
+                        <h1 class="overskrift">Lugar oversikt</h1>
+                        <div id="lug1">
+                            Lugar 1 som er lagt til
+                        </div>
+                        <div id="lug2">
+                            Lugar 2 som er lagt til
+                        </div>
+                        <div id="lug3">
+                            Lugar 3 som er lagt til
+                        </div>
+                        <div id="lug4">
+                            Lugar 4 som er lagt til
+                        </div>
+                        <button type="button" class="btn btn-primary "> Fjern alle lugarer </button>
+                    </div>-->
+                <div class="btn-box" id="btnBox">
+                    <button type="button" id="btnTilbake1">Tilbake</button>
+                    <button type="button" id="btnNeste2">Neste</button>
+                </div>
+            </form>
+
+            <form class="form" id="regform3" action="">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item completed">
+                        <div class="step-counter">1</div>
+                        <div class="step-name">First</div>
+                    </div>
+                    <div class="stepper-item completed">
+                        <div class="step-counter">2</div>
+                        <div class="step-name">Second</div>
+                    </div>
+                    <div class="stepper-item active">
+                        <div class="step-counter">3</div>
+                        <div class="step-name">Third</div>
+                    </div>
+                </div>
+                <h1 class="overskrift">Personinfo</h1>
+                <div id="personer">
+
+                </div>
+                <div class="btn-box" id="btnBox">
+                    <button type="button" id="btnTilbake2">Tilbake</button>
+                    <button type="button" id="btnFerdig">Ferdig</button>
+                </div>
+            </form>
+        </div>
+    </body>
 </html>

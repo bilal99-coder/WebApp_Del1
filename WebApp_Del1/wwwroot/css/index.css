@@ -3,29 +3,30 @@
     padding: 0;
     font-family: sans-serif;
     max-width: 100vw !important;
+    box-sizing : border-box; 
 }
 
 body {
-    background-image: linear-gradient(rgba(0.8,0,0,0), rgba(0.8,0,0,0)), url("2316648.jpg");
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url("2316648.jpg");
     background-position: center;
     background-size: cover;
-
 }
 
 a {
     color: inherit !important;
 }
-form h1{
+
+form h1 {
     text-align: center;
 }
 
 .container {
     margin: 8% auto;
-    width: 580px;
+    width: 780px;
     align-items: center;
 }
 
-form{
+form {
     position: center;
     align-content: center;
     background-color: white;
@@ -33,20 +34,16 @@ form{
     border-radius: 5px;
 }
 
-form input {
+    form input {
         width: 100%;
         padding: 2px 5px;
         margin: 5px 0;
-
-
-        
     }
 
     form select {
         width: 100%;
         padding: 2px 5px;
         margin: 5px 0;
-
     }
 
     form label {
@@ -54,7 +51,7 @@ form input {
         padding: 2px 5px;
     }
 
-.btn-box{
+.btn-box {
     width: 100%;
     margin: 30px auto;
     text-align: center;
@@ -71,6 +68,7 @@ form button {
     color: white;
     cursor: pointer;
 }
+
 @media screen and (max-width: 620px) {
     * {
         margin: 4px !important;
@@ -81,5 +79,86 @@ form button {
         text-align: center;
         align-content: center;
     }
-   
+}
+
+.stepper-wrapper {
+    margin-top: -90px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.stepper-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
+}
+
+    .stepper-item::before {
+        position: absolute;
+        content: "";
+        border-bottom: 2px solid #ccc;
+        width: 100%;
+        top: 20px;
+        left: -50%;
+        z-index: 2;
+    }
+
+    .stepper-item::after {
+        position: absolute;
+        content: "";
+        border-bottom: 2px solid #ccc;
+        width: 100%;
+        top: 20px;
+        left: 50%;
+        z-index: 2;
+    }
+
+    .stepper-item .step-counter {
+        position: relative;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #ccc;
+        margin-bottom: 6px;
+    }
+
+    .stepper-item.active .step-counter {
+        background-color: dodgerblue;
+    }
+
+    .stepper-item.completed .step-counter {
+        background-color: dodgerblue;
+    }
+
+    .stepper-item.completed::after {
+        position: absolute;
+        content: "";
+        border-bottom: 2px solid blue;
+        width: 100%;
+        top: 20px;
+        left: 50%;
+        z-index: 3;
+    }
+
+    .stepper-item:first-child::before {
+        content: none;
+    }
+
+    .stepper-item:last-child::after {
+        content: none;
+    }
+
+.step-name {
+    color: white;
 }

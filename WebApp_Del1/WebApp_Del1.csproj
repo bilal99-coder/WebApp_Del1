@@ -5,9 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Contexts\**" />
     <Compile Remove="Tests\**" />
+    <Content Remove="Contexts\**" />
     <Content Remove="Tests\**" />
+    <EmbeddedResource Remove="Contexts\**" />
     <EmbeddedResource Remove="Tests\**" />
+    <None Remove="Contexts\**" />
     <None Remove="Tests\**" />
   </ItemGroup>
 
