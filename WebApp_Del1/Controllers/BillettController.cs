@@ -173,7 +173,7 @@ namespace WebApp_Del1.Controllers
 
             //Bergner nå endelig prisen 
             //Må lage denne metoden som regner prisen 
-            nyBillett.pris = beregnPris(innReiseinformasjon, innLugar);
+            //nyBillett.pris = beregnPris(innReiseinformasjon, innLugar);
 
             //Nå som har billetten fått alle nødvendig data og er komplett så kan jeg adde den til databasen 
             _db.billetter.Add(nyBillett);
@@ -436,9 +436,6 @@ namespace WebApp_Del1.Controllers
             nyBillett(); 
         }*/
 
-        public static void Main (string [] args)
-        {
-            System.Console.WriteLine("beaølkrnbeak");
-        }
+     
     }
 }
