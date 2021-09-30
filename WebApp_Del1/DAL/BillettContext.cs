@@ -13,7 +13,7 @@ namespace WebApp_Del1.DAL
     {
         [Key]
         public int LId { get; set; }
-        public string navn { get; set; }
+        public string navn { get; set;   }
         public int romNummer { get; set; }
         public string beskrivelse { get; set; }
         public int antallSoverom { get; set; }
