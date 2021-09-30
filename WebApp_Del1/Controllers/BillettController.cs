@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,10 +17,12 @@ namespace WebApp_Del1.Controllers
 
 
         private readonly BillettContext _db;
+        private ILogger<BillettController> _log; 
 
-        public BillettController(BillettContext db)
+        public BillettController(BillettContext db, ILogger<BillettController> log)
         {
             _db = db;
+            _log = log; 
         }
 
         //Alle disse parameterene  får vi fra Javascript  Klienten 

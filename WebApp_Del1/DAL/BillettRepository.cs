@@ -39,8 +39,6 @@ namespace WebApp_Del1.DAL
                 Ruter rute = await _db.Ruter.FirstOrDefaultAsync(rute => rute.avgangHavnen == ønksetHavn);
                 List<Havn> alleMulige_AnkomstHavner = rute.ankomstHavner; 
                 return alleMulige_AnkomstHavner;
-
-
             }
             catch
             {
