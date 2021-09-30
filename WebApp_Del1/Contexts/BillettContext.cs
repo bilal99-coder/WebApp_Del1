@@ -113,7 +113,5 @@ namespace WebApp_Del1.Contexts
         {
             optionsBuilder.UseLazyLoadingProxies();
         }
-    
-
-    }
+     }
 }
