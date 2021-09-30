@@ -16,7 +16,8 @@ namespace WebApp_Del1.DAL
                 var context = serviceScope.ServiceProvider.GetService<BillettContext>();
 
                 context.Database.EnsureDeleted();
-                context.Database.EnsureCreated(); 
+                context.Database.EnsureCreated();
+
             }
         }
     }

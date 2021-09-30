@@ -113,21 +113,5 @@ namespace WebApp_Del1.Contexts
         {
             optionsBuilder.UseLazyLoadingProxies();
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<BillettLugar>().HasKey(table => new {
-                table.billettId,
-                table.lugarId
-            });
-
-
-            modelBuilder.Entity<BillettPerson>().HasKey(table => new {
-                table.billettId,
-                table.personId
-            });
-            // base.OnModelCreating(modelBuilder);
-
-        }
-
-    }
+     }
 }
