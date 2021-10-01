@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore.Proxies; 
+using Microsoft.EntityFrameworkCore.Proxies;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace WebApp_Del1.DAL
 {
+    /*
     // public class Lugar
     public class Lugarer
     {
@@ -33,7 +35,7 @@ namespace WebApp_Del1.DAL
     }
 
     //public class Billett
-    public class Billett
+  /*  public class Billett
     {
         [Key]
         public int billettId { get; set; }
@@ -49,8 +51,8 @@ namespace WebApp_Del1.DAL
         public string tidspunkt { get; set; }
         public string type { get; set; }
         //Flere personer kan dele samme billetten, så en billett kan ha flere personer i seg. denne Listen har en oppgave å lagre alle personer som er med i billetten 
-        public virtual List<Personer> billettPersoner { get; set; }
-        public virtual List<Lugarer> billettLugarer { get; set; }
+       // public virtual List<Personer> billettPersoner { get; set; }
+      //  public virtual List<Lugarer> billettLugarer { get; set; }
     }
 
 
@@ -65,7 +67,7 @@ namespace WebApp_Del1.DAL
         public String addresse { get; set; }
 
         //Hver person kan ha flere billetter så hver person skal ha en liste av billetter som attributt
-        public virtual List<Billett> personSinBilletter { get; set; }
+      //  public virtual List<Billett> personSinBilletter { get; set; }
 
     }
     /*
@@ -80,7 +82,7 @@ namespace WebApp_Del1.DAL
     }
     */
 
-    public class PostSteder
+   /* public class PostSteder
     {
         [Key]
         public string Postnr { get; set; }
@@ -88,17 +90,17 @@ namespace WebApp_Del1.DAL
     }
 
     // Database Model for ruter 
-
+    /*
     public class Ruter
     {
         [Key]
         public int RuteId { get; set; }
-        public virtual Havner avgangHavnen { get; set; }
-        public virtual List<Havner> ankomstHavner { get; set; }
+       // public virtual Havner avgangHavnen { get; set; }
+      //  public virtual List<Havner> ankomstHavner { get; set; }
         public int pris { get; set; }
 
     }
-
+    */
 
     public class Havner
     {
@@ -116,15 +118,16 @@ namespace WebApp_Del1.DAL
 
         public BillettContext(DbContextOptions<BillettContext> options) : base(options)
         {
+
             Database.EnsureCreated();
         }
 
-        public DbSet<Lugarer> lugarer { get; set; }
-        public DbSet<Billett> billetter { get; set; }
-        public DbSet<Personer> personer { get; set; }
+       // public DbSet<Lugarer> lugarer { get; set; }
+       // public DbSet<Billett> billetter { get; set; }
+       // public DbSet<Personer> personer { get; set; }
        // public DbSet<Betalere> Betalere { get; set; }
-        public DbSet<Ruter> Ruter { get; set; }
-        public DbSet<Havner> AlleHavner { get; set; }
+       // public DbSet<Ruter> Ruter { get; set; }
+        public DbSet<Havner> Havner { get; set; }
 
       protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -133,4 +136,6 @@ namespace WebApp_Del1.DAL
       
 
     }
-}
+
+
+

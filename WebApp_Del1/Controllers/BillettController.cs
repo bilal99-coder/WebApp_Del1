@@ -14,19 +14,19 @@ namespace WebApp_Del1.Controllers
     public class BillettController : ControllerBase
     {   
         private readonly IBillettRepository _db;
-        private ILogger<BillettController> _log; 
+        private readonly ILogger<BillettController> _log; 
         public BillettController(IBillettRepository db, ILogger<BillettController> log)
         {
             _db = db;
             _log = log; 
         }
         [ExcludeFromCodeCoverage]
-        public  List<Havner> HentAlleHavner_Fra()
+        public async Task<List<Havner>> HentAlleHavner_Fra()
         {/*
             List<Havner> lister = new List<Havner>();
             lister.Add(new Havner());*/
 
-            return _db.HentAlleHavner_Fra(); 
+            return await _db.HentAlleHavner_Fra(); 
 
            /* return lister.ToList(); //ToListAsync*/
             //return await _db.HentAlleHavner_Fra();

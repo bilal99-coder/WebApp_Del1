@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+//using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using WebApp_Del1.Controllers;
 using WebApp_Del1.Models;
@@ -12,7 +14,7 @@ namespace WebApp_Del1.DAL
     public class BillettRepository : IBillettRepository
     {
         private readonly BillettContext _db;
-        private ILogger<BillettController> _log;
+        private readonly ILogger<BillettController> _log;
         public BillettRepository(BillettContext db, ILogger<BillettController> log)
         {
             _db = db;
@@ -20,18 +22,36 @@ namespace WebApp_Del1.DAL
         }
 
         //Henter ut alle Havner inn i første select (Reise fra)
-        public  List<Havner> HentAlleHavner_Fra()
+        public async  Task<List<Havner>> HentAlleHavner_Fra()
         {
-
-            // List<Havner> alleHavner = await _db.AlleHavner.ToListAsync();
-            // return alleHavner;
-            List<Havner> lister = new List<Havner>();
-            lister.Add(new Havner {HavnNavn =  "Oslo"} ) ;
-            return lister; ;
-
+            try
+            {
+                List<Havner> alleHavner = await _db.Havner.ToListAsync();
+                return alleHavner;
+                // List<Havner> lister = new List<Havner>();
+                //lister.Add(new Havner {HavnNavn ="Oslo"} , new Havner { HavnNavn ="Bergen"}) ;
+                //return lister; ;
+            }
+            catch (Exception e){
+                var  alleHavner1 = new List<Havner>{ new Havner { HavnNavn ="there is an error in the database" },
+                                                    new Havner {HavnNavn =  "line 34billettcontext"},
+                                                    new Havner {HavnNavn =  e.Message.ToString()},
+                                               };
+                // return null; 
+                return alleHavner1; 
+            }
+            /*
+             
+             "The source IQueryable doesn't implement IDbAsyncEnumerable<Havner>. Only sources that implement IDbAsyncEnumerable can be used for Entity Framework asynchronous operations. For more details see http://go.microsoft.com/fwlink/?LinkId=287068."
+             
+             
+             
+             
+             
+             */
 
         }
-
+        /*
 
         public async Task<List<Havner>> HentAlleStasjonerTil(int id)
         {
@@ -47,7 +67,7 @@ namespace WebApp_Del1.DAL
             {
                 return null;
             }
-        }
+        }*/
 
         /*
         
@@ -215,63 +235,63 @@ namespace WebApp_Del1.DAL
             }
         }
         */
-        public double beregnPris(Reiseinformasjon info, Lugarer thisLugar)
-        { // Barn betaler ikke kun voksne 
-            try
-            {
-                double startPris = 00; // dette er start prisen
-                                       //disse to funskjonene skal utvikles etterhvert 
-                double lugarerPris = beregnLugarerPris();
-                double andreTjenesterPris = beregntjenesterPris();
-                double Total = startPris + lugarerPris + andreTjenesterPris;
-                return Total;
-            }
-            catch
-            {
-                return -1;
-            }
-        }
+        /* public double beregnPris(Reiseinformasjon info, Lugarer thisLugar)
+         { // Barn betaler ikke kun voksne 
+             try
+             {
+                 double startPris = 00; // dette er start prisen
+                                        //disse to funskjonene skal utvikles etterhvert 
+                 double lugarerPris = beregnLugarerPris();
+                 double andreTjenesterPris = beregntjenesterPris();
+                 double Total = startPris + lugarerPris + andreTjenesterPris;
+                 return Total;
+             }
+             catch
+             {
+                 return -1;
+             }
+         }
 
-        public double beregnLugarerPris()
-        {
-            return -1;
-        }
+         public double beregnLugarerPris()
+         {
+             return -1;
+         }
 
-        public double beregntjenesterPris()
-        {
-            return -2;
-        }
+         public double beregntjenesterPris()
+         {
+             return -2;
+         }
+         /*
+         [Route("{id}")]
+         public async Task velgLugar(int id)
+         {
+             Lugarer lugar = await _db.lugarer.FirstOrDefaultAsync(k => k.LId == id);
+             if (lugar != null)
+             {
+                 _db.lugarer.Add(lugar);
+                 await _db.SaveChangesAsync();
+             }
+         }
+         /*
 
-        [Route("{id}")]
-        public async Task velgLugar(int id)
-        {
-            Lugarer lugar = await _db.lugarer.FirstOrDefaultAsync(k => k.LId == id);
-            if (lugar != null)
-            {
-                _db.lugarer.Add(lugar);
-                await _db.SaveChangesAsync();
-            }
-        }
+         [Route("{id}")]
+         public async Task<bool> fjernLugar(int id)
+         {
 
-
-        [Route("{id}")]
-        public async Task<bool> fjernLugar(int id)
-        {
-
-            try
-            {
-                Lugarer lugar = await _db.lugarer.FirstOrDefaultAsync(k => k.LId == id);
-                if (lugar != null)
-                {
-                    _db.lugarer.Remove(lugar);
-                    await _db.SaveChangesAsync();
-                }
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+             try
+             {
+                 Lugarer lugar = await _db.lugarer.FirstOrDefaultAsync(k => k.LId == id);
+                 if (lugar != null)
+                 {
+                     _db.lugarer.Remove(lugar);
+                     await _db.SaveChangesAsync();
+                 }
+                 return true;
+             }
+             catch
+             {
+                 return false;
+             }
+         }*/
     }
 }

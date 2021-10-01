@@ -8,13 +8,14 @@ namespace WebApp_Del1.DAL
 {
     public interface IBillettRepository
     {
-        List<Havner> HentAlleHavner_Fra();
-       // Task<bool> Bestill(Reiseinformasjon innReiseinformasjon, int[] lugar_Id, Person[] personerIBiletteten);
-        Task<List<Havner>> HentAlleStasjonerTil(int id);
-        double beregnPris(Reiseinformasjon info, Lugarer thisLugar);
-        double beregnLugarerPris();
-        double beregntjenesterPris();
-        Task velgLugar(int id);
-        Task<bool> fjernLugar(int id);
+        // List<Havner> HentAlleHavner_Fra();
+        // Task<bool> Bestill(Reiseinformasjon innReiseinformasjon, int[] lugar_Id, Person[] personerIBiletteten);
+        Task<List<Havner>> HentAlleHavner_Fra();
+     //   Task<List<Havner>> HentAlleStasjonerTil(int id);
+       // double beregnPris(Reiseinformasjon info, Lugarer thisLugar);
+       // double beregnLugarerPris();
+       // double beregntjenesterPris();
+        //Task velgLugar(int id);
+       // Task<bool> fjernLugar(int id);
         }
 }
