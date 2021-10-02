@@ -64,7 +64,7 @@ namespace WebApp_Del1.DAL
         public String fornavn { get; set; }//
         public String etternavn { get; set; }
 
-        public String addresse { get; set; }
+        public String epost { get; set; }
 
         //Hver person kan ha flere billetter så hver person skal ha en liste av billetter som attributt
       //  public virtual List<Billett> personSinBilletter { get; set; }

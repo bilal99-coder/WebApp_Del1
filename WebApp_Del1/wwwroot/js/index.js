@@ -2,9 +2,15 @@
 
 // Hente alle mulige avgangshavner fra databasen når appen intansieres
 $(function () {
-    hentAlleHavner_Fra(); 
- // hentAlleHavner_Fra1(); 
+    hentAlleHavner_Fra();
+    // hentAlleHavner_Fra1(); // fungerte også 
+   // lagBillett();
+   dispalyVue3(1);
+
 }); 
+
+
+
 
 function hentAlleHavner_Fra1(){
     let requestURL = 'billett/hentAlleHavner_Fra';
@@ -37,7 +43,7 @@ function formaterHavner(listeAvHavner) {
     let ut = "Hei Fra oslo";
     console.log(listeAvHavner);
     for (let enHavn of listeAvHavner) {
-        ut += "<option  style='font-size:24px' data-value=" + enHavn.havnId + ">" + "Hilsen fra Database :): " + enHavn.havnNavn + "</option>";
+        ut += "<option  style='font-size:20px' data-value=" + enHavn.havnId + ">"+ enHavn.havnNavn + "</option>";
        console.log(Object.keys(listeAvHavner));
        console.log(Object.values(enHavn));
        console.log(Object.values(enHavn)[1]);
@@ -49,6 +55,148 @@ function formaterHavner(listeAvHavner) {
     console.log(ut);
 
 };
+
+
+
+
+// Når kunden bekrefter kjøpet 
+function bekreftKjoop() {
+    //Kaller funksjonen 
+    lagBillett(); 
+    $.ajax({
+        type: "POST",
+        url: "TelephoneNumbers.aspx/DeleteNumber",
+        data: data0,
+
+        success: function (data) {
+            alert('Done');
+        }
+    });
+}
+
+function lagBillett() {
+    let billett = {
+        reiseType: $("select#reisetype").filter(":selected").text(),
+        fra: $("select#fra").filter(":selected").text(),
+        til: $("select#til").filter(":selected").text(),
+        //  utreise: $("utreise").data("datetimepicker").getDate(),
+        
+        // antallVoksneStreng:  document.getElementById("antallVoksen").value, 
+        //antallVoksne = Number(antallVoksneStreng),
+   
+       // antallBarn = Number($("antallBarn").text()),
+        //antallReisende = antallBarn + antallVoksne
+
+        antallReisende: {
+            CountAlleReisende: function () {
+                const antallVoksne = parseInt($("antallVoksen").text());
+                const antallBarn = parseInt($("antallVoksen").text());
+                const antallReisende = antallBarn + antallVoksne;
+            }
+        }
+    }
+
+    
+    console.log(billett.reiseType);
+}
+
+
+function count_AndReturn_Persons() {
+    //Telle antall personer som e med i billetten 
+    const antallVoksne = parseInt($("antallVoksen").text()); 
+    const antallBarn = parseInt($("antallVoksen").text());
+    const antallReisende = antallBarn + antallVoksne;
+    let persons_counter = antallReisende;
+    let personene = [];
+    for (let i = 0; i < persons_counter; i++)
+    {
+        const person = {
+            fornavn: $("#person_fornavn"+i).text(),
+            etternavn: $("#person_etternavn"+i).text(),
+            epost: $("#person_email" + i).text()
+        }; 
+        personene.push(person); 
+    };
+    return personene;
+}
+
+function dispalyVue3(accept) {
+    if (accept === 1) {
+        //Telle antall personer som e med i billetten 
+        const antallVoksne = parseInt($("antallVoksen").text());
+        const antallBarn = parseInt($("antallVoksen").text());
+        const antallReisende = antallBarn + antallVoksne;
+        let persons_counter = 2;
+
+        $("#personer").html("");
+        for (i = 1; i <= persons_counter; i++) {
+
+            $('<div class="dynamic' + ' person' + i + ' "' + ' id=dynamicPerson-container_' + i + '>'+
+
+
+                '<div class="row' + ' person' + i + ' "' + ' id=rowPerson_' + i + '>' +
+                '<label for="person" ' + i + ' class="col-sm-3 control-label" ' + ' style= "font-size: 29px" >' +
+                ' Person ' + i + ' </i> ' +
+                '</label>' +
+                '<div class="col">' +
+                '<label for="fornavn"' + 'style = "font-size: 16px"' + '>Fornavn</label>' +
+                '<input type="text" class="form-control" id="person_fornavn_"' + i + '/>' +
+                '</div >' +
+
+                '<div class="col">' +
+                '<label for="etternavn"' + 'style= "font-size: 16px"' + '>Etternavn</label>' +
+                '<input type="text" class="form-control" id="person_etternavn_"' + i + '/>' +
+                '</div >' +
+                '</div>' +
+
+                '<div class="form-group">' +
+                '<label for="epost"' + 'style= "font-size: 16px"' + '>Epost</label>' +
+                '<input type="email" class="form-control" id="person+_epost_"' + i + '/>' +
+                ' </div>' +
+
+                ' <button type="button" class="btn btn-primary" id="leggTilPerson_' + i + '" > Legg til </button> ' +
+                ' <button type="button" class="btn btn-primary"' + 'id="endrePerson_' + i + '"' + 'style = "background-color:rgb(199,0,0); border: none"' + 'onclick=' + 'slettEnPerson(' + i + ')' + '>' + 'Slett </button> ' +
+
+                '</div>' +
+                '</div>').appendTo("#personer");
+
+            console.log("Iam here dispalyvue3()");
+
+
+        }
+    }
+}
+
+
+function countAlleReisende() {
+    //Telle antall personer som e med i billetten 
+    const antallVoksne = parseInt($("antallVoksen").text());
+    const antallBarn = parseInt($("antallVoksen").text());
+    const antallReisende = antallBarn + antallVoksne;
+    let persons_counter = antallReisende;
+    return antallReisende; 
+}
+
+function slettEnPerson(id) {
+
+    //const adresse = $(".row.person");
+    $("#dynamicPerson-container_" + "" + id + "").hide();
+    console.log(id);
+    console.log("rowPerson_" + "" + id + "");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

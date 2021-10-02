@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace WebApp_Del1.Models
 {
-    public class Reiseinformasjon
-    {   //Data om ønsket billetten 
+    public class Reiseinformasjon{
+
+       //Data om ønsket billetten 
         public string reiseType { get; set; }
         public string fra { get; set; }
         public string til { get; set; }
@@ -46,6 +47,6 @@ namespace WebApp_Del1.Models
         public int personId { get; set; }
         public string fornavn { get; set; }
         public string etternavn { get; set; }
-        public string adresse { get; set;  }
+        public string epost { get; set;  }
     }
 }
