@@ -10,6 +10,8 @@ $(function () {
 }); 
 
 
+let counter = 0; 
+
 
 
 function hentAlleHavner_Fra1(){
@@ -106,7 +108,7 @@ function count_AndReturn_Persons() {
     const antallVoksne = parseInt($("antallVoksen").text()); 
     const antallBarn = parseInt($("antallVoksen").text());
     const antallReisende = antallBarn + antallVoksne;
-    let persons_counter = antallReisende;
+    let persons_counter = count + antallReisende;
     let personene = [];
     for (let i = 0; i < persons_counter; i++)
     {
@@ -123,15 +125,23 @@ function count_AndReturn_Persons() {
 function dispalyVue3(accept) {
     if (accept === 1) {
         //Telle antall personer som e med i billetten 
-        const antallVoksne = parseInt($("antallVoksen").text());
-        const antallBarn = parseInt($("antallVoksen").text());
+        const antallVoksne = parseInt($("antallVoksen").val()); ////
+        const antallBarn = parseInt($("antallVoksen").val());
+        const antallVoksne_val = parseInt(antallVoksne);
+        console.log(antallVoksne_val);
+        console.log(parseInt(document.getElementById("antallVoksen").value));
+
         const antallReisende = antallBarn + antallVoksne;
-        let persons_counter = 2;
+        let persons_counter = 2;//antallVoksne;
+        let barn_counter = 2; //antallBarn;
+        console.log(antallVoksne);
+        console.log(antallBarn); 
+        //Disable the ability to delete the first person 
 
         $("#personer").html("");
         for (i = 1; i <= persons_counter; i++) {
 
-            $('<div class="dynamic' + ' person' + i + ' "' + ' id=dynamicPerson-container_' + i + '>'+
+            $('<div class="dynamic' + ' person' + i + ' "' + ' id=dynamicPerson-container_' + i + '>' +
 
 
                 '<div class="row' + ' person' + i + ' "' + ' id=rowPerson_' + i + '>' +
@@ -151,7 +161,7 @@ function dispalyVue3(accept) {
 
                 '<div class="form-group">' +
                 '<label for="epost"' + 'style= "font-size: 16px"' + '>Epost</label>' +
-                '<input type="email" class="form-control" id="person+_epost_"' + i + '/>' +
+                '<input type="email" class="form-control" id="person_epost_"' + i + '/>' +
                 ' </div>' +
 
                 ' <button type="button" class="btn btn-primary" id="leggTilPerson_' + i + '" > Legg til </button> ' +
@@ -159,28 +169,76 @@ function dispalyVue3(accept) {
 
                 '</div>' +
                 '</div>').appendTo("#personer");
+        }
 
-            console.log("Iam here dispalyvue3()");
+            for (i = 1; i <= barn_counter; i++) {
+                $('<div class="dynamic' + ' barn' + i + ' "' + ' id=dynamicBarn-container_' + i + '>' +
 
 
+                    '<div class="row' + ' barn' + i + ' "' + ' id=rowBarn_' + i + '>' +
+                    '<label for="Barn" ' + i + ' class="col-sm-3 control-label" ' + ' style= "font-size: 29px" >' +
+                    ' Barn ' + i + ' </i> ' +
+                    '</label>' +
+                    '<div class="col">' +
+                    '<label for="fornavn"' + 'style = "font-size: 16px"' + '>Fornavn</label>' +
+                    '<input type="text" class="form-control" id="barn_fornavn_"' + i + '/>' +
+                    '</div >' +
+
+                    '<div class="col">' +
+                    '<label for="etternavn"' + 'style= "font-size: 16px"' + '>Etternavn</label>' +
+                    '<input type="text" class="form-control" id="barn_etternavn_"' + i + '/>' +
+                    '</div >' +
+                    '</div>' +
+
+                    '<div class="form-group">' +
+                    '<label for="epost"' + 'style= "font-size: 16px"' + '>Epost</label>' +
+                    '<input type="email" class="form-control" id="barn_epost_"' + i + '/>' +
+                    ' </div>' +
+
+                    ' <button type="button" class="btn btn-primary" id="leggTilBarn_' + i + '" > Legg til </button> ' +
+                    ' <button type="button" class="btn btn-primary"' + 'id="endreBarn_' + i + '"' + 'style = "background-color:rgb(199,0,0); border: none"' + 'onclick=' + 'slettEnBarn(' + i + ')' + '>' + 'Slett </button> ' +
+
+                    '</div>' +
+                    '</div>').appendTo("#personer");
+            }
+
+
+
+                console.log("Iam here dispalyvue3()");
+                $("#endrePerson_1").prop("disabled", true);
+
+            
         }
     }
-}
 
 
-function countAlleReisende() {
-    //Telle antall personer som e med i billetten 
-    const antallVoksne = parseInt($("antallVoksen").text());
-    const antallBarn = parseInt($("antallVoksen").text());
-    const antallReisende = antallBarn + antallVoksne;
-    let persons_counter = antallReisende;
-    return antallReisende; 
-}
+    function countAlleReisende() {
+        //Telle antall personer som e med i billetten 
+        const antallVoksne = parseInt($("antallVoksen").text());
+        const antallBarn = parseInt($("antallVoksen").text());
+        const antallReisende = antallBarn + antallVoksne;
+        // a counter that listens to changes in case of deleting a person
+        let persons_counter = antallReisende + counter;
+        return antallReisende;
+    }
 
-function slettEnPerson(id) {
+    function slettEnPerson(id) {
+        //$("#dynamicPerson-container_" + "" + id + "").hide();
+        counter--;
 
-    //const adresse = $(".row.person");
-    $("#dynamicPerson-container_" + "" + id + "").hide();
+        $("#dynamicPerson-container_" + "" + id + "").remove();
+
+        console.log(id);
+        console.log("rowPerson_" + "" + id + "");
+    }
+
+
+function slettEnBarn(id) {
+    //$("#dynamicPerson-container_" + "" + id + "").hide();
+    counter--;
+
+    $("#dynamicBarn-container_" + "" + id + "").remove();
+
     console.log(id);
     console.log("rowPerson_" + "" + id + "");
 }
@@ -203,44 +261,56 @@ function slettEnPerson(id) {
 
 
 
+    /Gjør at bare et skjema viser om gangen. Dersom man trykker neste eller tilbake så endrer man skjema/
 
-/Gjør at bare et skjema viser om gangen. Dersom man trykker neste eller tilbake så endrer man skjema/
-
-$('#regform2').hide();
-$("#regform3").hide();
-
-$("#hjemreise").hide();
-
-$("#btnNeste").click(function () {
-    $("#regform").hide();
-    $("#regform2").show();
-});
-$("#btnTilbake1").click(function () {
-    $("#regform2").hide();
-    $("#regform").show();
-});
-$("#btnTilbake2").click(function () {
+    $('#regform2').hide();
     $("#regform3").hide();
-    $("#regform2").show();
-});
-$("#btnNeste2").click(function () {
-    $("#regform2").hide();
-    $("#regform3").show();
-});
 
-//Dersom det endres til "tur/retur vil det synliggjøres et nyttfelt for hjemreise" - dette fynker ikke enda/
+    $("#hjemreise").hide();
+
+    $("#btnNeste").click(function () {
+        $("#regform").hide();
+        $("#regform2").show();
+    });
+    $("#btnTilbake1").click(function () {
+        $("#regform2").hide();
+        $("#regform").show();
+    });
+    $("#btnTilbake2").click(function () {
+        $("#regform3").hide();
+        $("#regform2").show();
+    });
+    $("#btnNeste2").click(function () {
+        $("#regform2").hide();
+        $("#regform3").show();
+    });
+
+    //Dersom det endres til "tur/retur vil det synliggjøres et nyttfelt for hjemreise" - dette fynker ikke enda/
 
 
-$("#reisetype").change(function () {
-    const reisetype = $("#reisetype").val();
-    if (reisetype === "turRetur") {
-        $('#hjemreise').show();
-    } else {
-        $('#hjemreise').hide();
-    }
-})
+    $("#reisetype").change(function () {
+        const reisetype = $("#reisetype").val();
+        if (reisetype === "turRetur") {
+            $('#hjemreise').show();
+        } else {
+            $('#hjemreise').hide();
+        }
+    })
 
-$("#fra").change(function () {
-    const fra = $("#fra").val();
-    $.post("")
-})
+    $("#fra").change(function () {
+        const fra = $("#fra").val();
+        $.post("")
+    })
+
+
+
+
+ 
+ 
+ /*
+  $(":input").on('keyup mouseup', function () {
+  var coins = $("#coins").val();
+  $("#reward").text(coins);
+}).trigger('mouseup');
+  
+  */ 
