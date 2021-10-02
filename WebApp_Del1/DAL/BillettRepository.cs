@@ -51,23 +51,23 @@ namespace WebApp_Del1.DAL
              */
 
         }
-        /*
+       
 
-        public async Task<List<Havner>> HentAlleStasjonerTil(int id)
+        public async Task<List<string>> HentAlleStasjonerTil(int id)
         {
             try
             {
                 //Henter Havnen som kunden ønsket fra databasen 
-                Havner ønksetHavn = await _db.AlleHavner.FirstOrDefaultAsync(havn => havn.HavnId == id);
-                Ruter rute = await _db.Ruter.FirstOrDefaultAsync(rute => rute.avgangHavnen == ønksetHavn);
-                List<Havner> alleMulige_AnkomstHavner = rute.ankomstHavner;
+                Havner ønksetHavn = await _db.Havner.FirstOrDefaultAsync(havn => havn.HavnId == id);
+                Ruter rute = await _db.Ruter.FirstOrDefaultAsync(rute => rute.avgangHavnen == ønksetHavn.HavnNavn);
+                List<string> alleMulige_AnkomstHavner = rute.ankomstHavner;
                 return alleMulige_AnkomstHavner;
             }
             catch
             {
                 return null;
             }
-        }*/
+        }
 
         /*
         

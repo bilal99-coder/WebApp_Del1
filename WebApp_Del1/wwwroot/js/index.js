@@ -5,7 +5,8 @@ $(function () {
     hentAlleHavner_Fra();
     // hentAlleHavner_Fra1(); // fungerte også 
    // lagBillett();
-   dispalyVue3(1);
+    dispalyVue3(1);
+    hentAlleHavnerTil(1);
 
 }); 
 
@@ -41,11 +42,20 @@ function hentAlleHavner_Fra() {
 };
 
 
+
+function hentAlleHavnerTil(id) {
+    const option = $("#fraHavn_" + "" + id + "");
+
+    console.log(option.val());
+    //$.get("billett/hentAlleHavner_til", function (listeAvHavner) {
+}
+
+
 function formaterHavner(listeAvHavner) {
-    let ut = "Hei Fra oslo";
+    let ut = ""; 
     console.log(listeAvHavner);
     for (let enHavn of listeAvHavner) {
-        ut += "<option  style='font-size:20px' data-value=" + enHavn.havnId + ">"+ enHavn.havnNavn + "</option>";
+        ut += "<option  style='font-size:20px' id ='fraHavn_'"+ enHavn.havnId+"data-value=" + enHavn.havnId + ">"+ enHavn.havnNavn + "</option>";
        console.log(Object.keys(listeAvHavner));
        console.log(Object.values(enHavn));
        console.log(Object.values(enHavn)[1]);

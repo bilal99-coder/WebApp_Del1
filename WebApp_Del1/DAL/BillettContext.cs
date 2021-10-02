@@ -90,17 +90,17 @@ namespace WebApp_Del1.DAL
     }
 
     // Database Model for ruter 
-    /*
+    /*  */
     public class Ruter
     {
         [Key]
         public int RuteId { get; set; }
-       // public virtual Havner avgangHavnen { get; set; }
-      //  public virtual List<Havner> ankomstHavner { get; set; }
+        public string avgangHavnen { get; set; }
+        public virtual List<string> ankomstHavner { get; set; }
         public int pris { get; set; }
 
     }
-    */
+  
 
     public class Havner
     {
@@ -126,7 +126,7 @@ namespace WebApp_Del1.DAL
        // public DbSet<Billett> billetter { get; set; }
        // public DbSet<Personer> personer { get; set; }
        // public DbSet<Betalere> Betalere { get; set; }
-       // public DbSet<Ruter> Ruter { get; set; }
+          public DbSet<Ruter> Ruter { get; set; }
         public DbSet<Havner> Havner { get; set; }
 
       protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
