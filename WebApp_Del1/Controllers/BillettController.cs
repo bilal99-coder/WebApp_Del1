@@ -31,12 +31,12 @@ namespace WebApp_Del1.Controllers
            /* return lister.ToList(); //ToListAsync*/
             //return await _db.HentAlleHavner_Fra();
         }
-
+        /*
         public async Task<List<Havner>> HentAlleHavnerTil(int id)
         {
             return await _db.HentAlleHavnerTil(id);
         }
-
+        */
 
     }
 }

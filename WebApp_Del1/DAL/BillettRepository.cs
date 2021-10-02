@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 //using System.Data.Entity;
-using Microsoft.EntityFrameworkCore;   
+//using Microsoft.EntityFrameworkCore;   
 using System.Threading.Tasks;
 using WebApp_Del1.Controllers;
 using WebApp_Del1.Models;
@@ -51,9 +51,10 @@ namespace WebApp_Del1.DAL
              */
 
         }
-       
 
-        public async Task<List<string>> HentAlleStasjonerTil(int id)
+       /*
+        [HttpPost]
+        public async Task<List<string>> HentAlleHavnerTil(int id)
         {
             try
             {
@@ -68,6 +69,11 @@ namespace WebApp_Del1.DAL
                 return null;
             }
         }
+
+        Task<List<Havner>> IBillettRepository.HentAlleHavnerTil(int id)
+        {
+            throw new NotImplementedException();
+        }*/
 
         /*
         

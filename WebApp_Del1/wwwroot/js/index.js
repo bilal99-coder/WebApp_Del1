@@ -1,6 +1,4 @@
-﻿
-
-// Hente alle mulige avgangshavner fra databasen når appen intansieres
+﻿// Hente alle mulige avgangshavner fra databasen når appen intansieres
 $(function () {
     hentAlleHavner_Fra();
     // hentAlleHavner_Fra1(); // fungerte også 
@@ -28,7 +26,8 @@ function hentAlleHavner_Fra1(){
     request.send();
 }; 
 
-//Henter alle havner for første select i Gui ,
+//Henter alle havner for første select i Gui
+
 function hentAlleHavner_Fra() {
     $.get("billett/hentAlleHavner_Fra", function (listeAvHavner) {
         //alert(listeAvHavner);
@@ -45,6 +44,9 @@ function hentAlleHavner_Fra() {
 
 function hentAlleHavnerTil(id) {
     const option = $("#fraHavn_" + "" + id + "");
+    $.post("billett/hentAlleHavnerTil?id=", option, function () {
+        formaterHavnerTil();
+    })
 
     console.log(option.val());
     //$.get("billett/hentAlleHavner_til", function (listeAvHavner) {
@@ -67,6 +69,19 @@ function formaterHavner(listeAvHavner) {
     console.log(ut);
 
 };
+
+function formaterHavnerTil(listeAvHavner) {
+    let ut = "";
+    console.log(listeAvHavner);
+    for (let enHavn of listeAvHavner) {
+        ut += "<option  style='font-size:20px' id ='fraHavn_'" + enHavn.havnId + "data-value=" + enHavn.havnId + ">" + enHavn.havnNavn + "</option>";
+        console.log(Object.keys(listeAvHavner));
+        console.log(Object.values(enHavn));
+        console.log(Object.values(enHavn)[1]);
+        console.log(Object.entries(enHavn));
+    }
+
+}
 
 
 
@@ -269,9 +284,7 @@ function slettEnBarn(id) {
 
 
 
-
-
-    /Gjør at bare et skjema viser om gangen. Dersom man trykker neste eller tilbake så endrer man skjema/
+    //Gjør at bare et skjema viser om gangen. Dersom man trykker neste eller tilbake så endrer man skjema/
 
     $('#regform2').hide();
     $("#regform3").hide();
