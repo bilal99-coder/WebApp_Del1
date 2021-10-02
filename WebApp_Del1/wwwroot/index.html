@@ -99,110 +99,10 @@
                     <div class="step-name">Third</div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <h2>Lugarer</h2>
-                    </div>
-                </div>
-            </div>
+            <h1>Reiseopplysning</h1>
             <div class="form-group">
-                <label for="prisMin" class="col-sm-3 control-label">
-                    <i class="fa fa-money" aria-hidden="true"> Min pris</i>
-                </label>
-                <div class="col-sm-9">
-                    <input type="number"
-                           id="prisMin"
-                           placeholder="0"
-                           class="form-control"
-                           autofocus="" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="prisMaks" class="col-sm-3 control-label">
-                    <i class="fa fa-money" aria-hidden="true"> Maks pris</i>
-                </label>
-                <div class="col-sm-9">
-                    <input type="number"
-                           id="prisMaks"
-                           placeholder="0"
-                           class="form-control"
-                           autofocus="" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="antall" class="col-sm-3 control-label">
-                    <i class="fas fa-sort-amount-up"> Antall personer </i>
-                </label>
-                <div class="col-sm-9">
-                    <input type="number"
-                           id="antall"
-                           placeholder="0"
-                           class="form-control"
-                           autofocus="" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-sm-3">Fasiliteter </label>
-                <div class="col-sm-6">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="wc" value="wc" />
-                                <i class="fas fa-toilet"> Wc</i>
-                            </label>
-                        </div>
-                        <div class="col-sm-4">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="dysj" value="dysj" />
-                                <i class="fa fa-shower" aria-hidden="true"> Dysj</i>
-                            </label>
-                        </div>
-                        <div class="col-sm-4">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="wifi" value="wifi" />
-                                <i class="fa fa-wifi" aria-hidden="true"> Wifi </i>
-                            </label>
-                        </div>
-                    </div>
-                </div>
                 <div id="personer"></div>
             </div>
-          
-            <!--<div class="col-sm-6">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-primary" id="sok">SÃ¸k</button>
-                    </div>
-                </div>
-                <h1 class="overskrift">Lugar</h1>
-                <div id="lugarer">
-                    <button type="button" class="btn btn-primary"> Velg lugar </button>
-
-                </div>
-
-
-
-                <button type="button" class="btn btn-primary" id="suksess1"> Suksess </button>
-                <button type="button" class="btn btn-primary" id="war1">Warning </button>
-                <div id="lugarOversikt">
-                    <h1 class="overskrift">Lugar oversikt</h1>
-                    <div id="lug1">
-                        Lugar 1 som er lagt til
-                    </div>
-                    <div id="lug2">
-                        Lugar 2 som er lagt til
-                    </div>
-                    <div id="lug3">
-                        Lugar 3 som er lagt til
-                    </div>
-                    <div id="lug4">
-                        Lugar 4 som er lagt til
-                    </div>
-                    <button type="button" class="btn btn-primary "> Fjern alle lugarer </button>
-                </div>-->
             <div class="btn-box" id="btnBox">
                 <button type="button" id="btnTilbake1">Tilbake</button>
                 <button type="button" id="btnNeste2">Neste</button>
@@ -224,30 +124,25 @@
                     <div class="step-name">Third</div>
                 </div>
             </div>
-            <div class="form-control">
-                <h1 class="overskrift">Personinfo</h1>
-
-                <div class="row">
-                    <div class="col">
-                        <label for="fornavn">Fornavn</label>
-                        <input type="text" class="form-control" id="person_fornavn" />
-                    </div>
-                    <div class="col">
-                        <label for="etternavn">Etternavn</label>
-                        <input type="text" class="form-control" id="person_etternavn" />
+            <h1 class="overskrift">Betaling</h1>
+            <div class="form-group">
+                <label>Kortnummer</label>
+                <input type="text" class="form-control" id="kortnummer" />
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Utløpsdato <a>(MM/YY)</a></label>
+                    <input type="text" class="form-control" id="utløpsdato1" />
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" id="utløpsdato2" />
                     </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="epost">Epost</label>
-                    <input type="email" class="form-controll" id="person_epost" />
-                </div>
-            </div>
-            <div class="btn-box" id="btnBox">
-                <button type="button" id="btnTilbake2">Tilbake</button>
-                <button type="button" id="btnFerdig">Ferdig</button>
-            </div>
-        </form>
+                    <div class="btn-box" id="btnBox">
+                        <button type="button" id="btnTilbake2">Tilbake</button>
+                        <button type="button" id="btnFerdig">Ferdig</button>
+                    </div>
+</form>
     </div>
 </body>
 </html>
