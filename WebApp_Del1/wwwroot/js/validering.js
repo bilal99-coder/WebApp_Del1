@@ -1,10 +1,13 @@
-﻿$("#btnNeste").click(function ({
-    validerReisetype();
+﻿$(function () {
+    $("#utreise").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: '2015:2025',
+        dateFormat: 'dd/mm/yy',
+        minDate: 0,
+        defaultDate: null
+    }).on('change', function () {
+        $(this).valid();  // triggers the validation test
+        // '$(this)' refers to '$("#datepicker")'
+    });
 });
-
-function validerReisetype() {
-    const reisemåte = $("#reisemåte soption:selected").val();
-    if (reisemåte == null) {
-        $("#reisetypeFeil").html("Du må velge en reisetype!");
-    }
-}

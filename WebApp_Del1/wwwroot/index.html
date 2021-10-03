@@ -39,7 +39,6 @@
             <div class="form-group">
                 <label>Reisetype:</label>
                 <select class="form-control" id="reisetype">
-                    <option "" disabled selected="true"></option>
                     <option value="enVei">En vei</option>
                     <option value="turRetur">Tur/Retur</option>
                 </select>
@@ -49,16 +48,11 @@
                 <div class="col">
                     <label for="fra">Fra:</label>
                     <select class="form-control" id="fra"></select>
-
                     <div id="fraFeil"></div>
                 </div>
                 <div class="col">
                     <label for="til">Til:</label>
                     <select class="form-control" id="til">
-                        <option "" disabled="true" selected="true"></option>
-                        <option value="bergen">Bergen</option>
-                        <option value="oslo">Oslo</option>
-                        <option value="kristiansand">Kristiansand</option>
                     </select>
                 </div>
             </div>
@@ -137,12 +131,13 @@
                     <input type="text" class="form-control" id="utløpsdato1" />
                 </div>
                 <div class="col">
+                    <label>CVC</label>
                     <input type="text" class="form-control" id="utløpsdato2" />
-                    </div>
+                </div>
                 </div>
                     <div class="btn-box" id="btnBox">
                         <button type="button" id="btnTilbake2">Tilbake</button>
-                        <button type="button" id="btnFerdig">Ferdig</button>
+                        <button type="button" id="btnFerdig">Betal</button>
                     </div>
 </form>
     </div>

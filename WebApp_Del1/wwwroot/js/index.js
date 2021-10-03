@@ -325,6 +325,12 @@ function slettEnBarn(id) {
         $.post("")
     })
 
+//Dersom alle feltene er i orden blir en gitt en kvittering
+
+$("#btnFerdig").click(function () {
+    window.location.href = "kvittering.html";
+})
+
 
 
 
