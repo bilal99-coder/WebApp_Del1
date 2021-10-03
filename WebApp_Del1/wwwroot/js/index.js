@@ -317,7 +317,7 @@ $("#btnNeste").click(function () {
 
 
 
-    //Dersom det endres til "tur/retur vil det synliggjøres et nyttfelt for hjemreise" - dette fynker ikke enda/
+//Dersom det endres til "tur/retur vil det synliggjøres et nyttfelt for hjemreise" - dette fynker ikke enda/
 
 $("#hjemreise").hide();
 
@@ -342,9 +342,27 @@ $("#btnFerdig").click(function () {
     const cvcOk = validerCvc($("#cvc").val());
     const kortdatoOk = validerKortdato($("#kortdato").val());
     if (kortnummerOk && cvcOk && kortdatoOk) {
-        window.location.href = "kvittering.html";
+        lagreBestilling();
     }
 });
+
+//lager en kvittering basert på input
+
+function lagreBestilling() {
+    const bestilling = {
+        reisetype: $("#reisetype").val(),
+        fra: $("#fra").val(),
+        til: $("#til").val(),
+        utreise: $("#utreise").val(),
+        hjemreise: $("#hjemreise").val(),
+        antallVoksne: $("#antallVoksen").val(),
+        antallBarn: $("#antallBarn").val()
+    };
+    $.post("billett/lagrebillett", bestilling, function () {
+        window.location.href = "kvittering.html";
+    });
+}
+ 
 
 
 

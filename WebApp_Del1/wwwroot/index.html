@@ -68,12 +68,12 @@
             <div class="row">
                 <div class="col">
                     <label>Antall Voksne:</label>
-                    <input type="text" class="form-control" id="antallVoksen" onchange="validerAntallvoksne(this.value)"/>
+                    <input max="9" min="1" type="text" class="form-control" id="antallVoksen" onchange="validerAntallvoksne(this.value)"/>
                     <div id="antallVoksenFeil"></div>
                 </div>
                 <div class="col">
                     <label>Antall Barn:</label>
-                    <input type="number" class="form-control" id="antallBarn" onchange="validerAntallBarn(this.value)" />
+                    <input max="9" min="0" type="number" class="form-control" id="antallBarn" onchange="validerAntallBarn(this.value)" />
                     <div id="antallBarnFeil"></div>
                 </div>
             </div>
