@@ -58,20 +58,23 @@
             </div>
             <div class="form-group">
                 <label>Utreise:</label>
-                <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utreise" />
+                <input type="date" class="datepicker" id="utreise" />
+                <div id="utreiseFeil"></div>
             </div>
             <div class="form-group" id="hjemreise">
                 <label for="hjemreiseDate">Hjemreise:</label>
-                <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="hjemreiseDate" />
+                <input type="date" class="datepicker" id="hjemreiseDate" />
             </div>
             <div class="row">
                 <div class="col">
                     <label>Antall Voksne:</label>
-                    <input type="number" class="form-control" id="antallVoksen" />
+                    <input type="text" class="form-control" id="antallVoksen" onchange="validerAntallvoksne(this.value)"/>
+                    <div id="antallVoksenFeil"></div>
                 </div>
                 <div class="col">
                     <label>Antall Barn:</label>
-                    <input type="number" class="form-control" id="antallBarn" />
+                    <input type="number" class="form-control" id="antallBarn" onchange="validerAntallBarn(this.value)" />
+                    <div id="antallBarnFeil"></div>
                 </div>
             </div>
 
@@ -123,16 +126,19 @@
             <h1 class="overskrift">Betaling</h1>
             <div class="form-group">
                 <label>Kortnummer</label>
-                <input type="text" class="form-control" id="kortnummer" />
+                <input type="text" class="form-control" id="kortnummer" placeholder="0000 0000 0000" onchange="validerKortnummer(this.value)"/>
+                <div id="kortnummerFeil"></div>
             </div>
             <div class="row">
                 <div class="col">
-                    <label>Utløpsdato <a>(MM/YY)</a></label>
-                    <input type="text" class="form-control" id="utløpsdato1" />
+                    <label>Utløpsdato</label>
+                    <input type="text" placeholder="MM/YY" class="form-control" id="kortdato" onchange="validerKortdato(this.value)" />
+                    <div id="kortdatoFeil"></div>
                 </div>
                 <div class="col">
                     <label>CVC</label>
-                    <input type="text" class="form-control" id="utløpsdato2" />
+                    <input placeholder="***" type="text" class="form-control" id="cvc" onchange="(this.value)" />
+                    <div id="cvcFeil"></div>
                 </div>
                 </div>
                     <div class="btn-box" id="btnBox">

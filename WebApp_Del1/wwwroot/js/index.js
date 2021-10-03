@@ -284,32 +284,42 @@ function slettEnBarn(id) {
 
 
 
-    //Gjør at bare et skjema viser om gangen. Dersom man trykker neste eller tilbake så endrer man skjema/
+//Gjør at bare et skjema viser om gangen. Dersom man trykker neste eller tilbake så endrer man skjema/
+$('#regform2').hide();
+$("#regform3").hide();
 
-    $('#regform2').hide();
+
+$("#btnTilbake1").click(function () {
+    $("#regform2").hide();
+    $("#regform").show();
+});
+$("#btnTilbake2").click(function () {
     $("#regform3").hide();
+    $("#regform2").show();
+});
+$("#btnNeste2").click(function () {
+    $("#regform2").hide();
+    $("#regform3").show();
+});
 
-    $("#hjemreise").hide();
+//validerer antall barn og voksne
 
-    $("#btnNeste").click(function () {
+$("#btnNeste").click(function () {
+    const antallVoksneOk = validerAntallvoksne($("#antallVoksen").val());
+    const antallBarnOk = validerAntallBarn($("#antallBarn").val());
+    if (antallVoksneOk && antallBarnOk) {
         $("#regform").hide();
         $("#regform2").show();
-    });
-    $("#btnTilbake1").click(function () {
-        $("#regform2").hide();
-        $("#regform").show();
-    });
-    $("#btnTilbake2").click(function () {
-        $("#regform3").hide();
-        $("#regform2").show();
-    });
-    $("#btnNeste2").click(function () {
-        $("#regform2").hide();
-        $("#regform3").show();
-    });
+    }
+   
+});
+
+
+
 
     //Dersom det endres til "tur/retur vil det synliggjøres et nyttfelt for hjemreise" - dette fynker ikke enda/
 
+$("#hjemreise").hide();
 
     $("#reisetype").change(function () {
         const reisetype = $("#reisetype").val();
@@ -325,11 +335,16 @@ function slettEnBarn(id) {
         $.post("")
     })
 
-//Dersom alle feltene er i orden blir en gitt en kvittering
+//Validere om alle feltene er i orden for å få en kvittering
 
 $("#btnFerdig").click(function () {
-    window.location.href = "kvittering.html";
-})
+    const kortnummerOk = validerKortnummer($("#kortnummer").val());
+    const cvcOk = validerCvc($("#cvc").val());
+    const kortdatoOk = validerKortdato($("#kortdato").val());
+    if (kortnummerOk && cvcOk && kortdatoOk) {
+        window.location.href = "kvittering.html";
+    }
+});
 
 
 

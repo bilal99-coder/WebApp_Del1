@@ -96,7 +96,7 @@ namespace WebApp_Del1.DAL
         [Key]
         public int RuteId { get; set; }
         public string avgangHavnen { get; set; }
-        public virtual List<string> ankomstHavner { get; set; }
+        //public virtual List<string> ankomstHavner { get; set; }
         public int pris { get; set; }
 
     }
