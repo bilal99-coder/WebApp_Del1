@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+/**/
 namespace WebApp_Del1.DAL
 {
     public class DBInit
@@ -23,23 +23,24 @@ namespace WebApp_Del1.DAL
                 var nyHavn2 = new Havner();
                 nyHavn2.HavnNavn = "Bergen";
                 var nyHavn3 = new Havner();
-                nyHavn3.HavnNavn = "Kristiansand"; 
+                nyHavn3.HavnNavn = "Kristiansand";
                 var nyHavn4 = new Havner();
-                nyHavn4.HavnNavn = "Stavanger"; 
+                nyHavn4.HavnNavn = "Stavanger";
                 var nyHavn5 = new Havner();
                 nyHavn5.HavnNavn = "Kiel";
                 var nyHavn6 = new Havner();
-                nyHavn6.HavnNavn = "Arendal"; 
-                /*var nyHavn7 = new Havner();
-                nyHavn7.HavnNavn = "Oslo"; 
+                nyHavn6.HavnNavn = "Arendal";
+                var nyHavn7 = new Havner();
+                nyHavn7.HavnNavn = "Oslo";
                 var nyHavn8 = new Havner();
                 nyHavn8.HavnNavn = "Oslo";
-                /* var havnListe = new List<Havner>
+
+                /*var havnListe = new List<Havner>
                  {
                      new Havner {HavnNavn = "Bergen"},
                      new Havner { HavnNavn = "Oslo" }
-                 }; 
-                 context.AlleHavner.Add(havnListe);*/
+                 }; */
+                
 
                 context.Havner.Add(nyHavn1);
                 context.Havner.Add(nyHavn2);
@@ -52,3 +53,4 @@ namespace WebApp_Del1.DAL
         }
     }
 }
+

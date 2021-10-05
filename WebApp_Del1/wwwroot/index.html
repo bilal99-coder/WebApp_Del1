@@ -63,23 +63,23 @@
             </div>
             <div class="form-group" id="hjemreise">
                 <label for="hjemreiseDate">Hjemreise:</label>
-                <input type="date" class="datepicker" id="hjemreiseDate" />
+                <input type="date" class="datepicker" id="hjemreise" />
             </div>
             <div class="row">
                 <div class="col">
                     <label>Antall Voksne:</label>
-                    <input max="9" min="1" type="text" class="form-control" id="antallVoksen" onchange="validerAntallvoksne(this.value)"/>
+                    <input type="text" class="form-control" id="antallVoksen" onchange="validerAntallvoksne(this.value)" />
                     <div id="antallVoksenFeil"></div>
                 </div>
                 <div class="col">
                     <label>Antall Barn:</label>
-                    <input max="9" min="0" type="number" class="form-control" id="antallBarn" onchange="validerAntallBarn(this.value)" />
+                    <input type="number" class="form-control" id="antallBarn" onchange="validerAntallBarn(this.value)" />
                     <div id="antallBarnFeil"></div>
                 </div>
             </div>
 
             <div class="btn-box">
-                <button type="button" id="btnNeste" onclick="dispalyVue3()">Neste</button>
+                <button type="button" id="btnNeste">Neste</button>
             </div>
         </form>
 
@@ -99,8 +99,25 @@
                 </div>
             </div>
             <h1>Reiseopplysning</h1>
+            <!--<div class="form-group">
+        <div id="personer"></div>
+    </div>-->
+            <div class="row">
+                <div class="col">
+                    <label for="fornavn">Fornavn:</label>
+                    <input type="text" class="form-control" id="fornavn" placeholder="Ola"/>
+                    <div id="fornavnFeil"></div>
+                </div>
+                <div class="col">
+                    <label for="etternavn">Etternavn:</label>
+                    <input type="text" class="form-control" id="etternavn" placeholder="Hansen"/>
+                    <div id="etternavnFeil"></div>
+                </div>
+            </div>
             <div class="form-group">
-                <div id="personer"></div>
+                <label>Epost:</label>
+                <input type="text" class="form-control" id="epost" placeholder="ola.hansen@gmail.com" />
+                <div id="epostFeil"></div>
             </div>
             <div class="btn-box" id="btnBox">
                 <button type="button" id="btnTilbake1">Tilbake</button>
@@ -108,7 +125,7 @@
             </div>
         </form>
 
-        <form class="form" id="regform3" action="">
+        <div class="container" id="regform3">
             <div class="stepper-wrapper">
                 <div class="stepper-item completed">
                     <div class="step-counter">1</div>
@@ -123,29 +140,45 @@
                     <div class="step-name">Third</div>
                 </div>
             </div>
-            <h1 class="overskrift">Betaling</h1>
-            <div class="form-group">
-                <label>Kortnummer</label>
-                <input type="text" class="form-control" id="kortnummer" placeholder="0000 0000 0000" onchange="validerKortnummer(this.value)"/>
-                <div id="kortnummerFeil"></div>
-            </div>
             <div class="row">
-                <div class="col">
-                    <label>Utløpsdato</label>
-                    <input type="text" placeholder="MM/YY" class="form-control" id="kortdato" onchange="validerKortdato(this.value)" />
-                    <div id="kortdatoFeil"></div>
+                <div class="span6" id="span1">
+                    <form class="form" action="" id="dobbelform">
+                        <h1 class="overskrift">Betaling</h1>
+                        <div class="form-group">
+                            <label>Kortnummer</label>
+                            <input type="text" class="form-control" id="kortnummer" placeholder="0000 0000 0000" onchange="validerKortnummer(this.value)" />
+                            <div id="kortnummerFeil"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>Utløpsdato</label>
+                                <input type="text" placeholder="MM/YY" class="form-control" id="kortdato" onchange="validerKortdato(this.value)" />
+                                <div id="kortdatoFeil"></div>
+                            </div>
+                            <div class="col">
+                                <label>CVC</label>
+                                <input placeholder="***" type="text" class="form-control" id="cvc" onchange="(this.value)" />
+                                <div id="cvcFeil"></div>
+                            </div>
+                        </div>
+                        <div class="btn-box" id="btnBox">
+                            <button type="button" id="btnTilbake2">Tilbake</button>
+                            <button type="button" id="btnFerdig">Betal</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="col">
-                    <label>CVC</label>
-                    <input placeholder="***" type="text" class="form-control" id="cvc" onchange="(this.value)" />
-                    <div id="cvcFeil"></div>
-                </div>
-                </div>
-                    <div class="btn-box" id="btnBox">
-                        <button type="button" id="btnTilbake2">Tilbake</button>
-                        <button type="button" id="btnFerdig">Betal</button>
+            <div class="span6" id="span2">
+                <form class="form" action="" id="dobbelform">
+                    <h1 class="overskrift">Oversikt</h1>
+                    <div class="form-control">
+                        <div id="oversikt">
+
+                        </div>
                     </div>
-</form>
+                </form>
+            </div>
+        </div>
+            </div>
     </div>
 </body>
 </html>

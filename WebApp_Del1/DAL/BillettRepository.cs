@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 //using System.Data.Entity;
 //using Microsoft.EntityFrameworkCore;   
 using System.Threading.Tasks;
@@ -22,7 +23,8 @@ namespace WebApp_Del1.DAL
         }
 
         //Henter ut alle Havner inn i første select (Reise fra)
-        public async  Task<List<Havner>> HentAlleHavner_Fra()
+
+        public async Task<List<Havner>> HentAlleHavner_Fra()
         {
             try
             {
@@ -32,27 +34,156 @@ namespace WebApp_Del1.DAL
                 //lister.Add(new Havner {HavnNavn ="Oslo"} , new Havner { HavnNavn ="Bergen"}) ;
                 //return lister; ;
             }
-            catch (Exception e){
-                var  alleHavner1 = new List<Havner>{ new Havner { HavnNavn ="there is an error in the database" },
+            catch (Exception e)
+            {
+                var alleHavner1 = new List<Havner>{ new Havner { HavnNavn ="there is an error in the database" },
                                                     new Havner {HavnNavn =  "line 34billettcontext"},
                                                     new Havner {HavnNavn =  e.Message.ToString()},
                                                };
                 // return null; 
-                return alleHavner1; 
+                return alleHavner1;
             }
+
             /*
              
              "The source IQueryable doesn't implement IDbAsyncEnumerable<Havner>. Only sources that implement IDbAsyncEnumerable can be used for Entity Framework asynchronous operations. For more details see http://go.microsoft.com/fwlink/?LinkId=287068."
              
              
-             
+            
              
              
              */
+        }
+        
 
+
+        async public Task<bool> LagreBillett(Billett lagetBillett)
+        {
+            try
+            {
+                var nyKundeRad = new Kunde();
+                nyKundeRad.Fornavn = lagetBillett.Fornavn;
+                nyKundeRad.Etternavn = lagetBillett.Etternavn;
+                nyKundeRad.Epost = lagetBillett.Epost;
+
+                var sjekkBId = await _db.Bestillinger.FindAsync(lagetBillett.BId);
+                if (sjekkBId == null)
+                {
+                    var nyBestillingRad = new Bestilling();
+                    nyBestillingRad.BId = lagetBillett.BId;
+                    nyBestillingRad.Reisetype = lagetBillett.Reisetype;
+                    nyBestillingRad.Fra = lagetBillett.Fra;
+                    nyBestillingRad.Til = lagetBillett.Til;
+                    nyBestillingRad.Utreise = lagetBillett.Utreise;
+                    nyBestillingRad.Hjemreise = lagetBillett.Hjemreise;
+                    nyBestillingRad.AntallVoksne = lagetBillett.AntallVoksne;
+                    nyBestillingRad.AntallBarn = lagetBillett.AntallBarn;
+                    nyKundeRad.Bestillinger = nyBestillingRad;
+                }
+                else
+                {
+                    nyKundeRad.Bestillinger = sjekkBId;
+                }
+                _db.Kunder.Add(nyKundeRad);
+                await _db.SaveChangesAsync();
+                return true;
+            }
+
+            catch
+            {
+                return false;
+            }
+            /*
+            var bestilling = new Bestilling()
+            {
+                Reisetype = lagetBillett.Reisetype,
+                Fra = lagetBillett.Fra,
+                Til = lagetBillett.Til,
+                Utreise = lagetBillett.Utreise,
+                Hjemreise = lagetBillett.Hjemreise,
+                AntallVoksne = lagetBillett.AntallVoksne,
+                AntallBarn = lagetBillett.AntallBarn
+            };
+
+            Kunde funnetKunde = _db.Kunder.FirstOrDefault(k => k.Kid == lagetBillett.Kid);
+
+            if (funnetKunde == null)
+            {
+                var kunde = new Kunde()
+                {
+                    Fornavn = lagetBillett.Fornavn,
+                    Etternavn = lagetBillett.Etternavn,
+                    Epost = lagetBillett.Epost
+                };
+                kunde.Bestillinger = new List<Bestilling>();
+                kunde.Bestillinger.Add(bestilling);
+                _db.Kunder.Add(kunde);
+                _db.SaveChanges();
+            }
+            else
+            {
+                funnetKunde.Bestillinger.Add(bestilling);
+                _db.SaveChanges();
+            }*/
         }
 
-       /*
+        public async Task<List<Billett>> HentBillett()
+        {
+            try
+            {
+                List<Billett> alleBilletter = await _db.Kunder.Select(b => new Billett
+                {
+                    Kid = b.Kid,
+                    Fornavn = b.Fornavn,
+                    Etternavn = b.Etternavn,
+                    Epost = b.Epost,
+                    Reisetype = b.Bestillinger.Reisetype,
+                    Fra = b.Bestillinger.Fra,
+                    Til = b.Bestillinger.Til,
+                    Utreise = b.Bestillinger.Utreise,
+                    Hjemreise = b.Bestillinger.Hjemreise,
+                    AntallVoksne = b.Bestillinger.AntallVoksne,
+                    AntallBarn = b.Bestillinger.AntallBarn
+
+                }).ToListAsync();
+                return alleBilletter;
+
+            }
+            catch
+            {
+                return null;
+            }
+            /*
+            List<Kunde> alleKunder = _db.Kunder.ToList();
+            List<Billett> alleBestillinger = new List<Billett>();
+            foreach (var kunde in alleKunder)
+            {
+                foreach (var best in kunde.Bestillinger)
+                {
+                    var enBestilling = new Billett
+                    {
+                        Fornavn = kunde.Fornavn,
+                        Etternavn = kunde.Etternavn,
+                        Epost = kunde.Epost,
+                        Reisetype = best.Reisetype,
+                        Fra = best.Fra,
+                        Til = best.Til,
+                        Utreise = best.Utreise,
+                        Hjemreise = best.Hjemreise,
+                        AntallVoksne = best.AntallVoksne,
+                        AntallBarn = best.AntallBarn
+                    };
+                    alleBestillinger.Add(enBestilling);
+                }
+            }
+            return alleBestillinger;*/
+        }
+
+
+
+
+
+        /*
         [HttpPost]
         public async Task<List<string>> HentAlleHavnerTil(int id)
         {
@@ -68,8 +199,11 @@ namespace WebApp_Del1.DAL
             {
                 return null;
             }
-        }
+        }*/
+    }
+}
 
+        /*
         Task<List<Havner>> IBillettRepository.HentAlleHavnerTil(int id)
         {
             throw new NotImplementedException();
@@ -205,9 +339,9 @@ namespace WebApp_Del1.DAL
                 //billetten skal ha en liste av lugarer 
 
 
-                /*
-                 * 
-                 * public void Bestill(Reiseinformasjon innReiseinformasjon, int [] lugarId , Person [] personerIBiletteten)
+                */
+                 /* 
+                  public void Bestill(Reiseinformasjon innReiseinformasjon, int [] lugarId , Person [] personerIBiletteten)
 
                      Javascript : 
                         int [] idLugar = {1,1,1}; ,
@@ -240,7 +374,7 @@ namespace WebApp_Del1.DAL
                 return false;
             }
         }
-        */
+        
         /* public double beregnPris(Reiseinformasjon info, Lugarer thisLugar)
          { // Barn betaler ikke kun voksne 
              try
@@ -267,7 +401,7 @@ namespace WebApp_Del1.DAL
          {
              return -2;
          }
-         /*
+         
          [Route("{id}")]
          public async Task velgLugar(int id)
          {
@@ -278,7 +412,7 @@ namespace WebApp_Del1.DAL
                  await _db.SaveChangesAsync();
              }
          }
-         /*
+         
 
          [Route("{id}")]
          public async Task<bool> fjernLugar(int id)
@@ -298,6 +432,6 @@ namespace WebApp_Del1.DAL
              {
                  return false;
              }
-         }*/
-    }
-}
+         }
+    }*/
+

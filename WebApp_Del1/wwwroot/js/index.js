@@ -1,14 +1,15 @@
 ﻿// Hente alle mulige avgangshavner fra databasen når appen intansieres
+
 $(function () {
     hentAlleHavner_Fra();
     // hentAlleHavner_Fra1(); // fungerte også 
    // lagBillett();
-    dispalyVue3(1);
-    hentAlleHavnerTil(1);
+    //dispalyVue3(1);
+    //hentAlleHavnerTil(1);
 
 }); 
 
-
+/*
 let counter = 0; 
 
 
@@ -25,6 +26,7 @@ function hentAlleHavner_Fra1(){
     }
     request.send();
 }; 
+*/
 
 //Henter alle havner for første select i Gui
 
@@ -85,7 +87,7 @@ function formaterHavnerTil(listeAvHavner) {
 
 
 
-
+/*
 // Når kunden bekrefter kjøpet 
 function bekreftKjoop() {
     //Kaller funksjonen 
@@ -100,7 +102,8 @@ function bekreftKjoop() {
         }
     });
 }
-
+    */
+/*
 function lagBillett() {
     let billett = {
         reiseType: $("select#reisetype").filter(":selected").text(),
@@ -125,9 +128,9 @@ function lagBillett() {
 
     
     console.log(billett.reiseType);
-}
+}*/
 
-
+/*
 function count_AndReturn_Persons() {
     //Telle antall personer som e med i billetten 
     const antallVoksne = parseInt($("antallVoksen").text()); 
@@ -145,7 +148,8 @@ function count_AndReturn_Persons() {
         personene.push(person); 
     };
     return personene;
-}
+}*/
+/*
 
 function dispalyVue3(accept) {
     if (accept === 1) {
@@ -235,8 +239,8 @@ function dispalyVue3(accept) {
             
         }
     }
-
-
+    */
+    /*
     function countAlleReisende() {
         //Telle antall personer som e med i billetten 
         const antallVoksne = parseInt($("antallVoksen").text());
@@ -268,6 +272,7 @@ function slettEnBarn(id) {
     console.log("rowPerson_" + "" + id + "");
 }
 
+*/
 
 
 
@@ -283,43 +288,39 @@ function slettEnBarn(id) {
 
 
 
+    //Gjør at bare et skjema viser om gangen. Dersom man trykker neste eller tilbake så endrer man skjema/
 
-//Gjør at bare et skjema viser om gangen. Dersom man trykker neste eller tilbake så endrer man skjema/
-$('#regform2').hide();
-$("#regform3").hide();
-
-
-$("#btnTilbake1").click(function () {
-    $("#regform2").hide();
-    $("#regform").show();
-});
-$("#btnTilbake2").click(function () {
+    $('#regform2').hide();
     $("#regform3").hide();
-    $("#regform2").show();
-});
-$("#btnNeste2").click(function () {
-    $("#regform2").hide();
-    $("#regform3").show();
-});
 
-//validerer antall barn og voksne
 
-$("#btnNeste").click(function () {
-    const antallVoksneOk = validerAntallvoksne($("#antallVoksen").val());
-    const antallBarnOk = validerAntallBarn($("#antallBarn").val());
-    if (antallVoksneOk && antallBarnOk) {
-        $("#regform").hide();
+    $("#btnTilbake1").click(function () {
+        $("#regform2").hide();
+        $("#regform").show();
+    });
+    $("#btnTilbake2").click(function () {
+        $("#regform3").hide();
         $("#regform2").show();
-    }
-   
-});
+    });
+    $("#btnNeste2").click(function () {
+        $("#regform2").hide();
+        $("#regform3").show();
+    });
 
+    //validerer antall barn og voksne
 
+    $("#btnNeste").click(function () {
+        const antallVoksneOk = validerAntallvoksne($("#antallVoksen").val());
+        const antallBarnOk = validerAntallBarn($("#antallBarn").val());
+        if (antallVoksneOk && antallBarnOk) {
+            $("#regform").hide();
+            $("#regform2").show();
+        }
 
+    });
+    //Dersom det endres til "tur/retur vil det synliggjøres et nyttfelt for hjemreise" - dette fynker ikke enda/
 
-//Dersom det endres til "tur/retur vil det synliggjøres et nyttfelt for hjemreise" - dette fynker ikke enda/
-
-$("#hjemreise").hide();
+    $("#hjemreise").hide();
 
     $("#reisetype").change(function () {
         const reisetype = $("#reisetype").val();
@@ -335,36 +336,37 @@ $("#hjemreise").hide();
         $.post("")
     })
 
-//Validere om alle feltene er i orden for å få en kvittering
+    //Validere om alle feltene er i orden for å få en kvittering
 
-$("#btnFerdig").click(function () {
-    const kortnummerOk = validerKortnummer($("#kortnummer").val());
-    const cvcOk = validerCvc($("#cvc").val());
-    const kortdatoOk = validerKortdato($("#kortdato").val());
-    if (kortnummerOk && cvcOk && kortdatoOk) {
-        lagreBestilling();
-    }
-});
-
-//lager en kvittering basert på input
-
-function lagreBestilling() {
-    const bestilling = {
-        reisetype: $("#reisetype").val(),
-        fra: $("#fra").val(),
-        til: $("#til").val(),
-        utreise: $("#utreise").val(),
-        hjemreise: $("#hjemreise").val(),
-        antallVoksne: $("#antallVoksen").val(),
-        antallBarn: $("#antallBarn").val()
-    };
-    $.post("billett/lagrebillett", bestilling, function () {
-        window.location.href = "kvittering.html";
+    $("#btnFerdig").click(function () {
+        const kortnummerOk = validerKortnummer($("#kortnummer").val());
+        const cvcOk = validerCvc($("#cvc").val());
+        const kortdatoOk = validerKortdato($("#kortdato").val());
+        if (kortnummerOk && cvcOk && kortdatoOk) {
+            lagreBestilling();
+        }
     });
-}
- 
 
+    //lager en kvittering basert på input
 
+    function lagreBestilling() {
+        const bestilling = {
+            reisetype: $("#reisetype").val(),
+            fra: $("#fra").val(),
+            til: $("#til").val(),
+            utreise: $("#utreise").val(),
+            hjemreise: $("#hjemreise").val(),
+            antallVoksne: $("#antallVoksen").val(),
+            antallBarn: $("#antallBarn").val(),
+            fornavn: $("#fornavn").val(),
+            etternavn: $("#etternavn").val(),
+            epost: $("#epost").val()
+        };
+        const url = "Billett/LagreBillett"
+        $.post(url, bestilling, function () {
+            window.location.href = "kvittering.html";
+        });
+    }
 
 
  
