@@ -377,4 +377,31 @@ function slettEnBarn(id) {
   $("#reward").text(coins);
 }).trigger('mouseup');
   
-  */ 
+  */
+
+//viser oversikt
+
+$("#btnNeste2").click(function () {
+
+    var reisetype = $("#reisetype").val();
+    var fra = $("#fra").val();
+    var til = $("#til").val();
+    var utreise = $("#utreise").val();
+    var hjemreise = $("#hjemreise").val();
+    var antallVoksne = $("#antallVoksen").val();
+    var antallBarn = $("#antallBarn").val();
+    var fornavn = $("#fornavn").val();
+    var etternavn = $("#etternavn").val();
+    var epost = $("#epost").val();
+
+    const ut = "<form class='form' action='' id='dobbelform'>" + "<h1 class='overskrift'>Oversikt</h1>" + "<div class='form-control'>" + "<label>" + "<bold>Reisetype: </bold>" + "</label>" + reisetype + "<br>" +
+        "<label>" + "<bold>Fra - Til: </bold>" + "</label>" + fra + "<p> - </p>" + til + "<br>" +
+        "<label>" + "<bold>Utreise - Hjemreise: </bold>" + "</label>" + utreise + "<p> - </p>" + hjemreise + "<br>" +
+        "<label>" + "<bold>Antall Voksne: </bold>" + "</label>" + antallVoksne + "<br>" +
+        "<label>" + "<bold>Antall Barn: </bold>" + "</label>" + antallBarn + "<br>" +
+        "<label>" + "<bold>Fornavn: </bold>" + "</label>" + fornavn + "<br>" +
+        "<label>" + "<bold>Etternavn: </bold>" + "</label>" + etternavn + "<br>" +
+        "<label>" + "<bold>Epost: </bold>" + "</label>" + epost + "<br>" + "</div>" + "</form>"
+
+    $("#oversikt").html(ut);
+});
