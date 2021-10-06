@@ -1,238 +1,104 @@
+// Hente alle mulige avgangshavner fra databasen når appen intansieres
+
 $(function () {
-    //Hent alle stasjoner ved document ready for første select. (Stasjonerfra)
-    hentAlleStasjoner();
+    hentAlleHavner_Fra();
+    // hentAlleHavner_Fra1(); // fungerte også 
+    // lagBillett();
+    //dispalyVue3(1);
+    //hentAlleHavnerTil(1);
 
-});
+    }); 
 
-let stasjonerTilId;
-let stasjonerId;
-let pris;
-let globAvgangTur;
-let globAvgangRetur;
-
-//Bekrefter kjøp med validering
-function bekreftKjop() {
-
-    validerCvc();
-    validerKortnr();
-    validerEpost();
-    validerTlfnr();
-
-    //validering
-    if (validerCvc() && validerEpost() && validerKortnr() && validerTlfnr()) {
-
-        //retur verdier
-        let stasjonfra = $("#stasjoner").val();
-        let tidtil = globAvgangRetur;
-        let datotil = $("#returDato").val();
-        let tidTilString = datotil + " " + tidtil;
-        //tur verdier
-        let stasjontil = $("#stasjonertil").val();
-        let tidfra = globAvgangTur;
-        let datofra = $("#turDato").val();
-        let tidFraString = datofra + " " + tidfra;
-        //Betalingsinformasjon
-        let epost = $("#epost").val();
-        let tlfNr = $("#tlfnr").val();
-        let kortnummer = $("#kortnr").val();
-        let cvc = $("#cvc").val();
-        //url
-        let url = "billett/kjopBillett";
-        //fjerner buss ikon fra streng
-        stasjonfra = stasjonfra.substring(1);
-        stasjontil = stasjontil.substring(1);
-
-        //Api kall for tur og retur
-        if (document.getElementById("timetil").style.display === "block") {
-            const billettRetur = {
-                avgang: stasjontil,
-                destinasjon: stasjonfra,
-                tid: tidTilString,
-                pris: pris,
-                nummer: tlfNr,
-                epost: epost,
-                kortnummer: kortnummer,
-                cvc: cvc
-            }
-            const billettTur = {
-                avgang: stasjonfra,
-                destinasjon: stasjontil,
-                tid: tidFraString,
-                pris: pris,
-                nummer: tlfNr,
-                epost: epost,
-                kortnummer: kortnummer,
-                cvc: cvc
-            }
-            //2 POST en for tur en for retur
-            $.post(url, billettTur, function (OK) {
-                if (OK) {
-                    sessionStorage.setItem("billettTurId", OK);
-                    // Hvis POST for tur er ok, kjør POST for retur.
-                    $.post(url, billettRetur, function (OK) {
-                        if (OK) {
-                            let idag = new Date();
-                            let dato = idag.getFullYear() + '-' + (idag.getMonth() + 1) + '-' + idag.getDate();
-                            let tid = idag.getHours() + ":" + idag.getMinutes() + ":" + idag.getSeconds();
-                            let datoOgTid = dato + ' ' + tid;
-                            sessionStorage.setItem("pris", pris);
-                            sessionStorage.setItem("tid", datoOgTid);
-                            sessionStorage.setItem("billettReturId", OK);
-                            window.location.href = "kvittering.html";
-                        }
-                        else {
-                            console.log("Feil i db for retur - prøv igjen senere");
-                        }
-                    });
-                }
-                else {
-                    console.log("Feil i db for tur - prøv igjen senere");
-                }
-            });
+    /*
+    let counter = 0; 
+    
+    
+    
+    function hentAlleHavner_Fra1(){
+        let requestURL = 'billett/hentAlleHavner_Fra';
+        let request = new XMLHttpRequest();
+        request.open('GET', requestURL);
+        request.responseType = 'json';
+        
+        request.onload = function () {
+            const superHeroes = request.response;
+            console.log(superHeroes['HavnNavn']);
         }
-        //Api kall for bare tur 
-        else {
-            const billettTur = {
-                avgang: stasjonfra,
-                destinasjon: stasjontil,
-                tid: tidFraString,
-                pris: pris,
-                nummer: tlfNr,
-                epost: epost,
-                kortnummer: kortnummer,
-                cvc: cvc
-            }
-            // POST for tur
-            $.post(url, billettTur, function (OK) {
-                if (OK) {
-                    let idag = new Date();
-                    let dato = idag.getFullYear() + '-' + (idag.getMonth() + 1) + '-' + idag.getDate();
-                    let tid = idag.getHours() + ":" + idag.getMinutes() + ":" + idag.getSeconds();
-                    let datoOgTid = dato + ' ' + tid;
-                    sessionStorage.setItem("tid", datoOgTid);
-                    sessionStorage.setItem("pris", pris);
-                    sessionStorage.setItem("billettTurId", OK);
-                    sessionStorage.removeItem("billettReturId");
-                    window.location.href = "kvittering.html";
-                }
-                else {
-                    $("#feil").html("Feil i db for tur - prøv igjen senere");
-                }
-            });
+        request.send();
+    }; 
+    */
+
+    //Henter alle havner for første select i Gui
+
+    function hentAlleHavner_Fra() {
+        $.get("billett/hentAlleHavner_Fra", function (listeAvHavner) {
+            //alert(listeAvHavner);
+            // console.log(listeAvHavner[0].HavnNavn);
+            //  console.log(Object.keys(listeAvHavner))
+            console.log("The response listeAvHavner is:" + typeof listeAvHavner);
+            formaterHavner(listeAvHavner);
+        });
+
+
+    };
+
+
+    /*
+    function hentAlleHavnerTil(id) {
+        const option = $("#fraHavn_" + "" + id + "");
+        $.post("billett/hentAlleHavnerTil?id=", option, function () {
+            formaterHavnerTil();
+        })
+
+        console.log(option.val());
+        //$.get("billett/hentAlleHavner_til", function (listeAvHavner) {
+    }*/
+
+
+    function formaterHavner(listeAvHavner) {
+        let ut = "";
+        console.log(listeAvHavner);
+        for (let enHavn of listeAvHavner) {
+            ut += "<option  style='font-size:20px' id ='fraHavn_'" + enHavn.havnId + "data-value=" + enHavn.havnId + ">" + enHavn.havnNavn + "</option>";
+            console.log(Object.keys(listeAvHavner));
+            console.log(Object.values(enHavn));
+            console.log(Object.values(enHavn)[1]);
+            console.log(Object.entries(enHavn));
         }
 
-    }
 
-}
+        $("#fra").html(ut);
+        console.log(ut);
 
+    };
 
+    /*
+    function formaterHavnerTil(listeAvHavner) {
+        let ut = "";
+        console.log(listeAvHavner);
+        for (let enHavn of listeAvHavner) {
+            ut += "<option  style='font-size:20px' id ='fraHavn_'" + enHavn.havnId + "data-value=" + enHavn.havnId + ">" + enHavn.havnNavn + "</option>";
+            console.log(Object.keys(listeAvHavner));
+            console.log(Object.values(enHavn));
+            console.log(Object.values(enHavn)[1]);
+            console.log(Object.entries(enHavn));
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }*/
 
 
-
-
-
-
-
-
-
-
-
-
-//Jeg starter med å hente reiseinfo
-
-
-const reiseType = document.getElementById('reisetype'); 
-const fra = document.getElementById('fra'); 
-const til = document.getElementById('til'); 
-const utreise = document.getElementById('utreise'); 
-const antallVoksne = document.getElementById('antallVoksne'); 
-const antallBarn = document.getElementById('antallBarn'); 
-const next = document.getElementById('btnNeste');
-const btnSubmit = document.getElementById('submitBtn'); 
-
-
-class Reiseinfo{
-     name = "aname";
-     reiseType = reiseType.options[reiseType.selectedIndex].value; // Med jquery can man bruke:   $('#reisetype').val()
-     fraSted =  fra.options[fra.selectedIndex].value;
-     tilSted = til.options[til.selectedIndex].value; 
-     utreiseDato = utreise.value;
-     antallVoksne = antallVoksne.value;
-     antallBarn = antallBarn.value; 
-}
-
-
-btnSubmit.addEventListener('click', () => {
-  
-})
-
-const test = new Reiseinfo(); 
-console.log(test.name); 
- 
-
-
-
-
-
-
-
-
-
-console.log("HEI")
-
-
-
-/*Gjør slik at man ikke kan velge samme by på fra og til feltene*/
-$("#fra").change(function () {
-    $("#til").find("option").each(function () {
-        $(this).removeAttr("disabled");
-    });
-    $("#til [value=" + $(this).val() + "]").attr("disabled", "disabled");
-})
-
-$("#til").change(function () {
-    $("#fra").find("option").each(function () {
-        $(this).removeAttr("disabled");
-    });
-    $("#fra [value=" + $(this).val() + "]").attr("disabled", "disabled");
-})
-/*Gjør at bare et skjema viser om gangen. Dersom man trykker neste eller tilbake så endrer man skjema*/
+//Gjør at bare et skjema viser om gangen. Dersom man trykker neste eller tilbake så endrer man skjema/
 
 $('#regform2').hide();
-$("#lugar-container").hide();
-//$("#container").hide();
-$("#regform33").hide();
 $("#regform3").hide();
 
 
-
-
-$("#btnNeste").click(function () {
-    $("#container").hide();
-    $("#lugar-container").show();
-});
 $("#btnTilbake1").click(function () {
     $("#regform2").hide();
     $("#regform").show();
 });
 $("#btnTilbake2").click(function () {
-    $("#personForm").hide();
+    $("#regform3").hide();
     $("#regform2").show();
 });
 $("#btnNeste2").click(function () {
@@ -240,45 +106,63 @@ $("#btnNeste2").click(function () {
     $("#regform3").show();
 });
 
-$("#submitBtn").click(function () {
-    $("#regform3").hide();
-    $("#Billett").show();
+//validerer antall barn og voksne
+
+$("#btnNeste").click(function () {
+    const antallVoksneOk = validerAntallvoksne($("#antallVoksne").val());
+    const antallBarnOk = validerAntallBarn($("#antallBarn").val());
+    if (antallVoksneOk && antallBarnOk) {
+        $("#regform").hide();
+        $("#regform2").show();
+    }
+
 });
-$("#btnTilbake2").click(function () {
-    $("#regform3").hide();
-    $("#Billett").show();
+//Dersom det endres til "tur/retur vil det synliggjøres et nyttfelt for hjemreise" - dette fynker ikke enda/
+
+$("#hjemreise").hide();
+
+$("#reisetype").change(function () {
+    const reisetype = $("#reisetype").val();
+    if (reisetype === "turRetur") {
+        $('#hjemreise').show();
+    } else {
+        $('#hjemreise').hide();
+    }
+})
+
+$("#fra").change(function () {
+    const fra = $("#fra").val();
+    $.post("")
+})
+
+//Validere om alle feltene er i orden for å få en kvittering
+
+$("#btnFerdig").click(function () {
+    const kortnummerOk = validerKortnummer($("#kortnummer").val());
+    const cvcOk = validerCvc($("#cvc").val());
+    const kortdatoOk = validerKortdato($("#kortdato").val());
+    if (kortnummerOk && cvcOk && kortdatoOk) {
+        lagreBestilling();
+    }
 });
 
+//lager en kvittering basert på input
 
-
-/*  console.log('button was clicked');
-    console.log('hello2');
-    console.log($('#reisetype').val()); 
-    console.log($('#fra').val()); 
-    let reiseTypen = reiseType.options[select.selectedIndex].value;
-    console.log(reiseTypen+"22222"); 
-    console.log(reiseType.options[select.selectedIndex].value+"3333333");
-    
-    const info = new Reiseinfo(); 
-    console.log("fra sted er: " + info.name);
-    console.log("fra sted er: " + info.name);*/
-
-
-    /*const info = new Reiseinfo(); 
-console.log("fra sted er: " + info.name);
-console.log("fra sted er: " + info.name);
-
-
-var select = document.getElementById('reisetype');
-var value = select.options[select.selectedIndex].value;
-console.log(value); 
-
-const reiseTypenn = reiseType.options[select.selectedIndex].value;
-console.log(reiseTypenn);*/
-
-/*
-//JQuery code
-$('#submitBtn').click(function(){
-    console.log("button is now clicked");
-    $('#console').html( $('#console').html() + '#foo is now visible'+ '<br>'  ) ;
-}); */
+function lagreBestilling() {
+    const bestilling = {
+        reisetype: $("#reisetype").val(),
+        fra: $("#fra").val(),
+        til: $("#til").val(),
+        utreise: $("#utreise").val(),
+        hjemreise: $("#hjemreise").val(),
+        antallVoksne: $("#antallVoksen").val(),
+        antallBarn: $("#antallBarn").val(),
+        fornavn: $("#fornavn").val(),
+        etternavn: $("#etternavn").val(),
+        epost: $("#epost").val()
+    };
+    const url = "Billett/LagreBillett"
+    $.post(url, bestilling, function () {
+        window.location.href = "kvittering.html";
+    });
+}

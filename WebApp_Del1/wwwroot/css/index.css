@@ -69,6 +69,13 @@ form button {
     cursor: pointer;
 }
 
+.span6 {
+    align-content: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+
 @media screen and (max-width: 620px) {
     * {
         margin: 4px !important;
@@ -161,4 +168,22 @@ form button {
 
 .step-name {
     color: white;
+}
+
+#qr {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+form #kvitteringInfo{
+    padding-top: 50px;
+}
+
+form #reiseKode {
+    text-align: center;
+}
+
+form #reiseKodeLabel{
+    text-align: center;
 }

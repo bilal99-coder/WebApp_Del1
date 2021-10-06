@@ -9,7 +9,7 @@ namespace WebApp_Del1.Models
     public class Reiseinformasjon{
 
        //Data om ønsket billetten 
-        public string reiseType { get; set; }
+        public string reisetype { get; set; }
         public string fra { get; set; }
         public string til { get; set; }
         public DateTime utreise { get; set; }

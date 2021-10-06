@@ -3,8 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 //using System.Data.Entity;
-using Microsoft.EntityFrameworkCore;   
+//using Microsoft.EntityFrameworkCore;   
 using System.Threading.Tasks;
 using WebApp_Del1.Controllers;
 using WebApp_Del1.Models;
@@ -22,7 +23,8 @@ namespace WebApp_Del1.DAL
         }
 
         //Henter ut alle Havner inn i første select (Reise fra)
-        public async  Task<List<Havner>> HentAlleHavner_Fra()
+
+        public async Task<List<Havner>> HentAlleHavner_Fra()
         {
             try
             {
@@ -33,24 +35,54 @@ namespace WebApp_Del1.DAL
                 //lister.Add(new Havner {HavnNavn ="Oslo"} , new Havner { HavnNavn ="Bergen"}) ;
                 //return lister; ;
             }
-            catch (Exception e){
-                var  alleHavner1 = new List<Havner>{ new Havner { HavnNavn ="there is an error in the database" },
+            catch (Exception e)
+            {
+                var alleHavner1 = new List<Havner>{ new Havner { HavnNavn ="there is an error in the database" },
                                                     new Havner {HavnNavn =  "line 34billettcontext"},
                                                     new Havner {HavnNavn =  e.Message.ToString()},
                                                };
                 // return null; 
-                return alleHavner1; 
+                return alleHavner1;
             }
+
             /*
              
              "The source IQueryable doesn't implement IDbAsyncEnumerable<Havner>. Only sources that implement IDbAsyncEnumerable can be used for Entity Framework asynchronous operations. For more details see http://go.microsoft.com/fwlink/?LinkId=287068."
              
              */
-
         }
-       
 
-       public async Task<List<ankomstHavner>> HentAlleHavnerTil(int id)
+
+        public async Task<List<ankomstHavner>> HentAlleHavnerTil(int id)
+        {
+            try
+            {
+                //Henter Havnen som kunden ønsket fra databasen
+                Havner ønksetHavn = await _db.Havner.FirstOrDefaultAsync(havn => havn.HavnId == id);
+                return ønksetHavn.AnkomstHavner;
+                /*
+                ankomstHavner muligeAnkomstHavner = await _db.Havner
+                Ruter rute = await _db.Ruter.FirstOrDefaultAsync(rute => rute.avgangHavnen == ønksetHavn.HavnNavn);
+                List<Havner> alleMulige_AnkomstHavner = rute.ankomstHavner;
+                return alleMulige_AnkomstHavner;*/
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
+        async public Task<bool> LagreBillett(Billett lagetBillett)
+        {
+            try
+            {
+                var nyKundeRad = new Kunde();
+                nyKundeRad.Fornavn = lagetBillett.Fornavn;
+                nyKundeRad.Etternavn = lagetBillett.Etternavn;
+                nyKundeRad.Epost = lagetBillett.Epost;
+
+        public async Task<List<string>> HentAlleStasjonerTil(int id)
         {
             try
             {
@@ -67,7 +99,9 @@ namespace WebApp_Del1.DAL
             {
                 return null;
             }
-        }
+        }*/
+    }
+}
 
         /*
         
@@ -199,9 +233,9 @@ namespace WebApp_Del1.DAL
                 //billetten skal ha en liste av lugarer 
 
 
-                /*
-                 * 
-                 * public void Bestill(Reiseinformasjon innReiseinformasjon, int [] lugarId , Person [] personerIBiletteten)
+                */
+                 /* 
+                  public void Bestill(Reiseinformasjon innReiseinformasjon, int [] lugarId , Person [] personerIBiletteten)
 
                      Javascript : 
                         int [] idLugar = {1,1,1}; ,
@@ -234,7 +268,7 @@ namespace WebApp_Del1.DAL
                 return false;
             }
         }
-        */
+        
         /* public double beregnPris(Reiseinformasjon info, Lugarer thisLugar)
          { // Barn betaler ikke kun voksne 
              try
@@ -261,7 +295,7 @@ namespace WebApp_Del1.DAL
          {
              return -2;
          }
-         /*
+         
          [Route("{id}")]
          public async Task velgLugar(int id)
          {
@@ -272,7 +306,7 @@ namespace WebApp_Del1.DAL
                  await _db.SaveChangesAsync();
              }
          }
-         /*
+         
 
          [Route("{id}")]
          public async Task<bool> fjernLugar(int id)
@@ -292,6 +326,6 @@ namespace WebApp_Del1.DAL
              {
                  return false;
              }
-         }*/
-    }
-}
+         }
+    }*/
+

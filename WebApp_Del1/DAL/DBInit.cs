@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+
 namespace WebApp_Del1.DAL
 {
     public class DBInit
@@ -15,13 +17,15 @@ namespace WebApp_Del1.DAL
             {
                 var context = serviceScope.ServiceProvider.GetService<BillettContext>();
 
+
+
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
                 //Havner som skal være i fra select på frontend
 
                 var nyHavn4 = new Havner();
-                nyHavn4.HavnNavn = "Stavanger"; 
+                nyHavn4.HavnNavn = "Stavanger";
                 var nyHavn5 = new Havner();
                 nyHavn5.HavnNavn = "Kiel";
                 var nyHavn6 = new Havner();
@@ -112,11 +116,11 @@ namespace WebApp_Del1.DAL
 
 
                 /* var havnListe = new List<Havner>
-                 {
-                     new Havner {HavnNavn = "Bergen"},
-                     new Havner { HavnNavn = "Oslo" }
-                 }; 
-                 context.AlleHavner.Add(havnListe);*/
+                {
+                new Havner {HavnNavn = "Bergen"},
+                new Havner { HavnNavn = "Oslo" }
+                };
+                context.AlleHavner.Add(havnListe);*/
 
 
                 /* context.Havner.Add(nyHavn2);

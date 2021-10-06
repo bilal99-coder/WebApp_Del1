@@ -12,31 +12,48 @@ namespace WebApp_Del1.Controllers
 {
     [Route("[Controller]/[action]")]
     public class BillettController : ControllerBase
-    {   
+    {
         private readonly IBillettRepository _db;
-        private readonly ILogger<BillettController> _log; 
+        //private readonly BillettContext _db;
+        private readonly ILogger<BillettController> _log;
         public BillettController(IBillettRepository db, ILogger<BillettController> log)
         {
             _db = db;
-            _log = log; 
+            _log = log;
         }
+        
         [ExcludeFromCodeCoverage]
         public async Task<List<Havner>> HentAlleHavner_Fra()
-        {/*
-            List<Havner> lister = new List<Havner>();
-            lister.Add(new Havner());*/
+        {
+          //  List<Havner> lister = new List<Havner>();
+          //  lister.Add(new Havner());
 
-            return await _db.HentAlleHavner_Fra(); 
+             //return await _db.HentAlleHavner_Fra(); 
 
-           /* return lister.ToList(); //ToListAsync*/
-            //return await _db.HentAlleHavner_Fra();
+            // return lister.ToList(); //ToListAsync
+             return await _db.HentAlleHavner_Fra();
         }
 
         public async Task<List<ankomstHavner>> HentAlleHavnerTil(int id)
         {
             return await _db.HentAlleHavnerTil(id);
         }
+        */
 
 
+        public async Task<bool> LagreBillett(Billett lagetBillett)
+        {
+            return await _db.LagreBillett(lagetBillett);
+        }
+
+        public async Task<List<Billett>> HentBillett()
+        {
+            return await _db.HentBillett();
+        }
+
+        public async Task<List<ankomstHavner>> HentAlleHavnerTil(int id)
+        {
+            return await _db.HentAlleHavnerTil(id);
+        }
     }
 }

@@ -14,6 +14,15 @@
     <EmbeddedResource Remove="Tests\**" />
     <None Remove="Contexts\**" />
     <None Remove="Tests\**" />
+    <Content Remove="wwwroot\lugarFilter.html" />
+    <Content Remove="wwwroot\lugarCard.html" />
+    <Content Remove="wwwroot\spa.html" />
+    <Content Remove="wwwroot\indexOld.html" />
+    <Content Remove="wwwroot\indexLugar.html" />
+    <Content Remove="wwwroot\index2.html" />
+    <Content Remove="wwwroot\front.html" />
+    <Content Remove="wwwroot\js\spa.js" />
+    <Content Remove="wwwroot\js\site.js" />
   </ItemGroup>
 
   <ItemGroup>
