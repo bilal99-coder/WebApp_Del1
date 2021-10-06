@@ -38,7 +38,7 @@ namespace WebApp_Del1.DAL
     //public class Billett
      public class Bestilling
     {
-        [Key]
+    [Key]
     [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(DatabaseGeneratedOption.None)]
     public int BId { get; set; }
     //************Ny felt***************
