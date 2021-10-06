@@ -12,12 +12,13 @@ namespace WebApp_Del1.DAL
         // Task<bool> Bestill(Reiseinformasjon innReiseinformasjon, int[] lugar_Id, Person[] personerIBiletteten);
         Task<List<Havner>> HentAlleHavner_Fra();
         Task<bool> LagreBillett(Billett lagetBillett);
-       // Task<List<Havner>> HentAlleHavnerTil(int id);
+        //Task<List<Havner>> HentAlleHavnerTil(int id);
         Task<List<Billett>> HentBillett();
-       // double beregnPris(Reiseinformasjon info, Lugarer thisLugar);
-       // double beregnLugarerPris();
-       // double beregntjenesterPris();
-       //Task velgLugar(int id);
-       // Task<bool> fjernLugar(int id);
+        Task<List<ankomstHavner>> HentAlleHavnerTil(int id);
+        // double beregnPris(Reiseinformasjon info, Lugarer thisLugar);
+        // double beregnLugarerPris();
+        // double beregntjenesterPris();
+        //Task velgLugar(int id);
+        // Task<bool> fjernLugar(int id);
     }
 }

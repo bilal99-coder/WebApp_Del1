@@ -109,7 +109,7 @@ $("#btnNeste2").click(function () {
 //validerer antall barn og voksne
 
 $("#btnNeste").click(function () {
-    const antallVoksneOk = validerAntallvoksne($("#antallVoksen").val());
+    const antallVoksneOk = validerAntallvoksne($("#antallVoksne").val());
     const antallBarnOk = validerAntallBarn($("#antallBarn").val());
     if (antallVoksneOk && antallBarnOk) {
         $("#regform").hide();

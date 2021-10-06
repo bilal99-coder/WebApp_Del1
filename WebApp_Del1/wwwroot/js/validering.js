@@ -1,6 +1,6 @@
-﻿function validerAntallvoksne(antallVoksen) {
+﻿function validerAntallVoksne(antallVoksne) {
     const regexp = /^[1-9]{1}$/;
-    const ok = regexp.test(antallVoksen);
+    const ok = regexp.test(antallVoksne);
     if (!ok) {
         $("#antallVoksenFeil").html("Du må velge mellom 1-9 voksne").css('color', 'red');
         return false;

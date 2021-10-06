@@ -54,7 +54,26 @@ namespace WebApp_Del1.DAL
              
              */
         }
-        
+
+
+        public async Task<List<ankomstHavner>> HentAlleHavnerTil(int id)
+        {
+            try
+            {
+                //Henter Havnen som kunden ønsket fra databasen
+                Havner ønksetHavn = await _db.Havner.FirstOrDefaultAsync(havn => havn.HavnId == id);
+                return ønksetHavn.AnkomstHavner;
+                /*
+                ankomstHavner muligeAnkomstHavner = await _db.Havner
+                Ruter rute = await _db.Ruter.FirstOrDefaultAsync(rute => rute.avgangHavnen == ønksetHavn.HavnNavn);
+                List<Havner> alleMulige_AnkomstHavner = rute.ankomstHavner;
+                return alleMulige_AnkomstHavner;*/
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
 
         async public Task<bool> LagreBillett(Billett lagetBillett)
@@ -132,7 +151,9 @@ namespace WebApp_Del1.DAL
             try
             {
                 List<Billett> alleBilletter = await _db.Kunder.Select(b => new Billett
+
                 {
+ 
                     Kid = b.Kid,
                     Fornavn = b.Fornavn,
                     Etternavn = b.Etternavn,
@@ -146,6 +167,7 @@ namespace WebApp_Del1.DAL
                     AntallBarn = b.Bestillinger.AntallBarn
 
                 }).ToListAsync();
+    
                 return alleBilletter;
 
             }
@@ -153,6 +175,9 @@ namespace WebApp_Del1.DAL
             {
                 return null;
             }
+
+
+
             /*
             List<Kunde> alleKunder = _db.Kunder.ToList();
             List<Billett> alleBestillinger = new List<Billett>();

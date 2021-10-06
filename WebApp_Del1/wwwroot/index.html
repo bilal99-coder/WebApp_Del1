@@ -38,7 +38,7 @@
             <h1 class="overskrift">Hvor skal du?</h1>
             <div class="form-group">
                 <label>Reisetype:</label>
-                <select class="form-control" id="reisetype">
+                <select class="form-control" id="reisetype" onchange="skrivUt()">
                     <option value="enVei">En vei</option>
                     <option value="turRetur">Tur/Retur</option>
                 </select>
@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col">
                     <label for="fra">Fra:</label>
-                    <select class="form-control" id="fra"></select>
+                    <select class="form-control" id="fra" oninput="display2()"></select>
                     <div id="fraFeil"></div>
                 </div>
                 <div class="col">
@@ -68,12 +68,12 @@
             <div class="row">
                 <div class="col">
                     <label>Antall Voksne:</label>
-                    <input type="text" class="form-control" id="antallVoksen" onchange="validerAntallvoksne(this.value)" />
+                    <input type="number" min="1" max="9" class="form-control" id="antallVoksne" onchange="validerAntallVoksne(this.value)" />
                     <div id="antallVoksenFeil"></div>
                 </div>
                 <div class="col">
                     <label>Antall Barn:</label>
-                    <input type="number" class="form-control" id="antallBarn" onchange="validerAntallBarn(this.value)" />
+                    <input type="number" min="0" max="9" class="form-control" id="antallBarn" onchange="validerAntallBarn(this.value)" />
                     <div id="antallBarnFeil"></div>
                 </div>
             </div>
@@ -140,38 +140,39 @@
                     <div class="step-name">Third</div>
                 </div>
             </div>
-            <div class="row">
-                <div class="span6" id="span1">
                     <form class="form" action="" id="dobbelform">
-                        <h1 class="overskrift">Betaling</h1>
-                        <div class="form-group">
-                            <label>Kortnummer</label>
-                            <input type="text" class="form-control" id="kortnummer" placeholder="0000 0000 0000" onchange="validerKortnummer(this.value)" />
-                            <div id="kortnummerFeil"></div>
-                        </div>
                         <div class="row">
                             <div class="col">
-                                <label>Utløpsdato</label>
-                                <input type="text" placeholder="MM/YY" class="form-control" id="kortdato" onchange="validerKortdato(this.value)" />
-                                <div id="kortdatoFeil"></div>
+                                <h1 class="overskrift">Betaling</h1>
+                                <div class="form-group">
+                                    <label>Kortnummer</label>
+                                    <input type="text" class="form-control" id="kortnummer" placeholder="0000 0000 0000" onchange="validerKortnummer(this.value)" />
+                                    <div id="kortnummerFeil"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label>Utløpsdato</label>
+                                        <input type="text" placeholder="MM/YY" class="form-control" id="kortdato" onchange="validerKortdato(this.value)" />
+                                        <div id="kortdatoFeil"></div>
+                                    </div>
+                                    <div class="col">
+                                        <label>CVC</label>
+                                        <input placeholder="***" type="text" class="form-control" id="cvc" onchange="(this.value)" />
+                                        <div id="cvcFeil"></div>
+                                    </div>
+                                </div>
+                                <div class="btn-box" id="btnBox">
+                                    <button type="button" id="btnTilbake2">Tilbake</button>
+                                    <button type="button" id="btnFerdig">Betal</button>
+                                </div>
                             </div>
-                            <div class="col">
-                                <label>CVC</label>
-                                <input placeholder="***" type="text" class="form-control" id="cvc" onchange="(this.value)" />
-                                <div id="cvcFeil"></div>
-                            </div>
-                        </div>
-                        <div class="btn-box" id="btnBox">
-                            <button type="button" id="btnTilbake2">Tilbake</button>
-                            <button type="button" id="btnFerdig">Betal</button>
+                                <div class="col" id="oversikt">
+
+                                </div>
+                                
                         </div>
                     </form>
-                </div>
-            <div class="span6" id="span2">
-                <div id="oversikt"></div>
-            </div>
-        </div>
-            </div>
+                </div> 
     </div>
 </body>
 </html>

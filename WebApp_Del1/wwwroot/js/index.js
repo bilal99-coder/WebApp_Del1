@@ -5,8 +5,6 @@ $(function () {
     // hentAlleHavner_Fra1(); // fungerte også 
    // lagBillett();
     //dispalyVue3(1);
-    //hentAlleHavnerTil(1);
-
 }); 
 
 /*
@@ -45,47 +43,57 @@ function hentAlleHavner_Fra() {
 
 
 function hentAlleHavnerTil(id) {
-    const option = $("#fraHavn_" + "" + id + "");
-    $.post("billett/hentAlleHavnerTil?id=", option, function () {
-        formaterHavnerTil();
-    })
-
-    console.log(option.val());
-    //$.get("billett/hentAlleHavner_til", function (listeAvHavner) {
+    // Kall på ajax for havner til
+    $.ajax({
+        type: "POST",
+        url: "billett/hentAlleHavnerTil?id=" +
+            encodeURIComponent(id),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            formaterHavnerTil(result);
+        },
+        failure: function (response) {
+            alert(response.d);
+        }
+    });
 }
 
 
-function formaterHavner(listeAvHavner) {
-    let ut = ""; 
-    console.log(listeAvHavner);
-    for (let enHavn of listeAvHavner) {
-        ut += "<option  style='font-size:20px' id ='fraHavn_'"+ enHavn.havnId+"data-value=" + enHavn.havnId + ">"+ enHavn.havnNavn + "</option>";
-       console.log(Object.keys(listeAvHavner));
-       console.log(Object.values(enHavn));
-       console.log(Object.values(enHavn)[1]);
-       console.log(Object.entries(enHavn));
+
+//Formaterer havner til
+
+function formaterHavnerTil(Havner) {
+    let ut = "";
+    for (let enHavn of Havner) {
+        ut += "<option class='fa-bus' style='font-size:20px' data-value=" + enHavn.havnId + " >" + enHavn.havnNavn + "</option>"
     }
-    
-
-    $("#fra").html(ut);
+    $("#til").html(ut);
     console.log(ut);
+}
 
-};
+//formaterhavner
 
-function formaterHavnerTil(listeAvHavner) {
+function formaterHavner(listeAvHavner) {
     let ut = "";
     console.log(listeAvHavner);
     for (let enHavn of listeAvHavner) {
-        ut += "<option  style='font-size:20px' id ='fraHavn_'" + enHavn.havnId + "data-value=" + enHavn.havnId + ">" + enHavn.havnNavn + "</option>";
+        console.log(enHavn.havnId);
+        ut += "<option style='font-size:20px' id ='" + enHavn.havnId + "' " + "data-value=" + enHavn.havnId + ">" + enHavn.havnNavn + "</option>";
         console.log(Object.keys(listeAvHavner));
         console.log(Object.values(enHavn));
         console.log(Object.values(enHavn)[1]);
         console.log(Object.entries(enHavn));
     }
 
-}
 
 
+    $("#fra").html(ut);
+    console.log(ut);
+
+
+
+};
 
 /*
 // Når kunden bekrefter kjøpet 
@@ -277,9 +285,22 @@ function slettEnBarn(id) {
 
 
 
+function display2() {
+    $('#fra').on('change', function () {
+        let $op = $('#fra option:selected');
+        let Havn_PåTxt = $op.text();
+        /* let id = $('#fra option').filter(function () {
+        return this.value == val;
+        }).data('value');*/
+        let id = $("#fra option:selected").attr("id");
+        console.log(id);
 
 
 
+        hentAlleHavnerTil(id);
+        console.log($op.text());
+    });
+}
 
 
 
@@ -310,7 +331,7 @@ function slettEnBarn(id) {
     //validerer antall barn og voksne
 
     $("#btnNeste").click(function () {
-        const antallVoksneOk = validerAntallvoksne($("#antallVoksen").val());
+        const antallVoksneOk = validerAntallVoksne($("#antallVoksne").val());
         const antallBarnOk = validerAntallBarn($("#antallBarn").val());
         if (antallVoksneOk && antallBarnOk) {
             $("#regform").hide();
@@ -349,24 +370,27 @@ function slettEnBarn(id) {
 
     //lager en kvittering basert på input
 
-    function lagreBestilling() {
+function lagreBestilling() {
         const bestilling = {
             reisetype: $("#reisetype").val(),
             fra: $("#fra").val(),
             til: $("#til").val(),
             utreise: $("#utreise").val(),
             hjemreise: $("#hjemreise").val(),
-            antallVoksne: $("#antallVoksen").val(),
+         
+            antallVoksne: $("#antallVoksne").val(),
             antallBarn: $("#antallBarn").val(),
             fornavn: $("#fornavn").val(),
             etternavn: $("#etternavn").val(),
             epost: $("#epost").val()
         };
+        console.log(bestilling.hjemreise);
         const url = "Billett/LagreBillett"
         $.post(url, bestilling, function () {
             window.location.href = "kvittering.html";
         });
     }
+
 
 
  
@@ -388,20 +412,20 @@ $("#btnNeste2").click(function () {
     var til = $("#til").val();
     var utreise = $("#utreise").val();
     var hjemreise = $("#hjemreise").val();
-    var antallVoksne = $("#antallVoksen").val();
+    var antallVoksne = $("#antallVoksne").val();
     var antallBarn = $("#antallBarn").val();
     var fornavn = $("#fornavn").val();
     var etternavn = $("#etternavn").val();
     var epost = $("#epost").val();
 
-    const ut = "<form class='form' action='' id='dobbelform'>" + "<h1 class='overskrift'>Oversikt</h1>" + "<div class='form-control'>" + "<label>" + "<bold>Reisetype: </bold>" + "</label>" + reisetype + "<br>" +
-        "<label>" + "<bold>Fra - Til: </bold>" + "</label>" + fra + "<p> - </p>" + til + "<br>" +
-        "<label>" + "<bold>Utreise - Hjemreise: </bold>" + "</label>" + utreise + "<p> - </p>" + hjemreise + "<br>" +
-        "<label>" + "<bold>Antall Voksne: </bold>" + "</label>" + antallVoksne + "<br>" +
-        "<label>" + "<bold>Antall Barn: </bold>" + "</label>" + antallBarn + "<br>" +
-        "<label>" + "<bold>Fornavn: </bold>" + "</label>" + fornavn + "<br>" +
-        "<label>" + "<bold>Etternavn: </bold>" + "</label>" + etternavn + "<br>" +
-        "<label>" + "<bold>Epost: </bold>" + "</label>" + epost + "<br>" + "</div>" + "</form>"
+    const ut = "<h1 class='overskrift'>Oversikt</h1>" + "<div class='form-control'>" + "<label>" + "<bold>Reisetype: </bold>" + "</label>" + reisetype + 
+        "<label>" + "<bold>Fra - Til: </bold>" + "</label>" + fra + "<p> - </p>" + til + 
+        "<label>" + "<bold>Utreise - Hjemreise: </bold>" + "</label>" + utreise + "<p> - </p>" + hjemreise + 
+        "<label>" + "<bold>Antall Voksne: </bold>" + "</label>" + antallVoksne + 
+        "<label>" + "<bold>Antall Barn: </bold>" + "</label>" + antallBarn + 
+        "<label>" + "<bold>Fornavn: </bold>" + "</label>" + fornavn + 
+        "<label>" + "<bold>Etternavn: </bold>" + "</label>" + etternavn + 
+        "<label>" + "<bold>Epost: </bold>" + "</label>" + epost + "</div>";
 
     $("#oversikt").html(ut);
 });

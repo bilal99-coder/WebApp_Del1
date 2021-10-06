@@ -110,13 +110,22 @@ namespace WebApp_Del1.DAL
         [Key]
         public int HavnId { get; set; }
         public string HavnNavn { get; set; }
+    public virtual List<ankomstHavner> AnkomstHavner { get; set; }
 
     }
 
+public class ankomstHavner
+{
+    [Key]
+    public int HavnId { get; set; }
+    public string HavnNavn { get; set; }
 
 
 
-    public class BillettContext : DbContext
+}
+
+
+public class BillettContext : DbContext
     {
 
         public BillettContext(DbContextOptions<BillettContext> options) : base(options)
@@ -133,6 +142,7 @@ namespace WebApp_Del1.DAL
         public DbSet<Havner> Havner { get; set; }
     public DbSet<Kunde> Kunder { get; set; }
     public DbSet<Bestilling> Bestillinger { get; set; }
+    public DbSet<ankomstHavner> ankomstHavner { get; set; }
 
       protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
