@@ -34,91 +34,104 @@ namespace WebApp_Del1.DAL
          */
     }
 
-    //public class Billett
-  /*  public class Billett
-    {
-        [Key]
-        public int billettId { get; set; }
-        //************Ny felt***************
-       // public Betalere betaleren { get; set; }
-        //************Ny felt***************
-        public string fra { get; set; }
-        public string til { get; set; }
-        public int antallBarn { get; set; }
-        public int antallVoksne { get; set; }
-        public int antallReisende { get; set; }
-        public double pris { get; set; }
-        public string tidspunkt { get; set; }
-        public string type { get; set; }
-        //Flere personer kan dele samme billetten, så en billett kan ha flere personer i seg. denne Listen har en oppgave å lagre alle personer som er med i billetten 
-       // public virtual List<Personer> billettPersoner { get; set; }
-      //  public virtual List<Lugarer> billettLugarer { get; set; }
-    }
+//public class Billett
+/*  public class Billett
+  {
+      [Key]
+      public int billettId { get; set; }
+      //************Ny felt***************
+     // public Betalere betaleren { get; set; }
+      //************Ny felt***************
+      public string fra { get; set; }
+      public string til { get; set; }
+      public int antallBarn { get; set; }
+      public int antallVoksne { get; set; }
+      public int antallReisende { get; set; }
+      public double pris { get; set; }
+      public string tidspunkt { get; set; }
+      public string type { get; set; }
+      //Flere personer kan dele samme billetten, så en billett kan ha flere personer i seg. denne Listen har en oppgave å lagre alle personer som er med i billetten 
+     // public virtual List<Personer> billettPersoner { get; set; }
+    //  public virtual List<Lugarer> billettLugarer { get; set; }
+  }
 
 
-    public class Personer
-    {
-        [Key]
-        public int personId { get; set; }
+  public class Personer
+  {
+      [Key]
+      public int personId { get; set; }
 
-        public String fornavn { get; set; }//
-        public String etternavn { get; set; }
+      public String fornavn { get; set; }//
+      public String etternavn { get; set; }
 
-        public String epost { get; set; }
+      public String epost { get; set; }
 
-        //Hver person kan ha flere billetter så hver person skal ha en liste av billetter som attributt
-      //  public virtual List<Billett> personSinBilletter { get; set; }
+      //Hver person kan ha flere billetter så hver person skal ha en liste av billetter som attributt
+    //  public virtual List<Billett> personSinBilletter { get; set; }
 
-    }
-    /*
-    public class Betalere : Personer
-    {
-        public string kortholdersNavn { get; set; }
+  }
+  /*
+  public class Betalere : Personer
+  {
+      public string kortholdersNavn { get; set; }
 
-        public string kortNummer { get; set; }
+      public string kortNummer { get; set; }
 
-        public int cvc { get; set; }
+      public int cvc { get; set; }
 
-    }
-    */
+  }
+  */
 
-   /* public class PostSteder
-    {
-        [Key]
-        public string Postnr { get; set; }
-        public string Poststed { get; set; }
-    }
+/* public class PostSteder
+ {
+     [Key]
+     public string Postnr { get; set; }
+     public string Poststed { get; set; }
+ }
 
-    // Database Model for ruter 
-    /*  */
-    public class Ruter
-    {
-        [Key]
-        public int RuteId { get; set; }
-        public string avgangHavnen { get; set; }
-        public virtual List<string> ankomstHavner { get; set; }
-        public int pris { get; set; }
+ // Database Model for ruter 
+ /*  */
+/* public class Ruter
+ {
+     [Key]
+     public int RuteId { get; set; }
+     public Havner avgangHavnen { get; set; }
+     public  List<Havner> ankomstHavner { get; set; }
+     public int pris { get; set; }
 
-    }
+ }
+*/
+
+
+public class Havner
+{
+    [Key]
+    public int HavnId { get; set; }
+    public string HavnNavn { get; set; }
+
+    public virtual List<ankomstHavner> AnkomstHavner { get; set; }
+
+}
+
+public class ankomstHavner
+{
+    [Key]
+    public int HavnId { get; set; }
+    public string HavnNavn { get; set; }
+
+}
+
   
 
-    public class Havner
-    {
-        [Key]
-        public int HavnId { get; set; }
-        public string HavnNavn { get; set; }
-
-    }
 
 
 
 
-    public class BillettContext : DbContext
+public class BillettContext : DbContext
     {
 
         public BillettContext(DbContextOptions<BillettContext> options) : base(options)
         {
-
             Database.EnsureCreated();
         }
 
@@ -126,10 +139,10 @@ namespace WebApp_Del1.DAL
        // public DbSet<Billett> billetter { get; set; }
        // public DbSet<Personer> personer { get; set; }
        // public DbSet<Betalere> Betalere { get; set; }
-          public DbSet<Ruter> Ruter { get; set; }
+        //  public DbSet<Ruter> Ruter { get; set; }
         public DbSet<Havner> Havner { get; set; }
-
-      protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+         public DbSet<ankomstHavner> ankomstHavner { get; set; }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
         }

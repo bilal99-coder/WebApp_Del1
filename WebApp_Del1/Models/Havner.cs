@@ -11,6 +11,7 @@ namespace WebApp_Del1.Models
         [Key]
         public int HavnId { get; set; }
         public string HavnNavn { get; set; }
+        public virtual List<ankomstHavner> AnkomstHavner { get; set; }
     }
 }
 /*

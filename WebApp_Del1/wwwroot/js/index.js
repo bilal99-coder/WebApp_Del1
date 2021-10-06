@@ -6,9 +6,13 @@ $(function () {
     // hentAlleHavner_Fra1(); // fungerte også 
    // lagBillett();
     dispalyVue3(1);
-    hentAlleHavnerTil(1);
+    //hentAlleHavnerTil(1);
+   // hentAlleHavnerTil(id)
+    display2();
+    oppgiHavnerTil()
 
 }); 
+
 
 
 let counter = 0; 
@@ -41,13 +45,72 @@ function hentAlleHavner_Fra() {
 
 };
 
+function display2() {
+    $('#fra').on('change', function () {
+        let $op = $('#fra option:selected');
+        let Havn_PåTxt = $op.text();
+       /* let id = $('#fra option').filter(function () {
+            return this.value == val;
+        }).data('value');*/
+        let id = $("#fra option:selected").attr("id");
+        console.log(id);
+
+        hentAlleHavnerTil(id);
+        console.log($op.text());
+    });
+}
+
+// Funksjon som oppgir havner til når kunden åpner nettsiden 
+
+function oppgiHavnerTil() {
+    $.ajax({
+        type: "POST",
+        url: "billett/hentAlleHavnerTil?id=" + 1,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            formaterHavnerTil(result);
+        },
+        failure: function (response) {
+            alert(response.d);
+        }
+
+    }); 
+
+
+
+  
+}
+
+
+
 
 
 function hentAlleHavnerTil(id) {
-    const option = $("#fraHavn_" + "" + id + "");
+    // Kall på ajax for havner til 
+    $.ajax({
+        type: "POST",
+        url: "billett/hentAlleHavnerTil?id=" +
+            encodeURIComponent(id),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            formaterHavnerTil(result);
+        },
+        failure: function (response) {
+            alert(response.d);
+        }
+    });
+}
 
-    console.log(option.val());
-    //$.get("billett/hentAlleHavner_til", function (listeAvHavner) {
+//Formaterer havnertil med ikon
+function formaterHavnerTil(Havner) {
+    let ut = "";
+    for (let enHavn of Havner) {
+        ut += "<option class='fa-bus' style='font-size:20px' data-value=" + enHavn.havnId + " >" + enHavn.havnNavn + "</option>"
+    }
+    $("#til").html(ut);
+    console.log(ut);
 }
 
 
@@ -55,7 +118,8 @@ function formaterHavner(listeAvHavner) {
     let ut = ""; 
     console.log(listeAvHavner);
     for (let enHavn of listeAvHavner) {
-        ut += "<option  style='font-size:20px' id ='fraHavn_'"+ enHavn.havnId+"data-value=" + enHavn.havnId + ">"+ enHavn.havnNavn + "</option>";
+        console.log(enHavn.havnId);
+        ut += "<option  style='font-size:20px' id ='" + enHavn.havnId + "' " + "data-value=" + enHavn.havnId + ">" + enHavn.havnNavn + "</option>";
        console.log(Object.keys(listeAvHavner));
        console.log(Object.values(enHavn));
        console.log(Object.values(enHavn)[1]);
@@ -134,6 +198,7 @@ function count_AndReturn_Persons() {
 
 function dispalyVue3(accept) {
     if (accept === 1) {
+
         //Telle antall personer som e med i billetten 
         const antallVoksne = parseInt($("antallVoksen").val()); ////
         const antallBarn = parseInt($("antallVoksen").val());

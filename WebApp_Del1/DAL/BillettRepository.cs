@@ -28,6 +28,7 @@ namespace WebApp_Del1.DAL
             {
                 List<Havner> alleHavner = await _db.Havner.ToListAsync();
                 return alleHavner;
+               
                 // List<Havner> lister = new List<Havner>();
                 //lister.Add(new Havner {HavnNavn ="Oslo"} , new Havner { HavnNavn ="Bergen"}) ;
                 //return lister; ;
@@ -44,24 +45,23 @@ namespace WebApp_Del1.DAL
              
              "The source IQueryable doesn't implement IDbAsyncEnumerable<Havner>. Only sources that implement IDbAsyncEnumerable can be used for Entity Framework asynchronous operations. For more details see http://go.microsoft.com/fwlink/?LinkId=287068."
              
-             
-             
-             
-             
              */
 
         }
        
 
-        public async Task<List<string>> HentAlleStasjonerTil(int id)
+       public async Task<List<ankomstHavner>> HentAlleHavnerTil(int id)
         {
             try
             {
                 //Henter Havnen som kunden ønsket fra databasen 
                 Havner ønksetHavn = await _db.Havner.FirstOrDefaultAsync(havn => havn.HavnId == id);
+                return ønksetHavn.AnkomstHavner; 
+                /*
+                ankomstHavner muligeAnkomstHavner = await _db.Havner
                 Ruter rute = await _db.Ruter.FirstOrDefaultAsync(rute => rute.avgangHavnen == ønksetHavn.HavnNavn);
-                List<string> alleMulige_AnkomstHavner = rute.ankomstHavner;
-                return alleMulige_AnkomstHavner;
+                List<Havner> alleMulige_AnkomstHavner = rute.ankomstHavner;
+                return alleMulige_AnkomstHavner;*/
             }
             catch
             {
