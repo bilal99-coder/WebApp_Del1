@@ -2,11 +2,8 @@
 
 $(function () {
     hentAlleHavner_Fra();
-    // hentAlleHavner_Fra1(); // fungerte også 
-   // lagBillett();
-    dispalyVue3(1);
-    hentAlleHavnerTil(1);
-
+    oppgiHavnerTil(); 
+    dispalyVue3(1);s
 }); 
 
 
@@ -26,7 +23,7 @@ function hentAlleHavner_Fra1(){
     }
     request.send();
 }; 
-*/
+
 
 //Henter alle havner for første select i Gui
 
@@ -74,9 +71,6 @@ function oppgiHavnerTil() {
 
     }); 
 
-
-
-  
 }
 
 
@@ -131,8 +125,6 @@ function formaterHavner(listeAvHavner) {
 
 };
 
-
-};
 
 /*
 // Når kunden bekrefter kjøpet 

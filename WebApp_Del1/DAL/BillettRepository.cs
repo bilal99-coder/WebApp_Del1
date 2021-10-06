@@ -30,7 +30,7 @@ namespace WebApp_Del1.DAL
             {
                 List<Havner> alleHavner = await _db.Havner.ToListAsync();
                 return alleHavner;
-               
+
                 // List<Havner> lister = new List<Havner>();
                 //lister.Add(new Havner {HavnNavn ="Oslo"} , new Havner { HavnNavn ="Bergen"}) ;
                 //return lister; ;
@@ -73,6 +73,36 @@ namespace WebApp_Del1.DAL
         }
 
 
+
+        public async Task<List<Billett>> HentBillett()
+        {
+            try
+            {
+                List<Billett> alleBilletter = await _db.Kunder.Select(b => new Billett
+                {
+                    Kid = b.Kid,
+                    Fornavn = b.Fornavn,
+                    Etternavn = b.Etternavn,
+                    Epost = b.Epost,
+                    Reisetype = b.Bestillinger.Reisetype,
+                    Fra = b.Bestillinger.Fra,
+                    Til = b.Bestillinger.Til,
+                    Utreise = b.Bestillinger.Utreise,
+                    Hjemreise = b.Bestillinger.Hjemreise,
+                    AntallVoksne = b.Bestillinger.AntallVoksne,
+                    AntallBarn = b.Bestillinger.AntallBarn
+
+                }).ToListAsync();
+                return alleBilletter;
+
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+
         async public Task<bool> LagreBillett(Billett lagetBillett)
         {
             try
@@ -82,25 +112,56 @@ namespace WebApp_Del1.DAL
                 nyKundeRad.Etternavn = lagetBillett.Etternavn;
                 nyKundeRad.Epost = lagetBillett.Epost;
 
-        public async Task<List<string>> HentAlleStasjonerTil(int id)
-        {
-            try
-            {
-                //Henter Havnen som kunden ønsket fra databasen 
-                Havner ønksetHavn = await _db.Havner.FirstOrDefaultAsync(havn => havn.HavnId == id);
-                return ønksetHavn.AnkomstHavner; 
-                /*
-                ankomstHavner muligeAnkomstHavner = await _db.Havner
-                Ruter rute = await _db.Ruter.FirstOrDefaultAsync(rute => rute.avgangHavnen == ønksetHavn.HavnNavn);
-                List<Havner> alleMulige_AnkomstHavner = rute.ankomstHavner;
-                return alleMulige_AnkomstHavner;*/
+                var sjekkBId = await _db.Bestillinger.FindAsync(lagetBillett.BId);
+                if (sjekkBId == null)
+                {
+                    var nyBestillingRad = new Bestilling();
+                    nyBestillingRad.BId = lagetBillett.BId;
+                    nyBestillingRad.Reisetype = lagetBillett.Reisetype;
+                    nyBestillingRad.Fra = lagetBillett.Fra;
+                    nyBestillingRad.Til = lagetBillett.Til;
+                    nyBestillingRad.Utreise = lagetBillett.Utreise;
+                    nyBestillingRad.Hjemreise = lagetBillett.Hjemreise;
+                    nyBestillingRad.AntallVoksne = lagetBillett.AntallVoksne;
+                    nyBestillingRad.AntallBarn = lagetBillett.AntallBarn;
+                    nyKundeRad.Bestillinger = nyBestillingRad;
+                }
+                else
+                {
+                    nyKundeRad.Bestillinger = sjekkBId;
+                }
+                _db.Kunder.Add(nyKundeRad);
+                await _db.SaveChangesAsync();
+                return true;
             }
+
             catch
             {
-                return null;
+                return false;
             }
-        }*/
-    }
+
+        }
+
+
+
+
+
+            /*
+            async public Task<bool> LagreBillett(Billett lagetBillett)
+            {
+                try
+                {
+                    var nyKundeRad = new Kunde();
+                    nyKundeRad.Fornavn = lagetBillett.Fornavn;
+                    nyKundeRad.Etternavn = lagetBillett.Etternavn;
+                    nyKundeRad.Epost = lagetBillett.Epost;
+                }
+                catch (Exception e)
+                {
+
+                }
+            }*/
+        }
 }
 
         /*

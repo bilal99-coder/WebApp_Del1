@@ -34,12 +34,7 @@ namespace WebApp_Del1.Controllers
              return await _db.HentAlleHavner_Fra();
         }
 
-        public async Task<List<ankomstHavner>> HentAlleHavnerTil(int id)
-        {
-            return await _db.HentAlleHavnerTil(id);
-        }
-        */
-
+        
 
         public async Task<bool> LagreBillett(Billett lagetBillett)
         {
