@@ -38,7 +38,7 @@
             <h1 class="overskrift">Hvor skal du?</h1>
             <div class="form-group">
                 <label>Reisetype:</label>
-                <select class="form-control" id="reisetype" onchange="skrivUt()">
+                <select class="form-control" id="reisetype" >
                     <option value="enVei">En vei</option>
                     <option value="turRetur">Tur/Retur</option>
                 </select>
@@ -63,7 +63,7 @@
                 <input type="date" class="datepicker" id="utreise" />
                 <div id="utreiseFeil"></div>
             </div>
-            <div class="form-group" id="hjemreise">
+            <div class="form-group" >
                 <label for="hjemreiseDate">Hjemreise:</label>
                 <input type="date" class="datepicker" id="hjemreise" />
             </div>
@@ -81,7 +81,7 @@
             </div>
 
             <div class="btn-box">
-                <button type="button" id="btnNeste">Neste</button>
+                <button type="button" id="btnNeste" onclick="check()">Neste</button>
             </div>
         </form>
 

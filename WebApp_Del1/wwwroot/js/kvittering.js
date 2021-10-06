@@ -10,8 +10,9 @@ function formaterBestilling(bestillinger){
     let ut = "<form class='form'>";
     for (let bestilling of bestillinger) {
        // if (bestilling !== null)
-
-            if (bestilling.reisetype = "enVei") {
+        
+        if (bestilling.reisetype == 'enVei') {
+            console.log("Hei fra linje 15 i kvittering.js")
                 ut +=
                     "<h1 id='overskrift'>Kvittering</h1>" +
                     "<div class='row'>" +
@@ -27,7 +28,8 @@ function formaterBestilling(bestillinger){
                     "</div>" +
                     "</div>" +
                     "<label id='reiseKodeLabel'> ReiseKode: </label>" + "<br>" + "<h3 id='reiseKode'>RSDFS1254</h3>";
-            } else {
+        } else {
+            console.log("Hei fra linje 32 i kvittering.js // Dette må være for turRetur")
                 ut +=
                     "<h1 id='overskrift'>Kvittering</h1>" +
                     "<div class='row'>" +

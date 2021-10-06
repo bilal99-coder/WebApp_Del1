@@ -3,7 +3,7 @@
 $(function () {
     hentAlleHavner_Fra();
     oppgiHavnerTil(); 
-    dispalyVue3(1);s
+    dispalyVue3();
 }); 
 
 
@@ -94,6 +94,9 @@ function hentAlleHavnerTil(id) {
     });
 }
 
+
+
+
 //Formaterer havnertil med ikon
 function formaterHavnerTil(Havner) {
     let ut = "";
@@ -117,9 +120,6 @@ function formaterHavner(listeAvHavner) {
        console.log(Object.values(enHavn)[1]);
        console.log(Object.entries(enHavn));
     }
-
-
-
     $("#fra").html(ut);
     console.log(ut);
 
@@ -188,7 +188,7 @@ function count_AndReturn_Persons() {
     };
     return personene;
 }*/
-/*
+
 
 function dispalyVue3(accept) {
     if (accept === 1) {
@@ -278,8 +278,10 @@ function dispalyVue3(accept) {
 
             
         }
-    }
-    */
+}
+
+
+    
     /*
     function countAlleReisende() {
         //Telle antall personer som e med i billetten 
@@ -369,10 +371,10 @@ function display2() {
             $("#regform").hide();
             $("#regform2").show();
         }
-
     });
-    //Dersom det endres til "tur/retur vil det synliggjøres et nyttfelt for hjemreise" - dette fynker ikke enda/
 
+
+    //Dersom det endres til "tur/retur vil det synliggjøres et nyttfelt for hjemreise
     $("#hjemreise").hide();
 
     $("#reisetype").change(function () {
@@ -409,21 +411,43 @@ function lagreBestilling() {
             til: $("#til").val(),
             utreise: $("#utreise").val(),
             hjemreise: $("#hjemreise").val(),
-         
             antallVoksne: $("#antallVoksne").val(),
             antallBarn: $("#antallBarn").val(),
             fornavn: $("#fornavn").val(),
             etternavn: $("#etternavn").val(),
             epost: $("#epost").val()
-        };
-        console.log(bestilling.hjemreise);
+    };
         const url = "Billett/LagreBillett"
         $.post(url, bestilling, function () {
             window.location.href = "kvittering.html";
         });
+    // console.log(bestilling.hjemreise);
     }
 
+function check() {
+    const bestilling = {
+        reisetype: $("#reisetype").val(),
+        fra: $("#fra").val(),
+        til: $("#til").val(),
+        utreise: $("#utreise").val(),
+        hjemreise: $("#hjemreise").val(),
+        antallVoksne: $("#antallVoksne").val(),
+        antallBarn: $("#antallBarn").val(),
+        fornavn: $("#fornavn").val(),
+        etternavn: $("#etternavn").val(),
+        epost: $("#epost").val()
+    };
+    console.log(bestilling);
 
+    let reisetype= $("#reisetype").val();
+    if (reisetype == 'enVei') {
+        console.log("Dette er en vei");
+    }
+
+    if (reisetype == 'turRetur') {
+        console.log("Dette er en turRetur");
+    }
+}
 
  
  
@@ -449,15 +473,29 @@ $("#btnNeste2").click(function () {
     var fornavn = $("#fornavn").val();
     var etternavn = $("#etternavn").val();
     var epost = $("#epost").val();
+    let ut = ""; 
+    if (reisetype == 'enVei') {
+        console.log("Dette er en vei fra linje 477");
+         ut += "<form class='form' action='' id='dobbelform'>" + "<h1 class='overskrift'>Oversikt</h1>" + "<div class='form-control'>" + "<label>" + "<bold>Reisetype: </bold>" + "</label>" + reisetype + "<br>" +
+            "<label>" + "<bold>Fra - Til: </bold>" + "</label>" + fra + "<p> - </p>" + til + "<br>" +
+            "<label>" + "<bold>Utreise - Hjemreise: </bold>" + "</label>" + utreise + "<p> - </p>" + hjemreise + "<br>" +
+            "<label>" + "<bold>Antall Voksne: </bold>" + "</label>" + antallVoksne + "<br>" +
+            "<label>" + "<bold>Antall Barn: </bold>" + "</label>" + antallBarn + "<br>" +
+            "<label>" + "<bold>Fornavn: </bold>" + "</label>" + fornavn + "<br>" +
+            "<label>" + "<bold>Etternavn: </bold>" + "</label>" + etternavn + "<br>" +
+            "<label>" + "<bold>Epost: </bold>" + "</label>" + epost + "<br>" + "</div>" + "</form>"
+    }
 
-    const ut = "<h1 class='overskrift'>Oversikt</h1>" + "<div class='form-control'>" + "<label>" + "<bold>Reisetype: </bold>" + "</label>" + reisetype + 
-        "<label>" + "<bold>Fra - Til: </bold>" + "</label>" + fra + "<p> - </p>" + til + 
-        "<label>" + "<bold>Utreise - Hjemreise: </bold>" + "</label>" + utreise + "<p> - </p>" + hjemreise + 
-        "<label>" + "<bold>Antall Voksne: </bold>" + "</label>" + antallVoksne + 
-        "<label>" + "<bold>Antall Barn: </bold>" + "</label>" + antallBarn + 
-        "<label>" + "<bold>Fornavn: </bold>" + "</label>" + fornavn + 
-        "<label>" + "<bold>Etternavn: </bold>" + "</label>" + etternavn + 
-        "<label>" + "<bold>Epost: </bold>" + "</label>" + epost + "</div>";
-
+    if (reisetype == 'turRetur') {
+         console.log("Dette er en turRetur fra linje 490");
+         ut += "<h1 class='overskrift'>Oversikt</h1>" + "<div class='form-control'>" + "<label>" + "<bold>Reisetype: </bold>" + "</label>" + reisetype +
+            "<label>" + "<bold>Fra - Til: </bold>" + "</label>" + fra + "<p> - </p>" + til +
+            "<label>" + "<bold>Utreise - Hjemreise: </bold>" + "</label>" + utreise + "<p> - </p>" + hjemreise +
+            "<label>" + "<bold>Antall Voksne: </bold>" + "</label>" + antallVoksne +
+            "<label>" + "<bold>Antall Barn: </bold>" + "</label>" + antallBarn +
+            "<label>" + "<bold>Fornavn: </bold>" + "</label>" + fornavn +
+            "<label>" + "<bold>Etternavn: </bold>" + "</label>" + etternavn +
+            "<label>" + "<bold>Epost: </bold>" + "</label>" + epost + "</div>";
+    }
     $("#oversikt").html(ut);
 });
