@@ -476,26 +476,27 @@ $("#btnNeste2").click(function () {
     let ut = ""; 
     if (reisetype == 'enVei') {
         console.log("Dette er en vei fra linje 477");
-         ut += "<form class='form' action='' id='dobbelform'>" + "<h1 class='overskrift'>Oversikt</h1>" + "<div class='form-control'>" + "<label>" + "<bold>Reisetype: </bold>" + "</label>" + reisetype + "<br>" +
-            "<label>" + "<bold>Fra - Til: </bold>" + "</label>" + fra + "<p> - </p>" + til + "<br>" +
-            "<label>" + "<bold>Utreise - Hjemreise: </bold>" + "</label>" + utreise + "<p> - </p>" + hjemreise + "<br>" +
-            "<label>" + "<bold>Antall Voksne: </bold>" + "</label>" + antallVoksne + "<br>" +
-            "<label>" + "<bold>Antall Barn: </bold>" + "</label>" + antallBarn + "<br>" +
-            "<label>" + "<bold>Fornavn: </bold>" + "</label>" + fornavn + "<br>" +
-            "<label>" + "<bold>Etternavn: </bold>" + "</label>" + etternavn + "<br>" +
-            "<label>" + "<bold>Epost: </bold>" + "</label>" + epost + "<br>" + "</div>" + "</form>"
+        ut += "<h1 class='overskrift'>Oversikt</h1>" + "<div class='form-group'>" +
+            "<label class='form-control'>" + fornavn + " " + etternavn + "</label>" +
+            "<label class='form-control'>" + epost + "</label>" +
+            "<label class='form-control'>" + reisetype + "</label>" +
+            "<label class='form-control'>" + fra + " - " + til + "</label>" +
+            "<label class='form-control'>" + "Utreise: " + utreise + "</label>" +
+            "<label class='form-control'>" + antallVoksne + " Voksen og " + antallBarn + " Barn" + "</label>";
     }
 
-    if (reisetype == 'turRetur') {
-         console.log("Dette er en turRetur fra linje 490");
-         ut += "<h1 class='overskrift'>Oversikt</h1>" + "<div class='form-control'>" + "<label>" + "<bold>Reisetype: </bold>" + "</label>" + reisetype +
-            "<label>" + "<bold>Fra - Til: </bold>" + "</label>" + fra + "<p> - </p>" + til +
-            "<label>" + "<bold>Utreise - Hjemreise: </bold>" + "</label>" + utreise + "<p> - </p>" + hjemreise +
-            "<label>" + "<bold>Antall Voksne: </bold>" + "</label>" + antallVoksne +
-            "<label>" + "<bold>Antall Barn: </bold>" + "</label>" + antallBarn +
-            "<label>" + "<bold>Fornavn: </bold>" + "</label>" + fornavn +
-            "<label>" + "<bold>Etternavn: </bold>" + "</label>" + etternavn +
-            "<label>" + "<bold>Epost: </bold>" + "</label>" + epost + "</div>";
+    else if (reisetype == 'turRetur') {
+        console.log("Dette er en turRetur fra linje 490");
+        ut += "<h1 class='overskrift'>Oversikt</h1>" + "<div class='form-group'>" +
+            "<label class='form-control'>" + fornavn + " " + etternavn + "</label>" +
+            "<label class='form-control'>" + epost + "</label>" +
+            "<label class='form-control'>" + reisetype + "</label>" +
+            "<label class='form-control'>" + fra + " - " + til + "</label>" +
+            "<label class='form-control'>" + "Utreise: " + utreise + "</label>" +
+            "<label class='form-control'>" + "Hjemreise: " + hjemreise + "</label>" +
+            "<label class='form-control'>" + antallVoksne + " Voksen og " + antallBarn + " Barn" + "</label>";
     }
-    $("#oversikt").html(ut);
+
+        $("#oversikt").html(ut);
+    
 });

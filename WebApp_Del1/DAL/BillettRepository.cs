@@ -78,7 +78,7 @@ namespace WebApp_Del1.DAL
         {
             try
             {
-                Billett billett = await 
+               // Billett billett = await 
 
 
 
