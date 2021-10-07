@@ -36,21 +36,18 @@ namespace WebApp_Del1.DAL
     }
 
     //public class Billett
-     public class Bestilling
-    {
-    [Key]
-    [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public int BId { get; set; }
-    //************Ny felt***************
-    // public Betalere betaleren { get; set; }
-    //************Ny felt***************
-        public string Reisetype { get; set; }
-        public string Fra { get; set; }
-        public string Til { get; set; }
-        public string Utreise { get; set; }
-        public string Hjemreise { get; set; }
-        public string AntallVoksne { get; set; }
-        public string AntallBarn { get; set; }
+     public class Billetter
+{
+        [Key]
+        public int BId { get; set; }
+        public int Kid { get; set; }
+        public string Reisetype     { get; set; }
+        public string Fra           { get; set; }
+        public string Til           { get; set; }
+        public string Utreise       { get; set; }
+        public string Hjemreise     { get; set; }
+        public string AntallVoksne  { get; set; }
+        public string AntallBarn    { get; set; }
       //virtual public List<Kunde> Kunde { get; set; }
     //public int antallReisende { get; set; }
     //public double pris { get; set; }
@@ -70,9 +67,9 @@ namespace WebApp_Del1.DAL
         public String Epost { get; set; }
 
         //Hver person kan ha flere billetter så hver person skal ha en liste av billetter som attributt
-        virtual public Bestilling Bestillinger { get; set; }
+        public virtual  List<Billetter> bestillinger { get; set; }
 
-  }
+    }
   /*
   public class Betalere : Personer
   {
@@ -124,13 +121,6 @@ public class ankomstHavner
 
 }
 
-  
-
-
-
-
-
-
 
 public class BillettContext : DbContext
     {
@@ -146,9 +136,9 @@ public class BillettContext : DbContext
        // public DbSet<Betalere> Betalere { get; set; }
         //  public DbSet<Ruter> Ruter { get; set; }
         public DbSet<Havner> Havner { get; set; }
-    public DbSet<Kunde> Kunder { get; set; }
-    public DbSet<Bestilling> Bestillinger { get; set; }
-    public DbSet<ankomstHavner> ankomstHavner { get; set; }
+        public DbSet<Kunde> Kunder { get; set; }
+        public DbSet<Billetter> Bestillinger { get; set; }
+        public DbSet<ankomstHavner> ankomstHavner { get; set; }
 
       protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

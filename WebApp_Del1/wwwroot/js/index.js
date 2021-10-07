@@ -405,24 +405,33 @@ function display2() {
     //lager en kvittering basert på input
 
 function lagreBestilling() {
-        const bestilling = {
-            reisetype: $("#reisetype").val(),
-            fra: $("#fra").val(),
-            til: $("#til").val(),
-            utreise: $("#utreise").val(),
-            hjemreise: $("#hjemreise").val(),
-            antallVoksne: $("#antallVoksne").val(),
-            antallBarn: $("#antallBarn").val(),
-            fornavn: $("#fornavn").val(),
-            etternavn: $("#etternavn").val(),
-            epost: $("#epost").val()
+    const Billett = {
+            Reisetype: $("#reisetype").val(),
+            Fra: $("#fra").val(),
+            Til: $("#til").val(),
+            Utreise: $("#utreise").val(),
+            Hjemreise: $("#hjemreise").val(),
+            AntallVoksne: $("#antallVoksne").val(),
+            AntallBarn: $("#antallBarn").val(),
+            Fornavn: $("#fornavn").val(),
+            Etternavn: $("#etternavn").val(),
+            Epost: $("#epost").val()
     };
-        const url = "Billett/LagreBillett"
-        $.post(url, bestilling, function () {
+    const url = "Billett/lagreBillett";
+    $.post(url, Billett, function (OK) {
+        console.log(OK); 
+        if (OK) {
+            console.log(OK);
+            sessionStorage.setItem("billettId", OK);
             window.location.href = "kvittering.html";
+        }
+        else {
+            console.log("Feil i db for tur - prøv igjen senere");
+        }
+           
         });
-    // console.log(bestilling.hjemreise);
-    }
+}
+
 
 function check() {
     const bestilling = {

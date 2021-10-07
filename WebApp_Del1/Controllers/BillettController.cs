@@ -36,14 +36,14 @@ namespace WebApp_Del1.Controllers
 
         
 
-        public async Task<bool> LagreBillett(Billett lagetBillett)
+        public async Task<string> LagreBillett(Billett lagetBillett)
         {
             return await _db.LagreBillett(lagetBillett);
         }
 
-        public async Task<List<Billett>> HentBillett()
+        public async Task<Billett> HentBillett(int id)
         {
-            return await _db.HentBillett();
+            return await _db.HentBillett(id);
         }
 
         public async Task<List<ankomstHavner>> HentAlleHavnerTil(int id)

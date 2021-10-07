@@ -30,26 +30,11 @@ namespace WebApp_Del1.DAL
             {
                 List<Havner> alleHavner = await _db.Havner.ToListAsync();
                 return alleHavner;
-
-                // List<Havner> lister = new List<Havner>();
-                //lister.Add(new Havner {HavnNavn ="Oslo"} , new Havner { HavnNavn ="Bergen"}) ;
-                //return lister; ;
             }
-            catch (Exception e)
+            catch 
             {
-                var alleHavner1 = new List<Havner>{ new Havner { HavnNavn ="there is an error in the database" },
-                                                    new Havner {HavnNavn =  "line 34billettcontext"},
-                                                    new Havner {HavnNavn =  e.Message.ToString()},
-                                               };
-                // return null; 
-                return alleHavner1;
+                return null; 
             }
-
-            /*
-             
-             "The source IQueryable doesn't implement IDbAsyncEnumerable<Havner>. Only sources that implement IDbAsyncEnumerable can be used for Entity Framework asynchronous operations. For more details see http://go.microsoft.com/fwlink/?LinkId=287068."
-             
-             */
         }
 
 
@@ -59,12 +44,7 @@ namespace WebApp_Del1.DAL
             {
                 //Henter Havnen som kunden ønsket fra databasen
                 Havner ønksetHavn = await _db.Havner.FirstOrDefaultAsync(havn => havn.HavnId == id);
-                return ønksetHavn.AnkomstHavner;
-                /*
-                ankomstHavner muligeAnkomstHavner = await _db.Havner
-                Ruter rute = await _db.Ruter.FirstOrDefaultAsync(rute => rute.avgangHavnen == ønksetHavn.HavnNavn);
-                List<Havner> alleMulige_AnkomstHavner = rute.ankomstHavner;
-                return alleMulige_AnkomstHavner;*/
+                return ønksetHavn.AnkomstHavner;        
             }
             catch
             {
@@ -74,31 +54,40 @@ namespace WebApp_Del1.DAL
 
 
 
-        public async Task<List<Billett>> HentBillett()
+        public async Task<Billett> HentBillett(int id)
         {
             try
             {
-                Billett billett = await 
 
-
-
-                List<Billett> alleBilletter = await _db.Kunder.Select(b => new Billett
+                Billetter funnet_bestilling = await _db.Bestillinger.FirstOrDefaultAsync(k => k.BId == id);
+                Kunde funnet_Kunde = await _db.Kunder.FirstOrDefaultAsync(k => k.Kid == funnet_bestilling.Kid +1);
+               
+                
+                if (funnet_bestilling != null)
                 {
-                    Kid = b.Kid,
-                    Fornavn = b.Fornavn,
-                    Etternavn = b.Etternavn,
-                    Epost = b.Epost,
-                    Reisetype = b.Bestillinger.Reisetype,
-                    Fra = b.Bestillinger.Fra,
-                    Til = b.Bestillinger.Til,
-                    Utreise = b.Bestillinger.Utreise,
-                    Hjemreise = b.Bestillinger.Hjemreise,
-                    AntallVoksne = b.Bestillinger.AntallVoksne,
-                    AntallBarn = b.Bestillinger.AntallBarn
+                    Billett billett = new Billett
+                    {
+                      //  Kid = funnet_bestilling.Kid,
+                        Fornavn = funnet_Kunde.Fornavn,
+                        Etternavn = funnet_Kunde.Etternavn,
+                        Epost = funnet_Kunde.Epost,
+                        Reisetype = funnet_bestilling.Reisetype,
+                        Fra = funnet_bestilling.Fra,
+                        Til = funnet_bestilling.Til,
+                        Utreise = funnet_bestilling.Utreise,
+                        Hjemreise = funnet_bestilling.Hjemreise,
+                        AntallVoksne = funnet_bestilling.AntallVoksne,
+                        AntallBarn = funnet_bestilling.AntallBarn
+                    };
 
-                }).ToListAsync();
-                return alleBilletter;
+                return billett;
 
+                }
+                else
+                {
+                    return null; 
+                }
+                    
             }
             catch
             {
@@ -107,12 +96,12 @@ namespace WebApp_Del1.DAL
 
         }
 
-        async public Task<bool> LagreBillett(Billett lagetBillett)
+        async public Task<string> LagreBillett(Billett lagetBillett)
         {
             try
             {
-                var nyBestillingRad = new Bestilling();
-                //nyBestillingRad.BId = lagetBillett.BId;  --> Id blir automatisk generert fra databasen
+                var nyBestillingRad = new Billetter();
+                //nyBestillingRad.BId = lagetBillett.BId;//  --> Id blir automatisk generert fra databasen
                 nyBestillingRad.Reisetype = lagetBillett.Reisetype;
                 nyBestillingRad.Fra = lagetBillett.Fra;
                 nyBestillingRad.Til = lagetBillett.Til;
@@ -120,46 +109,96 @@ namespace WebApp_Del1.DAL
                 nyBestillingRad.Hjemreise = lagetBillett.Hjemreise;
                 nyBestillingRad.AntallVoksne = lagetBillett.AntallVoksne;
                 nyBestillingRad.AntallBarn = lagetBillett.AntallBarn;
+                
+                Kunde nyKundeRad = new Kunde(); // brukes i tilfellet vi skal lage en ny kunde 
+                Kunde funnetKunde = await _db.Kunder.FirstOrDefaultAsync(k => k.Epost == lagetBillett.Epost);
+
+                
+
+
+
+                if (funnetKunde == null)
+                {
+                    nyKundeRad.Fornavn   = lagetBillett.Fornavn;
+                    nyKundeRad.Etternavn = lagetBillett.Etternavn;
+                    nyKundeRad.Epost     = lagetBillett.Epost;
+                    // ***   Legge til denne bestillingen til listen av alle andre bestillinger som kunden har bestilt fra før gjennom vårt system.   ***//
+                    var nyKunde__bestillinger = new List<Billetter>();
+                    nyKunde__bestillinger.Add(nyBestillingRad);
+                    nyKundeRad.bestillinger = nyKunde__bestillinger;
+                    //Adde Kunden til databasen av kunder 
+                    _db.Kunder.Add(nyKundeRad);
+                   // await _db.SaveChangesAsync();
+                    //Access the database to get the kunde id of the new Kunde 
+                   // Kunde registrertKunde =  (await _db.Kunder.FirstOrDefaultAsync(k => k.Epost == lagetBillett.Epost));
+                    nyBestillingRad.Kid = nyKundeRad.Kid;
+                }
+
+
+                else
+                {
+                    nyBestillingRad.Kid = funnetKunde.Kid;
+                    var funnetKunde__bestillinger = funnetKunde.bestillinger;
+                    funnetKunde__bestillinger.Add(nyBestillingRad);
+                    funnetKunde.bestillinger = funnetKunde__bestillinger;
+                   // await _db.SaveChangesAsync();
+                }
+               
+                _db.Bestillinger.Add(nyBestillingRad);
+                //Oppdatere databasen 
+                await _db.SaveChangesAsync();
+
+                return " Hei from backend from line 150" + nyBestillingRad.BId;
 
                 //Før å opprette en ny Kude, skjekker først om kunden finnes i databasen med bruk av sin unik epost, fordi eposter er uansett alLtid unike 
 
                 // Kan være null hvis kunden med denne eposten ikke finnes i databasen ellers får vi en kunde Objekt. 
 
+                /*
                 Kunde funnetKunde = await _db.Kunder.FirstOrDefaultAsync(k => k.Epost == lagetBillett.Epost);
 
-                var nyKundeRad = new Kunde();
 
+                Kunde nyKundeRad = new Kunde(); // brukes i tilfellet vi skal lage en ny kunde 
 
                 /***  Hvis kunden finnes på databasen fra foor  ***/
+
+                /*
                 if (funnetKunde != null)
                 {
-                    nyKundeRad.Fornavn = funnetKunde.Fornavn;
-                    nyKundeRad.Etternavn = funnetKunde.Etternavn;
-                    nyKundeRad.Epost = funnetKunde.Epost;
-                    // Legge til denne bestillingen til listen av alle andre bestillinger som kunden har bestilt gjennom vårt system. 
-                    nyKundeRad.Bestillinger = nyBestillingRad;
+                    // Legge til denne bestillingen til listen av alle andre bestillinger som kunden har bestilt fra før gjennom vårt system. 
+                    var funnetKunde__bestillinger = funnetKunde.bestillinger;
+                    funnetKunde__bestillinger.Add(nyBestillingRad);
+                    funnetKunde.bestillinger = funnetKunde__bestillinger; 
+                    //Oppdatere databasen 
+                    await _db.SaveChangesAsync();
                 }
 
-
+                
                 /***  Hvis kunden ikke finnes på databasen fra foor  ***/
+
+                /*
                 else if (funnetKunde == null)
                 {
                     nyKundeRad.Fornavn = lagetBillett.Fornavn;
                     nyKundeRad.Etternavn = lagetBillett.Etternavn;
                     nyKundeRad.Epost = lagetBillett.Epost;
-                    nyKundeRad.Bestillinger = nyBestillingRad;
+                    var nyKunde__bestillinger = new List<Billetter>();
+                    nyKunde__bestillinger.Add(nyBestillingRad);
+                    nyKundeRad.bestillinger = nyKunde__bestillinger; 
                     //Adde Kunden til databasen av kunder 
-                    _db.Kunder.Add(nyKundeRad);
+                    await _db.Kunder.AddAsync(nyKundeRad);
+                    await _db.SaveChangesAsync();
                 }
                 //Adde bestilingen til tabellen av bestillinger i databasen 
                 await _db.Bestillinger.AddAsync(nyBestillingRad);
                 await _db.SaveChangesAsync();
-                return true;
+                // return nyBestillingRad.BId;
+                return "I am working fine from line 159 in billettrepository"; */
             }
 
-            catch
+            catch(Exception e)
             {
-                return false;
+                return  "Hei from catch 154 :)" + e.Message.ToString() +" the details are: " + e.InnerException; 
             }
 
         }
@@ -169,21 +208,7 @@ namespace WebApp_Del1.DAL
 
 
 
-/*
-async public Task<bool> LagreBillett(Billett lagetBillett)
-{
-    try
-    {
-        var nyKundeRad = new Kunde();
-        nyKundeRad.Fornavn = lagetBillett.Fornavn;
-        nyKundeRad.Etternavn = lagetBillett.Etternavn;
-        nyKundeRad.Epost = lagetBillett.Epost;
-    }
-    catch (Exception e)
-    {
 
-    }
-}*/
 
 
 

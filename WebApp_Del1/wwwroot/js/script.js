@@ -162,7 +162,15 @@ function lagreBestilling() {
         epost: $("#epost").val()
     };
     const url = "Billett/LagreBillett"
-    $.post(url, bestilling, function () {
-        window.location.href = "kvittering.html";
+    $.post(url, bestilling, function (success) {
+        if (success) {
+            console.log(success);
+            sessionStorage.setItem("billettId", success);
+            window.location.href = "kvittering.html";
+        }
+        else {
+            console.log("Feil i db for tur - prøv igjen senere");
+        }
+        
     });
 }

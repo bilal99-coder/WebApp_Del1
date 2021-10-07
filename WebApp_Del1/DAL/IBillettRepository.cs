@@ -11,9 +11,9 @@ namespace WebApp_Del1.DAL
         // List<Havner> HentAlleHavner_Fra();
         // Task<bool> Bestill(Reiseinformasjon innReiseinformasjon, int[] lugar_Id, Person[] personerIBiletteten);
         Task<List<Havner>> HentAlleHavner_Fra();
-        Task<bool> LagreBillett(Billett lagetBillett);
+        Task<string> LagreBillett(Billett lagetBillett);
         //Task<List<Havner>> HentAlleHavnerTil(int id);
-        Task<List<Billett>> HentBillett();
+        Task<Billett> HentBillett(int id);
         Task<List<ankomstHavner>> HentAlleHavnerTil(int id);
         // double beregnPris(Reiseinformasjon info, Lugarer thisLugar);
         // double beregnLugarerPris();
