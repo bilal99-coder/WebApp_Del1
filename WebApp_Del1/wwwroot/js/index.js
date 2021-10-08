@@ -4,7 +4,114 @@ $(function () {
     hentAlleHavner_Fra();
     oppgiHavnerTil(); 
     dispalyVue3();
-}); 
+});
+
+
+
+//datepicker. kan ikke velge tidligere datoer på utreise - kode funnet på nettet
+
+$(function () {
+    var dateFormat = "mm/dd/yy",
+        from = $("#utreise")
+            .datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: '2011:2037',
+                minDate: 0,
+                defaultDate: null,
+                showAnim: "fold",
+                showButtonPanel: true,
+            })
+            .on("change", function () {
+                to.datepicker("option", "minDate", getDate(this));
+            }),
+        to = $("#hjemreise").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '2011:2037',
+            minDate: 0,
+            defaultDate: null,
+            showAnim: "fold",
+            showButtonPanel: true,
+        })
+            .on("change", function () {
+                from.datepicker("option", "maxDate", getDate(this));
+            });
+
+    function getDate(element) {
+        var date;
+        try {
+            date = $.datepicker.parseDate(dateFormat, element.value);
+        } catch (error) {
+            date = null;
+            alert("hei")
+        }
+
+        return date;
+    }
+});
+
+/*
+$(function () {
+    $("#utreise").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: '2011:2037',
+        dateFormat: 'dd/mm/yy',
+        minDate: 0,
+        defaultDate: null,
+        showAnim: "fold",
+        showButtonPanel: true,
+    }).on('select', function () {
+
+
+        $(this).valid();
+
+        // triggers the validation test
+        // '$(this)' refers to '$("#datepicker")'
+
+    });
+});
+
+$(function () {
+
+    $("#hjemreise").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: '2011:2037',
+        dateFormat: 'dd/mm/yy',
+        minDate: 0,
+        defaultDate: null,
+        showAnim: "fold",
+        showButtonPanel: true,
+    }).on('select', function () {
+        $(this).valid();  // triggers the validation test
+        // '$(this)' refers to '$("#datepicker")'
+
+    });
+});*/
+
+/*
+$(function () {
+    $('#departure-date').datepicker({
+        numberOfMonths: 2,
+        showAnim: "fold",
+        showButtonPanel: true,
+        onSelect: (function () {
+            $('#return-date').focus();
+        })
+    });
+
+    $('#return-date').datepicker({
+        numberOfMonths: 2,
+        showAnim: "fold",
+        showButtonPanel: true,
+        onSelect: (function () {
+
+        })
+    });
+});
+*/
 
 
 let counter = 0; 
@@ -345,8 +452,9 @@ function display2() {
 
     //Gjør at bare et skjema viser om gangen. Dersom man trykker neste eller tilbake så endrer man skjema/
 
-    $('#regform2').hide();
-    $("#regform3").hide();
+$('#regform2').hide();
+$("#regform3").hide();
+$('#hjemreiseLabel').hide();
 
 
     $("#btnTilbake1").click(function () {
@@ -357,20 +465,40 @@ function display2() {
         $("#regform3").hide();
         $("#regform2").show();
     });
-    $("#btnNeste2").click(function () {
+
+$("#btnNeste2").click(function () {
+    const fornavnOk = validerFornavn($("#fornavn").val());
+    const etternavnOk = validerEtternavn($("#etternavn").val());
+    const epostOk = validerEpost($("#epost").val());
+    if (fornavnOk && etternavnOk && epostOk) {
         $("#regform2").hide();
         $("#regform3").show();
-    });
+    }
+});
 
-    //validerer antall barn og voksne
+    //validerer første side
 
-    $("#btnNeste").click(function () {
-        const antallVoksneOk = validerAntallVoksne($("#antallVoksne").val());
-        const antallBarnOk = validerAntallBarn($("#antallBarn").val());
-        if (antallVoksneOk && antallBarnOk) {
-            $("#regform").hide();
-            $("#regform2").show();
+$("#btnNeste").click(function () {
+    const reisetype = $("#reisetype").val();
+        if (reisetype === "turRetur") {
+            const antallVoksneOk = validerAntallVoksne($("#antallVoksne").val());
+            const antallBarnOk = validerAntallBarn($("#antallBarn").val());
+            const utreisetreiseOk = validerUtreise($("#utreise").val());
+            const hjemreiseOk = validerHjemreise($("#hjemreise").val());
+            if (antallVoksneOk && antallBarnOk && utreisetreiseOk && hjemreiseOk) {
+                $("#regform").hide();
+                $("#regform2").show();
+            } 
+        } else if (reisetype === "enVei") {
+            const antallVoksneOk = validerAntallVoksne($("#antallVoksne").val());
+            const antallBarnOk = validerAntallBarn($("#antallBarn").val());
+            const utreisetreiseOk = validerUtreise($("#utreise").val());
+            if (antallVoksneOk && antallBarnOk && utreisetreiseOk) {
+                $("#regform").hide();
+                $("#regform2").show();
+            }
         }
+     
     });
 
 
@@ -381,8 +509,10 @@ function display2() {
         const reisetype = $("#reisetype").val();
         if (reisetype === "turRetur") {
             $('#hjemreise').show();
+            $('#hjemreiseLabel').show();
         } else {
             $('#hjemreise').hide();
+            $('#hjemreiseLabel').hide();
         }
     })
 
@@ -390,6 +520,7 @@ function display2() {
         const fra = $("#fra").val();
         $.post("")
     })
+
 
     //Validere om alle feltene er i orden for å få en kvittering
 
@@ -477,24 +608,24 @@ $("#btnNeste2").click(function () {
     if (reisetype == 'enVei') {
         console.log("Dette er en vei fra linje 477");
         ut += "<h1 class='overskrift'>Oversikt</h1>" + "<div class='form-group'>" +
-            "<label class='form-control'>" + fornavn + " " + etternavn + "</label>" +
-            "<label class='form-control'>" + epost + "</label>" +
-            "<label class='form-control'>" + reisetype + "</label>" +
-            "<label class='form-control'>" + fra + " - " + til + "</label>" +
-            "<label class='form-control'>" + "Utreise: " + utreise + "</label>" +
-            "<label class='form-control'>" + antallVoksne + " Voksen og " + antallBarn + " Barn" + "</label>";
+            "<label class='form-control' id='oversiktLabel'>" + fornavn + " " + etternavn + "</label>" +
+            "<label class='form-control' id='oversiktLabel'>" + epost + "</label>" +
+            "<label class='form-control' id='oversiktLabel'>" + reisetype + "</label>" +
+            "<label class='form-control' id='oversiktLabel'>" + fra + " - " + til + "</label>" +
+            "<label class='form-control' id='oversiktLabel'>" + "Utreise: " + utreise + "</label>" +
+            "<label class='form-control' id='oversiktLabel'>" + antallVoksne + " Voksen og " + antallBarn + " Barn" + "</label>";
     }
 
     else if (reisetype == 'turRetur') {
         console.log("Dette er en turRetur fra linje 490");
         ut += "<h1 class='overskrift'>Oversikt</h1>" + "<div class='form-group'>" +
-            "<label class='form-control'>" + fornavn + " " + etternavn + "</label>" +
-            "<label class='form-control'>" + epost + "</label>" +
-            "<label class='form-control'>" + reisetype + "</label>" +
-            "<label class='form-control'>" + fra + " - " + til + "</label>" +
-            "<label class='form-control'>" + "Utreise: " + utreise + "</label>" +
-            "<label class='form-control'>" + "Hjemreise: " + hjemreise + "</label>" +
-            "<label class='form-control'>" + antallVoksne + " Voksen og " + antallBarn + " Barn" + "</label>";
+            "<label class='form-control' id='oversiktLabel'>" + fornavn + " " + etternavn + "</label>" +
+            "<label class='form-control' id='oversiktLabel'>" + epost + "</label>" +
+            "<label class='form-control' id='oversiktLabel'>" + reisetype + "</label>" +
+            "<label class='form-control' id='oversiktLabel'>" + fra + " - " + til + "</label>" +
+            "<label class='form-control' id='oversiktLabel'>" + "Utreise: " + utreise + "</label>" +
+            "<label class='form-control' id='oversiktLabel'>" + "Hjemreise: " + hjemreise + "</label>" +
+            "<label class='form-control' id='oversiktLabel'>" + antallVoksne + " Voksen og " + antallBarn + " Barn" + "</label>";
     }
 
         $("#oversikt").html(ut);

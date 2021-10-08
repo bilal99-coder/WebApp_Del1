@@ -187,3 +187,7 @@ form #reiseKode {
 form #reiseKodeLabel{
     text-align: center;
 }
+
+form .input-group-append {
+
+}

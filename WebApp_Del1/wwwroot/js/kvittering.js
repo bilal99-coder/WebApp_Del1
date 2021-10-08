@@ -3,6 +3,7 @@
 $(function () {
     $.get("Billett/HentBillett", function (bestillinger) {
         formaterBestilling(bestillinger);
+        makeid(6);
     });
 });
 
@@ -27,7 +28,7 @@ function formaterBestilling(bestillinger){
                     "<label class='form-control' id='KvitteringFraTil'>" + bestilling.antallVoksne + " Voksen og " + bestilling.antallBarn + " Barn" + "</label>" +
                     "</div>" +
                     "</div>" +
-                    "<label id='reiseKodeLabel'> ReiseKode: </label>" + "<br>" + "<h3 id='reiseKode'>RSDFS1254</h3>";
+                "<label id='reiseKodeLabel'> ReiseKode: </label>" + "<br>" + "<h3 id='reiseKode'></h3>";
         } else {
             console.log("Hei fra linje 32 i kvittering.js // Dette må være for turRetur")
                 ut +=
@@ -45,7 +46,7 @@ function formaterBestilling(bestillinger){
                     "<label class='form-control' id='KvitteringFraTil'>" + bestilling.antallVoksne + " Voksen og " + bestilling.antallBarn + " Barn" + "</label>" +
                     "</div>" +
                     "</div>" +
-                    "<h5 id='reiseKodeLabel'> ReiseKode: </h5>" + "<br>" + "<h3 id='reiseKode'>KSWHFG275</h3>";
+                    "<h5 id='reiseKodeLabel'> ReiseKode: </h5>" + "<br>" + "<h3 id='reiseKode'></h3>";
             }
         }
 
@@ -54,6 +55,17 @@ function formaterBestilling(bestillinger){
     $("#kvittering").html(ut);
 }
 
-//hentet fra nettet
+//hentet fra nettet - lager et random tall som reisekode
 
+function makeid(length) {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() *
+            charactersLength));
+    }
+    $("#reiseKode").html(result);
+
+}
 

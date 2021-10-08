@@ -111,6 +111,8 @@ namespace WebApp_Del1.DAL
         {
             try
             {
+
+
                 var nyBestillingRad = new Bestilling();
                 //nyBestillingRad.BId = lagetBillett.BId;  --> Id blir automatisk generert fra databasen
                 nyBestillingRad.Reisetype = lagetBillett.Reisetype;
