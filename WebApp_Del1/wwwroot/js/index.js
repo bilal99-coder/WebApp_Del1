@@ -4,6 +4,7 @@ $(function () {
     hentAlleHavner_Fra();
     oppgiHavnerTil(); 
     dispalyVue3();
+    oppdaterPris();
 });
 
 
@@ -50,6 +51,130 @@ $(function () {
         return date;
     }
 });
+
+
+function oppdaterPris() {
+    //Vise prisen
+    $("#pris").css("display", "block"); let valgteAkomstHavnen__Id;
+    let pris = 0; $('#fra').on('change', function () {
+        valgteAkomstHavnen__Id = $("#til option:selected").attr("id");
+        console.log("valgte ankomstHavnen / Kommer fra linjen 131 i index.js ----> " + valgteAkomstHavnen__Id);
+        $.ajax({
+            type: 'POST',
+            url: "billett/returnPris?id=" +
+                encodeURIComponent(valgteAkomstHavnen__Id),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                beregnTotalPris(response);
+                pris = response;
+            },
+            failure: function (response) {
+                alert(response.d);
+            }
+        });
+    });
+    $('#til').on('change', function () {
+        valgteAkomstHavnen__Id = $("#til option:selected").attr("id");
+        console.log("valgte ankomstHavnen / Kommer fra linjen 131 i index.js ----> " + valgteAkomstHavnen__Id);
+        $.ajax({
+            type: 'POST',
+            url: "billett/returnPris?id=" +
+                encodeURIComponent(valgteAkomstHavnen__Id),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                beregnTotalPris(response);
+                pris = response;
+            },
+            failure: function (response) {
+                alert(response.d);
+            }
+        });
+    }); $("#reisetype").on('change', function () {
+        valgteAkomstHavnen__Id = $("#til option:selected").attr("id");
+        console.log("valgte ankomstHavnen / Kommer fra linjen 131 i index.js ----> " + valgteAkomstHavnen__Id);
+        $.ajax({
+            type: 'POST',
+            url: "billett/returnPris?id=" +
+                encodeURIComponent(valgteAkomstHavnen__Id),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                beregnTotalPris(response);
+                pris = response;
+            },
+            failure: function (response) {
+                alert(response.d);
+            }
+        });
+    }); $("#antallVoksne").on('change', function () {
+        valgteAkomstHavnen__Id = $("#til option:selected").attr("id");
+        console.log("valgte ankomstHavnen / Kommer fra linjen 131 i index.js ----> " + valgteAkomstHavnen__Id);
+        $.ajax({
+            type: 'POST',
+            url: "billett/returnPris?id=" +
+                encodeURIComponent(valgteAkomstHavnen__Id),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                beregnTotalPris(response);
+                pris = response;
+            },
+            failure: function (response) {
+                alert(response.d);
+            }
+        });
+    }); $("#antallBarn").on('change', function () {
+        if ($("#antallBarn").val() > 0) {
+            $("#antallBarnSpan").show();
+            valgteAkomstHavnen__Id = $("#til option:selected").attr("id");
+            console.log("valgte ankomstHavnen / Kommer fra linjen 131 i index.js ----> " + valgteAkomstHavnen__Id);
+            $.ajax({
+                type: 'POST',
+                url: "billett/returnPris?id=" +
+                    encodeURIComponent(valgteAkomstHavnen__Id),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    beregnTotalPris(response);
+                    pris = response;
+                },
+                failure: function (response) {
+                    alert(response.d);
+                }
+            });
+        }
+        else {
+            $("#antallBarnSpan").hide();
+        }
+    });
+    console.log(" iden valgte ankomstHavnen er " + valgteAkomstHavnen__Id); //Kall på ajax for prisen til valgte ankomst havnen
+
+}
+
+
+function beregnTotalPris(response) {
+    let totalPrisen = 0;
+    let rutePrisen = response;
+    totalPrisen = rutePrisen;
+    let reisetype = $("#reisetype").val();
+    if (reisetype == 'turRetur') {
+        totalPrisen = rutePrisen * 2;
+    } else if (reisetype != 'turRetur') {
+        totalPrisen = response;
+    }
+    let antallVoksne = $("#antallVoksne").val();
+    let antallBarn = $("#antallBarn").val();
+    totalPrisen = totalPrisen + (rutePrisen * antallVoksne); // Barn betaler halv prisen //totalPrisen += (rutePrisen *antallBarn) / 2;
+    $("#pris").html(totalPrisen);
+    console.log(rutePrisen);
+    console.log(reisetype);
+    console.log(antallVoksne);
+    console.log(antallBarn);
+}
+
+
 
 /*
 $(function () {
@@ -205,10 +330,12 @@ function hentAlleHavnerTil(id) {
 
 
 //Formaterer havnertil med ikon
+//Formaterer havnertil
+
 function formaterHavnerTil(Havner) {
     let ut = "";
     for (let enHavn of Havner) {
-        ut += "<option class='fa-bus' style='font-size:20px' data-value=" + enHavn.havnId + " >" + enHavn.havnNavn + "</option>"
+        ut += "<option class='fa-bus' style='font-size:20px' id ='" + enHavn.havnId + "' " + " >" + enHavn.havnNavn + "</option>"
     }
     $("#til").html(ut);
     console.log(ut);

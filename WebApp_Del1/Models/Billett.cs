@@ -1,10 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
+
+
 namespace WebApp_Del1.Models
 {
     public class Billett
     {
+
+        public int BId { get; set; }
         public int Kid { get; set; }
         [RegularExpression(@"^[a-zA-zæøåÆØÅ. \-]{2,20}$")]
         public String Fornavn { get; set; }
