@@ -118,6 +118,7 @@ public class ankomstHavner
     [Key]
     public int HavnId { get; set; }
     public string HavnNavn { get; set; }
+    public int pris { get; set; }
 
 }
 

@@ -50,5 +50,10 @@ namespace WebApp_Del1.Controllers
         {
             return await _db.HentAlleHavnerTil(id);
         }
+
+        public async Task<int> ReturnPris(int id)
+        {
+            return await _db.ReturnPris(id);
+        }
     }
 }

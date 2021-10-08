@@ -15,6 +15,8 @@ namespace WebApp_Del1.DAL
         //Task<List<Havner>> HentAlleHavnerTil(int id);
         Task<Billett> HentBillett(int id);
         Task<List<ankomstHavner>> HentAlleHavnerTil(int id);
+
+        Task<int> ReturnPris(int id); 
         // double beregnPris(Reiseinformasjon info, Lugarer thisLugar);
         // double beregnLugarerPris();
         // double beregntjenesterPris();

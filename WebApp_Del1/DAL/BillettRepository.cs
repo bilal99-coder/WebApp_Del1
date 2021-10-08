@@ -202,6 +202,21 @@ namespace WebApp_Del1.DAL
             }
 
         }
+
+
+        public async Task<int> ReturnPris(int  id)
+        {
+            try
+            {
+                ankomstHavner ankomstHavnen = await _db.ankomstHavner.FirstOrDefaultAsync(h => h.HavnId == id);
+                return ankomstHavnen.pris;
+            }
+            catch
+            {
+                return -1; 
+            }
+            
+        }
     }
 }
 

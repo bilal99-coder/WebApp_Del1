@@ -34,7 +34,7 @@ $(function () {
 function formaterBestilling(bestilling){
     let ut = "<form class='form'>";
     console.log("I am to be formatted ")
-    if (bestilling.Reisetype == 'enVei') {
+    if (bestilling.reisetype == 'enVei') {
             console.log("Hei fra linje 15 i kvittering.js")
                 ut +=
                     "<h1 id='overskrift'>Kvittering</h1>" +
@@ -43,11 +43,11 @@ function formaterBestilling(bestilling){
                     "<img id='qr' src='frame.png' alt='QR' width='400px' height='400px'/>" +
                     "</div>" +
                     "<div class='col' id='kvitteringInfo'>" +
-                    "<label class='form-control' id='kvitteringFraTil'>" + bestilling.Fra + " - " + bestilling.Til + "</label>" +
-                    "<label class='form-control' id='KvitteringFraTil'>" + "Utreise: " + bestilling.Utreise + "</label>" +
-                    "<label class='form-control' id='KvitteringFraTil'>" + bestilling.Fornavn + " " + bestilling.Etternavn + "</label>" +
-                    "<label class='form-control' id='KvitteringFraTil'>" + bestilling.Epost + "</label>" +
-                    "<label class='form-control' id='KvitteringFraTil'>" + bestilling.AntallVoksne + " Voksen og " + bestilling.AntallBarn + " Barn" + "</label>" +
+                    "<label class='form-control' id='kvitteringFraTil'>" + bestilling.fra + " - " + bestilling.til + "</label>" +
+                    "<label class='form-control' id='KvitteringFraTil'>" + "Utreise: " + bestilling.utreise + "</label>" +
+                    "<label class='form-control' id='KvitteringFraTil'>" + bestilling.fornavn + " " + bestilling.etternavn + "</label>" +
+                    "<label class='form-control' id='KvitteringFraTil'>" + bestilling.epost + "</label>" +
+                    "<label class='form-control' id='KvitteringFraTil'>" + bestilling.antallVoksne + " Voksen og " + bestilling.antallBarn + " Barn" + "</label>" +
                     "</div>" +
                     "</div>" +
                     "<label id='reiseKodeLabel'> ReiseKode: </label>" + "<br>" + "<h3 id='reiseKode'>RSDFS1254</h3>";
@@ -60,12 +60,12 @@ function formaterBestilling(bestilling){
                     "<img id='qr' src='frame.png' alt='QR' width='400px' height='400px'/>" +
                     "</div>" +
                     "<div class='col' id='kvitteringInfo'>" +
-                    "<label class='form-control' id='kvitteringFraTil'>" + bestilling.Fra + " - " + bestilling.Til + "</label>" +
-                    "<label class='form-control' id='KvitteringFraTil'>" + "Utreise: " + bestilling.Utreise + "</label>" +
-                    "<label class='form-control' id='KvitteringFraTil'>" + "Hjemreise: " + bestilling.Hjemreise + "</label>" +
-                    "<label class='form-control' id='KvitteringFraTil'>" + bestilling.Fornavn + " " + bestilling.Etternavn + "</label>" +
-                    "<label class='form-control' id='KvitteringFraTil'>" + bestilling.Epost + "</label>" +
-                    "<label class='form-control' id='KvitteringFraTil'>" + bestilling.AntallVoksne + " Voksen og " + bestilling.AntallBarn + " Barn" + "</label>" +
+                    "<label class='form-control' id='kvitteringFraTil'>" + bestilling.fra + " - " + bestilling.til + "</label>" +
+                    "<label class='form-control' id='KvitteringFraTil'>" + "Utreise: " + bestilling.utreise + "</label>" +
+                    "<label class='form-control' id='KvitteringFraTil'>" + "Hjemreise: " + bestilling.hjemreise + "</label>" +
+                    "<label class='form-control' id='KvitteringFraTil'>" + bestilling.fornavn + " " + bestilling.etternavn + "</label>" +
+                    "<label class='form-control' id='KvitteringFraTil'>" + bestilling.epost + "</label>" +
+                    "<label class='form-control' id='KvitteringFraTil'>" + bestilling.antallVoksne + " Voksen og " + bestilling.antallBarn + " Barn" + "</label>" +
                     "</div>" +
                     "</div>" +
                     "<h5 id='reiseKodeLabel'> ReiseKode: </h5>" + "<br>" + "<h3 id='reiseKode'>KSWHFG275</h3>";
