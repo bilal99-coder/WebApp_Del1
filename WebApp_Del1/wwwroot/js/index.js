@@ -176,70 +176,7 @@ function beregnTotalPris(response) {
 
 
 
-/*
-$(function () {
-    $("#utreise").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        yearRange: '2011:2037',
-        dateFormat: 'dd/mm/yy',
-        minDate: 0,
-        defaultDate: null,
-        showAnim: "fold",
-        showButtonPanel: true,
-    }).on('select', function () {
 
-
-        $(this).valid();
-
-        // triggers the validation test
-        // '$(this)' refers to '$("#datepicker")'
-
-    });
-});
-
-$(function () {
-
-    $("#hjemreise").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        yearRange: '2011:2037',
-        dateFormat: 'dd/mm/yy',
-        minDate: 0,
-        defaultDate: null,
-        showAnim: "fold",
-        showButtonPanel: true,
-    }).on('select', function () {
-        $(this).valid();  // triggers the validation test
-        // '$(this)' refers to '$("#datepicker")'
-
-    });
-});*/
-
-/*
-$(function () {
-    $('#departure-date').datepicker({
-        numberOfMonths: 2,
-        showAnim: "fold",
-        showButtonPanel: true,
-        onSelect: (function () {
-            $('#return-date').focus();
-        })
-    });
-
-    $('#return-date').datepicker({
-        numberOfMonths: 2,
-        showAnim: "fold",
-        showButtonPanel: true,
-        onSelect: (function () {
-
-        })
-    });
-});
-*/
-
-
-let counter = 0; 
 
 
 
@@ -261,9 +198,7 @@ function hentAlleHavner_Fra1(){
 
 function hentAlleHavner_Fra() {
     $.get("billett/hentAlleHavner_Fra", function (listeAvHavner) {
-        //alert(listeAvHavner);
-       // console.log(listeAvHavner[0].HavnNavn);
-        //  console.log(Object.keys(listeAvHavner))
+        
         console.log("The response listeAvHavner is:" + typeof listeAvHavner);
         formaterHavner(listeAvHavner);
     });
@@ -329,7 +264,6 @@ function hentAlleHavnerTil(id) {
 
 
 
-//Formaterer havnertil med ikon
 //Formaterer havnertil
 
 function formaterHavnerTil(Havner) {
@@ -360,68 +294,9 @@ function formaterHavner(listeAvHavner) {
 };
 
 
-/*
-// Når kunden bekrefter kjøpet 
-function bekreftKjoop() {
-    //Kaller funksjonen 
-    lagBillett(); 
-    $.ajax({
-        type: "POST",
-        url: "TelephoneNumbers.aspx/DeleteNumber",
-        data: data0,
 
-        success: function (data) {
-            alert('Done');
-        }
-    });
-}
-    */
-/*
-function lagBillett() {
-    let billett = {
-        reiseType: $("select#reisetype").filter(":selected").text(),
-        fra: $("select#fra").filter(":selected").text(),
-        til: $("select#til").filter(":selected").text(),
-        //  utreise: $("utreise").data("datetimepicker").getDate(),
-        
-        // antallVoksneStreng:  document.getElementById("antallVoksen").value, 
-        //antallVoksne = Number(antallVoksneStreng),
-   
-       // antallBarn = Number($("antallBarn").text()),
-        //antallReisende = antallBarn + antallVoksne
 
-        antallReisende: {
-            CountAlleReisende: function () {
-                const antallVoksne = parseInt($("antallVoksen").text());
-                const antallBarn = parseInt($("antallVoksen").text());
-                const antallReisende = antallBarn + antallVoksne;
-            }
-        }
-    }
 
-    
-    console.log(billett.reiseType);
-}*/
-
-/*
-function count_AndReturn_Persons() {
-    //Telle antall personer som e med i billetten 
-    const antallVoksne = parseInt($("antallVoksen").text()); 
-    const antallBarn = parseInt($("antallVoksen").text());
-    const antallReisende = antallBarn + antallVoksne;
-    let persons_counter = count + antallReisende;
-    let personene = [];
-    for (let i = 0; i < persons_counter; i++)
-    {
-        const person = {
-            fornavn: $("#person_fornavn"+i).text(),
-            etternavn: $("#person_etternavn"+i).text(),
-            epost: $("#person_email" + i).text()
-        }; 
-        personene.push(person); 
-    };
-    return personene;
-}*/
 
 
 function dispalyVue3(accept) {
@@ -515,40 +390,7 @@ function dispalyVue3(accept) {
 }
 
 
-    
-    /*
-    function countAlleReisende() {
-        //Telle antall personer som e med i billetten 
-        const antallVoksne = parseInt($("antallVoksen").text());
-        const antallBarn = parseInt($("antallVoksen").text());
-        const antallReisende = antallBarn + antallVoksne;
-        // a counter that listens to changes in case of deleting a person
-        let persons_counter = antallReisende + counter;
-        return antallReisende;
-    }
 
-    function slettEnPerson(id) {
-        //$("#dynamicPerson-container_" + "" + id + "").hide();
-        counter--;
-
-        $("#dynamicPerson-container_" + "" + id + "").remove();
-
-        console.log(id);
-        console.log("rowPerson_" + "" + id + "");
-    }
-
-
-function slettEnBarn(id) {
-    //$("#dynamicPerson-container_" + "" + id + "").hide();
-    counter--;
-
-    $("#dynamicBarn-container_" + "" + id + "").remove();
-
-    console.log(id);
-    console.log("rowPerson_" + "" + id + "");
-}
-
-*/
 
 
 
@@ -663,24 +505,32 @@ $("#btnNeste").click(function () {
     //lager en kvittering basert på input
 
 function lagreBestilling() {
-        const bestilling = {
-            reisetype: $("#reisetype").val(),
-            fra: $("#fra").val(),
-            til: $("#til").val(),
-            utreise: $("#utreise").val(),
-            hjemreise: $("#hjemreise").val(),
-            antallVoksne: $("#antallVoksne").val(),
-            antallBarn: $("#antallBarn").val(),
-            fornavn: $("#fornavn").val(),
-            etternavn: $("#etternavn").val(),
-            epost: $("#epost").val()
+    const Billett = {
+        Reisetype: $("#reisetype").val(),
+        Fra: $("#fra").val(),
+        Til: $("#til").val(),
+        Utreise: $("#utreise").val(),
+        Hjemreise: $("#hjemreise").val(),
+        AntallVoksne: $("#antallVoksne").val(),
+        AntallBarn: $("#antallBarn").val(),
+        Fornavn: $("#fornavn").val(),
+        Etternavn: $("#etternavn").val(),
+        Epost: $("#epost").val() 
     };
-        const url = "Billett/LagreBillett"
-        $.post(url, bestilling, function () {
+    const url = "Billett/lagreBillett";
+    $.post(url, Billett, function (OK) {
+        console.log(OK);
+        if (OK) {
+            console.log(OK);
+            sessionStorage.setItem("billettId", OK);
             window.location.href = "kvittering.html";
-        });
-    // console.log(bestilling.hjemreise);
-    }
+        }
+        else {
+            console.log("Feil i db for tur - prøv igjen senere");
+        }
+
+    });
+}
 
 function check() {
     const bestilling = {
@@ -709,15 +559,7 @@ function check() {
 
  
  
- /*
-  $(":input").on('keyup mouseup', function () {
-  var coins = $("#coins").val();
-  $("#reward").text(coins);
-}).trigger('mouseup');
-  
-  */
 
-//viser oversikt
 
 $("#btnNeste2").click(function () {
 
@@ -731,6 +573,7 @@ $("#btnNeste2").click(function () {
     var fornavn = $("#fornavn").val();
     var etternavn = $("#etternavn").val();
     var epost = $("#epost").val();
+    var pris = $("#pris").val();
     let ut = ""; 
     if (reisetype == 'enVei') {
         console.log("Dette er en vei fra linje 477");
@@ -741,6 +584,7 @@ $("#btnNeste2").click(function () {
             "<label class='form-control' id='oversiktLabel'>" + fra + " - " + til + "</label>" +
             "<label class='form-control' id='oversiktLabel'>" + "Utreise: " + utreise + "</label>" +
             "<label class='form-control' id='oversiktLabel'>" + antallVoksne + " Voksen og " + antallBarn + " Barn" + "</label>";
+            "<label class='form-control' id='oversiktLabel'>" + pris + "</label>";
     }
 
     else if (reisetype == 'turRetur') {
@@ -753,6 +597,7 @@ $("#btnNeste2").click(function () {
             "<label class='form-control' id='oversiktLabel'>" + "Utreise: " + utreise + "</label>" +
             "<label class='form-control' id='oversiktLabel'>" + "Hjemreise: " + hjemreise + "</label>" +
             "<label class='form-control' id='oversiktLabel'>" + antallVoksne + " Voksen og " + antallBarn + " Barn" + "</label>";
+            "<label class='form-control' id='oversiktLabel'>" + pris + "</label>";
     }
 
         $("#oversikt").html(ut);

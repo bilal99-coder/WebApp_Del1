@@ -24,24 +24,14 @@ namespace WebApp_Del1.Controllers
         [ExcludeFromCodeCoverage]
         public async Task<List<Havner>> HentAlleHavner_Fra()
         {
-            // List<Havner> lister = new List<Havner>();
-            // lister.Add(new Havner()); //return await _db.HentAlleHavner_Fra(); // return lister.ToList(); //ToListAsync
+         
             return await _db.HentAlleHavner_Fra();
         }
         public async Task<int> LagreBillett(Billett lagetBillett)
         {
-            //if (ModelState.IsValid)
-            //{
+          
                 return await _db.LagreBillett(lagetBillett);
-               // if (returOk == -1)
-                //{
-                  //  _log.LogInformation("Feil i inputvalidering");
-                    //return BadRequest("Feil i inputvalidering på server");
-                //}
-                //return Ok(returOk);
-            //}
-            //_log.LogInformation("Feil i inputvalidering");
-            //return BadRequest("Feil i inputvalidering på server");
+           
         }
         public async Task<Billett> HentBillett(int id)
         {
