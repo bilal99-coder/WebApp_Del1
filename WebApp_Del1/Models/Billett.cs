@@ -24,5 +24,6 @@ namespace WebApp_Del1.Models
         public string AntallVoksne { get; set; }
         [RegularExpression(@"^[0-9]{1}$")]
         public string AntallBarn { get; set; }
+
     }
 }
