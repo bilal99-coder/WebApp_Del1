@@ -1,11 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
+
+
 namespace WebApp_Del1.Models
 {
     public class Billett
-    {   
- 
+    {
+
         public int BId { get; set; }
         public int Kid { get; set; }
         [RegularExpression(@"^[a-zA-zæøåÆØÅ. \-]{2,20}$")]
@@ -22,5 +24,6 @@ namespace WebApp_Del1.Models
         public string AntallVoksne { get; set; }
         [RegularExpression(@"^[0-9]{1}$")]
         public string AntallBarn { get; set; }
+
     }
 }

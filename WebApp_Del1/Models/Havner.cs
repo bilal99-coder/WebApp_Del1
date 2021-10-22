@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp_Del1.DAL;
 
 namespace WebApp_Del1.Models
 {
@@ -14,10 +15,3 @@ namespace WebApp_Del1.Models
         public virtual List<ankomstHavner> AnkomstHavner { get; set; }
     }
 }
-/*
- 
- 'Property ' is not virtual. 'UseChangeTrackingProxies' requires all entity types to be public,
-unsealed, have virtual properties, and have a public or protected constructor. 'UseLazyLoadingProxies' requires only the navigation properties be virtual.'
- 
- 
- */

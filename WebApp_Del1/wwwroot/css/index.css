@@ -216,24 +216,7 @@ form #reiseKodeLabel{
     text-align: center;
 }
 
-#pris {
-    display: none; 
+form .input-group-append {
+
 }
 
-#antallBarnSpan {
-    display: none;
-    transition: all 0.3s ease;
-    color: red;
-}
-
-@media (max-width: 690px) {
-    #antallBarnSpan {
-        font-size: 11px;
-    }
-}
-
-@media (max-width: 690px) {
-    #antallBarnSpan {
-        font-size: 11px;
-    }
-}

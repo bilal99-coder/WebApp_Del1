@@ -21,52 +21,30 @@ namespace WebApp_Del1.Controllers
             _db = db;
             _log = log;
         }
-        
         [ExcludeFromCodeCoverage]
         public async Task<List<Havner>> HentAlleHavner_Fra()
         {
-          //  List<Havner> lister = new List<Havner>();
-          //  lister.Add(new Havner());
-
-             //return await _db.HentAlleHavner_Fra(); 
-
-            // return lister.ToList(); //ToListAsync
-             return await _db.HentAlleHavner_Fra();
+         
+            return await _db.HentAlleHavner_Fra();
         }
-
-        
-
-        public async Task<ActionResult> LagreBillett(Billett lagetBillett)
+        public async Task<int> LagreBillett(Billett lagetBillett)
         {
-            
-            if (ModelState.IsValid)
-            {
-                int returOk = await _db.LagreBillett(lagetBillett);
-                if (returOk == -1)
-                {
-                    _log.LogInformation("Feil i inputvalidering");
-                    return BadRequest("Feil i inputvalidering på server") ;
-                }
-                return Ok(returOk) ;
-            }
-            _log.LogInformation("Feil i inputvalidering");
-            return BadRequest("Feil i inputvalidering på server");
-
+          
+                return await _db.LagreBillett(lagetBillett);
+           
         }
-
         public async Task<Billett> HentBillett(int id)
         {
             return await _db.HentBillett(id);
         }
-
         public async Task<List<ankomstHavner>> HentAlleHavnerTil(int id)
         {
             return await _db.HentAlleHavnerTil(id);
         }
-
         public async Task<int> ReturnPris(int id)
         {
             return await _db.ReturnPris(id);
         }
     }
 }
+
