@@ -36,9 +36,22 @@ namespace WebApp_Del1.Controllers
 
         
 
-        public async Task<string> LagreBillett(Billett lagetBillett)
+        public async Task<ActionResult> LagreBillett(Billett lagetBillett)
         {
-            return await _db.LagreBillett(lagetBillett);
+            
+            if (ModelState.IsValid)
+            {
+                int returOk = await _db.LagreBillett(lagetBillett);
+                if (returOk == -1)
+                {
+                    _log.LogInformation("Feil i inputvalidering");
+                    return BadRequest("Feil i inputvalidering på server") ;
+                }
+                return Ok(returOk) ;
+            }
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest("Feil i inputvalidering på server");
+
         }
 
         public async Task<Billett> HentBillett(int id)

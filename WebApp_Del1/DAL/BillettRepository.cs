@@ -96,7 +96,7 @@ namespace WebApp_Del1.DAL
 
         }
 
-        async public Task<string> LagreBillett(Billett lagetBillett)
+        async public Task<int> LagreBillett(Billett lagetBillett)
         {
             try
             {
@@ -148,8 +148,8 @@ namespace WebApp_Del1.DAL
                 //Oppdatere databasen 
                 await _db.SaveChangesAsync();
 
-                return " Hei from backend from line 150" + nyBestillingRad.BId;
-
+                // return " Hei from backend from line 150" + nyBestillingRad.BId;
+                return  nyBestillingRad.BId;
                 //Før å opprette en ny Kude, skjekker først om kunden finnes i databasen med bruk av sin unik epost, fordi eposter er uansett alLtid unike 
 
                 // Kan være null hvis kunden med denne eposten ikke finnes i databasen ellers får vi en kunde Objekt. 
@@ -198,7 +198,7 @@ namespace WebApp_Del1.DAL
 
             catch(Exception e)
             {
-                return  "Hei from catch 154 :)" + e.Message.ToString() +" the details are: " + e.InnerException; 
+                return  -1; 
             }
 
         }
